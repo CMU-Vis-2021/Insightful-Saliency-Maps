@@ -8,10 +8,125 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <h2>Assignment 3</h2>
-    <p style="font-size:70px">&#128065; &#128065; vs. &#129302;</p>
-    <div id="d3-div"></div>
-    <div id="vega-div"></div>
-    <script type="module" src="./main.js"></script>
+    <div class="container">
+      <h1>
+         <span class = "emoji">&#129302;</span>
+         vs
+         <span class = "emoji">&#128065;</span>
+      </h1>
+      <nav>
+          <button id = "openTab1" onclick = "changeTab(this,'tab1')" class = "active">Stylize and Image</button>
+          <button id = "openTab2" onclick = "changeTab(this,'tab2')">Shape bias quiz</button>
+          <button id = "openTab3" onclick = "changeTab(this,'tab3')">Model summary</button>
+      </nav>
+      <div id = "tab1">
+             <h2>Make your own stylized image. See what the AI predicts. Is it biased towards texture or shape?</h2>
+             <div class = "flex">
+                 <div class = "flex-inner step">
+                     <label for="shape"><span class = "number">1</span>Choose a shape:</label>
+                     <br>
+                     <div class = "select">
+                         <select class = "standard-select" name="shape" id="shape">
+                             <option value="cat">Cat</option>
+                             <option value="dog">Dog</option>
+                             <option value="shape3">shape3</option>
+                         </select>
+                     </div>
+                     <img alt = "orange cat sunbathing" src = "assets/shapes/cat.jpg">
+                 </div>
+     
+                 <div class = "flex-inner step">
+                     <label for="texture"><span class = "number">2</span>Choose a texture:</label>
+                     <br>
+                     <div class = "select">
+                         <select class = "standard-select" name="texture" id="texture">
+                             <option value="elephant">Elephant</option>
+                             <option value="dog">Dog</option>
+                             <option value="tex3">tex3</option>
+                         </select>
+                     </div>
+                     <img alt = "close up image of an elephant's skin" src = "assets/textures/elephant.jpg">
+                 </div>
+     
+                 <div class = "flex-inner step">
+                     <label for="shape"><span class = "number">3</span>Stylize the Image:</label>
+                     <br>
+                     <button class = "blue">Stylize</button>
+                 </div>
+                 <div class = "flex-inner step">
+                     <label for="shape">Stylized Image</label>
+                     <div class = "output-labels">
+                         <p>AI Prediction: <span id = "prediction" class = "output">Elephant</span></p>
+                         <p>Biased: <span id = "biased" class = "output">Texture</span></p>
+                     </div>
+                     <img alt = "output" src = "assets/output/output.jpg">
+                 </div>
+             </div>
+             <div class = "more-images">
+                 <p>Want to stylize another image?</p>
+                 <img alt = "plus icon" src = "assets/icons/plus.svg">
+             </div>
+         </div>
+         <div id = "tab2" class = "hidden">
+             <h2>Take this short quiz to see how well you can classify these images compared to the AI.</h2>
+             <div class = "progress-bar">
+                 <p> Progress: <span id = "progress-number">1</span>/10</p>
+                 <div id = "dots">
+                     <span class= "dot1 dot" style = "background-color: #3274b5;"></span>
+                     <span class= "dot2 dot"></span>
+                     <span class= "dot3 dot"></span>
+                     <span class= "dot4 dot"></span>
+                     <span class= "dot5 dot"></span>
+                     <span class= "dot6 dot"></span>
+                     <span class= "dot7 dot"></span>
+                     <span class= "dot8 dot"></span>
+                     <span class= "dot9 dot"></span>
+                     <span class= "dot10 dot"></span>
+                 </div>
+                 <img alt = "textured image of a cat" src = "assets/quiz/Img1.jpg">
+                 <br>
+                 <label>What's your prediction?</label>
+                 <div class = "select">
+                     <select class = "standard-select" name="texture" id="texture">
+                         <option value="elephant">Select class</option>
+                         <option value="selection1">selection1</option>
+                         <option value="selection2">selection2</option>
+                     </select>
+                 </div>
+                 <button class = "blue">Next</button>
+             </div>
+     
+         </div>
+         <div id = "tab3" class = "hidden">
+             <h2>View a summary of the shape bias of the AI.</h2>
+             <div class = "flex graphics">
+                 <div class = "flex-inner step">
+                         <label for="texture"><span class = "number">1</span>Choose a model:</label>
+                         <br>
+                         <div class = "select">
+                             <select class = "standard-select" name="texture" id="texture">
+                                 <option value="elephant">Model 1 (ResNet-50)</option>
+                                 <option value="dog">Dog</option>
+                                 <option value="tex3">tex3</option>
+                             </select>
+                         </div>
+                 </div>
+                 <div class = "flex-inner step">
+                     <label for="texture"><span class = "number">1</span>Select models to compare to:</label>
+                     <br>
+                     <div class = "select">
+                         <select class = "standard-select" name="texture" id="texture">
+                             <option value="elephant">Model 1</option>
+                             <option value="dog">Model 2</option>
+                             <option value="tex3">Model 3</option>
+                         </select>
+                     </div>  
+                 </div>
+             </div> 
+     
+         </div>
+     
+     </div>
   </body>
+  <script type="text/javascript" src="main.js"></script>
 </html>
