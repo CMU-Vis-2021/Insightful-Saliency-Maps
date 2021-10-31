@@ -107,32 +107,50 @@ function changeImage(progress){
 
 }
 
-console.log(classList)
 
-// choose an image class and random image within that class
+function firstImage(){
 
-var selection = classList[Math.floor(Math.random()*classList.length)];
-console.log("current selection", selection)
-var imgNum = Math.floor(Math.random()*10)+1;
-var quizImage = document.getElementById("quizImg");
-var classpath = "./assets/style-transfer-preprocessed-512/"+selection+"/"+selection+imgNum+"-";
+    select = document.getElementById('quizselect')
+    console.log(select)
 
-var randidx = parseddata[selection][imgNum][Math.floor(Math.random()*parseddata[selection][imgNum].length)]
-var path = classpath + randidx;
+    // choose an image class and random image within that class
+    var selection = classList[Math.floor(Math.random()*classList.length)];
+    var imgNum = Math.floor(Math.random()*10)+1;
+    var quizImage = document.getElementById("quizImg");
+    var classpath = "./assets/style-transfer-preprocessed-512/"+selection+"/"+selection+imgNum+"-";
+
+    var randidx = parseddata[selection][imgNum][Math.floor(Math.random()*parseddata[selection][imgNum].length)]
+    var path = classpath + randidx;
 
 
-var quizImage = $('#quizImg')
+    var quizImage = $('#quizImg')
 
-$.ajax({
-    url: path,
-    type: "GET"
-}).done(function() {
-    quizImage.attr('src', path);   // set the image source
-}).fail(function() {
-    quizImage.hide();    // or something other
-});
+    $.ajax({
+        url: path,
+        type: "GET"
+    }).done(function() {
+        quizImage.attr('src', path);   // set the image source
+    }).fail(function() {
+        quizImage.hide();    // or something other
+    });
 
-// remove that option from the image selection list
-classList = classList.filter(function(value, index, arr){
-    return value != selection;
-});
+    // remove that option from the image selection list
+    classList = classList.filter(function(value, index, arr){
+        return value != selection;
+    });
+}
+
+function loadOptionsQuiz(){
+    var select = document.getElementById('quizselect')
+    var revclass = classList.reverse();
+
+    for(var i = 0; i < revclass.length; i++){
+        option = document.createElement('option');
+        option.value = revclass[i]
+        option.text = revclass[i].charAt(0).toUpperCase() + revclass[i].slice(1)
+        select.add(option, 0);
+    }
+};
+
+firstImage();
+loadOptionsQuiz();
