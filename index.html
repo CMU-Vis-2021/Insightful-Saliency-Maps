@@ -12,7 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
     <script type="text/javascript" src="imgstruct.json"></script>
-    <link rel="stylesheet" href="./assets/index.5b0e9bb8.css">
+    <link rel="stylesheet" href="./assets/index.bbf2cb07.css">
   </head>
   <body>
     <div class="container">
@@ -22,9 +22,9 @@
          <span class = "emoji">&#128065;</span>
       </h1>
       <nav>
-          <button id = "openTab1" onclick = "changeTab(this,'tab1')" class = "active">Stylize and Image</button>
+          <button id = "openTab1" onclick = "changeTab(this,'tab1')" class = "active">Stylize an Image</button>
           <button id = "openTab2" onclick = "changeTab(this,'tab2')">Shape bias quiz</button>
-          <button id = "openTab3" onclick = "changeTab(this,'tab3')">Model summary</button>
+          <button id = "openTab3" onclick = "changeTab(this,'tab3')">Explain an Image</button>
       </nav>
       <div id = "tab1">
              <h2>Make your own stylized image. See what the AI predicts. Is it biased towards texture or shape?</h2>
@@ -109,8 +109,21 @@
      
          </div>
          <div id = "tab3" class = "hidden">
-             <h2>View a summary of the shape bias of the AI.</h2>
-             <div class = "flex graphics">
+            <h2>Explain the classification of an image. See how your explanation compares to the AI.</h2>
+            <div class = "flex">
+                 <div class = "flex-inner step">
+                      <label>Original Image</label>
+                      <img id = "canvasImg">
+                 </div>
+                 <div class = "flex-inner step">
+                    <label> Draw on this image to explain the classification. </label>
+                     <canvas id="canvas" width="412" height="412" style="border: 1px solid rgb(211, 211, 211)">
+                      Your browser does not support the HTML5 canvas tag.
+                    </canvas>
+                    <button>Select a color</button>
+                 </div>
+             </div> 
+             <!-- <div class = "flex graphics">
                  <div class = "flex-inner step">
                          <label for="texture"><span class = "number">1</span>Choose a model:</label>
                          <br>
@@ -133,12 +146,12 @@
                          </select>
                      </div>  
                  </div>
-             </div> 
+             </div>  -->
      
          </div>
      
      </div>
   </body>
   <script type="text/javascript" src="main.js"></script>
-  <!-- <script type="text/javascript" src="imgstruct.json"></script> -->
+  <script type="text/javascript" src="draw.js"></script>
 </html>
