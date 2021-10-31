@@ -7,10 +7,12 @@
     "serve": "vite preview"
   },
   "devDependencies": {
-    "vite": "^2.5.2"
+    "vite": "^2.5.2",
+    "fs": "^0.0.0"
   },
   "dependencies": {
     "d3": "^7.0.1",
+    "fs": "^0.0.1-security",
     "vega": "^5.21.0",
     "vega-embed": "^6.19.1",
     "vega-lite": "^5.1.1"

@@ -1,30 +1,4 @@
 // import * as d3 from "d3";
-// import vegaEmbed from "vega-embed";
-
-// d3.select("#d3-div").append("p").text("hello from D3");
-
-// vegaEmbed("#vega-div", {
-//   $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-//   description: "A simple bar chart with embedded data.",
-//   data: {
-//     values: [
-//       { a: "A", b: 28 },
-//       { a: "B", b: 55 },
-//       { a: "C", b: 43 },
-//       { a: "D", b: 91 },
-//       { a: "E", b: 81 },
-//       { a: "F", b: 53 },
-//       { a: "G", b: 19 },
-//       { a: "H", b: 87 },
-//       { a: "I", b: 52 },
-//     ],
-//   },
-//   mark: "bar",
-//   encoding: {
-//     x: { field: "a", type: "nominal", axis: { labelAngle: 0 } },
-//     y: { field: "b", type: "quantitative" },
-//   },
-// });
 
 let tab1 = document.getElementById("tab1");
 let tab2 = document.getElementById("tab2");
@@ -33,6 +7,9 @@ let tab3 = document.getElementById("tab3");
 let tab1Button = document.getElementById("openTab1");
 let tab2Button = document.getElementById("openTab2");
 let tab3Button = document.getElementById("openTab3");
+
+let classList = ["airplane", "bear", "bicycle", "bird", "boat", "bottle", "car", "cat", "chair", "clock", "dog", "elephant", 
+    "keyboard", "knife", "oven", "truck"];
 
 
 function changeTab(button, tabToReveal){
@@ -62,4 +39,69 @@ function changeTab(button, tabToReveal){
             tab3.classList= "";
         }
     }
+}
+
+
+// Changing quiz images here
+// add in an extra argument to grab the class of the first image so that can be removed from the list
+function changeImage(progress){
+    
+    console.log(classList)
+
+    // choose an image class and random image within that class
+
+    var selection = classList[Math.floor(Math.random()*classList.length)];
+    console.log("current selection", selection)
+    var imgNum = Math.floor(Math.random()*10)+1;
+    var quizImage = document.getElementById("quizImg");
+    var classpath = "./assets/style-transfer-preprocessed-512/"+selection+"/"+selection+imgNum+"-";
+    var mydata = JSON.stringify(data);
+    var parseddata = JSON.parse(mydata)
+    var randidx = parseddata[selection][imgNum][Math.floor(Math.random()*parseddata[selection][imgNum].length)]
+    var path = classpath + randidx;
+
+
+    var quizImage = $('#quizImg')
+
+    $.ajax({
+        url: path,
+        type: "GET"
+    }).done(function() {
+        quizImage.attr('src', path);   // set the image source
+    }).fail(function() {
+        quizImage.hide();    // or something other
+    });
+
+
+    // Calculate progress for next dot -- change button to say submit if on the last question
+    var nextnum = parseInt(progress.textContent) + 1;
+    if (nextnum == 16){
+        var subbtn = document.getElementById('quizbtn')
+        subbtn.textContent = "Submit"
+    } 
+
+    // create current and next id based on progress
+    var nextid = "dot" + nextnum.toString() + " notactive";
+    var curid = "dot" + progress.textContent + " active";
+
+    // modify style of current dot
+    var currentdot = document.getElementById(curid);
+    currentdot.style.backgroundColor = "rgb(211, 211, 211)";
+    curid = "dot" + progress.textContent + " notactive";
+    currentdot.id = curid;
+
+    // modify style of next dot
+    var nextdot = document.getElementById(nextid);
+    nextdot.style.backgroundColor = "#3274b5";
+    nextdot.id = "dot" + nextnum.toString() + " active";
+
+    // update progress and image
+    progress.textContent = nextnum;
+
+
+    // remove that option from the image selection list
+    classList = classList.filter(function(value, index, arr){
+        return value != selection;
+    });
+
 }
