@@ -10,6 +10,8 @@ let tab3Button = document.getElementById("openTab3");
 
 let classList = ["airplane", "bear", "bicycle", "bird", "boat", "bottle", "car", "cat", "chair", "clock", "dog", "elephant", 
     "keyboard", "knife", "oven", "truck"];
+let mydata = JSON.stringify(data);
+let parseddata = JSON.parse(mydata)
 
 
 function changeTab(button, tabToReveal){
@@ -55,8 +57,7 @@ function changeImage(progress){
     var imgNum = Math.floor(Math.random()*10)+1;
     var quizImage = document.getElementById("quizImg");
     var classpath = "./assets/style-transfer-preprocessed-512/"+selection+"/"+selection+imgNum+"-";
-    var mydata = JSON.stringify(data);
-    var parseddata = JSON.parse(mydata)
+    
     var randidx = parseddata[selection][imgNum][Math.floor(Math.random()*parseddata[selection][imgNum].length)]
     var path = classpath + randidx;
 
@@ -105,3 +106,33 @@ function changeImage(progress){
     });
 
 }
+
+console.log(classList)
+
+// choose an image class and random image within that class
+
+var selection = classList[Math.floor(Math.random()*classList.length)];
+console.log("current selection", selection)
+var imgNum = Math.floor(Math.random()*10)+1;
+var quizImage = document.getElementById("quizImg");
+var classpath = "./assets/style-transfer-preprocessed-512/"+selection+"/"+selection+imgNum+"-";
+
+var randidx = parseddata[selection][imgNum][Math.floor(Math.random()*parseddata[selection][imgNum].length)]
+var path = classpath + randidx;
+
+
+var quizImage = $('#quizImg')
+
+$.ajax({
+    url: path,
+    type: "GET"
+}).done(function() {
+    quizImage.attr('src', path);   // set the image source
+}).fail(function() {
+    quizImage.hide();    // or something other
+});
+
+// remove that option from the image selection list
+classList = classList.filter(function(value, index, arr){
+    return value != selection;
+});
