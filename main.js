@@ -13,6 +13,13 @@ let classList = ["airplane", "bear", "bicycle", "bird", "boat", "bottle", "car",
 let mydata = JSON.stringify(data);
 let parseddata = JSON.parse(mydata)
 
+const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
+
+// When the model is loaded
+function modelLoaded() {
+    console.log("Model Loaded!");
+}
+
 
 function changeTab(button, tabToReveal){
     
@@ -73,6 +80,7 @@ function changeImage(progress){
         quizImage.hide();    // or something other
     });
 
+    predictClass(document.getElementById('quizImg'));
 
     // Calculate progress for next dot -- change button to say submit if on the last question
     var nextnum = parseInt(progress.textContent) + 1;
@@ -107,6 +115,14 @@ function changeImage(progress){
 
 }
 
+function predictClass(image){
+
+    classifier.predict(image, 
+        function (err, results) {
+            // alert(results[0].label);
+            console.log(results[0].label);
+        });
+}
 
 function firstImage(){
 
@@ -142,15 +158,14 @@ function firstImage(){
 
 function loadOptionsQuiz(){
     var select = document.getElementById('quizselect')
-    var revclass = classList.reverse();
 
-    for(var i = 0; i < revclass.length; i++){
+    for(var i = 0; i < classList.length; i++){
         option = document.createElement('option');
-        option.value = revclass[i]
-        option.text = revclass[i].charAt(0).toUpperCase() + revclass[i].slice(1)
-        select.add(option, 0);
+        option.value = classList[i]
+        option.text = classList[i].charAt(0).toUpperCase() + classList[i].slice(1)
+        select.add(option, -1);
     }
 };
 
-firstImage();
 loadOptionsQuiz();
+firstImage();
