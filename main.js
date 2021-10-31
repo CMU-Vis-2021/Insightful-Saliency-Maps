@@ -21,6 +21,25 @@ function modelLoaded() {
     console.log("Model Loaded!");
 }
 
+var cImg = $('#canvasImg')
+$.ajax({
+    url: "./assets/quiz/dobermanorig.png",
+    type: "GET"
+}).done(function() {
+    cImg.attr('src', "./assets/quiz/dobermanorig.png");   // set the image source
+}).fail(function() {
+    cImg.hide();    // or something other
+});
+
+// Canvas image loaded
+window.onload = function() {
+  var c = document.getElementById("canvas");
+  var ctx = c.getContext("2d");
+  var img = document.getElementById("canvasImg");
+  console.log(img)
+  ctx.drawImage(img, 0, 0);
+}
+
 function changeTab(button, tabToReveal){
     
     if(button.classList.contains("active") != true){
