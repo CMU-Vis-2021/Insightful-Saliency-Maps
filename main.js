@@ -8,18 +8,18 @@ let tab1Button = document.getElementById("openTab1");
 let tab2Button = document.getElementById("openTab2");
 let tab3Button = document.getElementById("openTab3");
 
+// quiz variables
 let classList = ["airplane", "bear", "bicycle", "bird", "boat", "bottle", "car", "cat", "chair", "clock", "dog", "elephant", 
     "keyboard", "knife", "oven", "truck"];
 let mydata = JSON.stringify(data);
 let parseddata = JSON.parse(mydata)
 
+// ml model variables and function
 const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
-
 // When the model is loaded
 function modelLoaded() {
     console.log("Model Loaded!");
 }
-
 
 function changeTab(button, tabToReveal){
     
@@ -50,9 +50,6 @@ function changeTab(button, tabToReveal){
     }
 }
 
-
-// Changing quiz images here
-// add in an extra argument to grab the class of the first image so that can be removed from the list
 function changeImage(progress){
     
     console.log(classList)
@@ -112,15 +109,16 @@ function changeImage(progress){
     classList = classList.filter(function(value, index, arr){
         return value != selection;
     });
-
 }
 
 function predictClass(image){
 
-    classifier.predict(image, 
+    classifier.predict(image, 10,
         function (err, results) {
             // alert(results[0].label);
             console.log(results[0].label);
+            console.log(results[0].confidence)
+            console.log(results)
         });
 }
 
@@ -137,7 +135,7 @@ function firstImage(){
 
     var randidx = parseddata[selection][imgNum][Math.floor(Math.random()*parseddata[selection][imgNum].length)]
     var path = classpath + randidx;
-
+    // var path = './assets/quiz/dobermanorig.png' //it did correctly guess that it was a doberman -- just checking.
 
     var quizImage = $('#quizImg')
 
@@ -169,3 +167,4 @@ function loadOptionsQuiz(){
 
 loadOptionsQuiz();
 firstImage();
+predictClass(document.getElementById('quizImg'));
