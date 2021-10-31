@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Assignment 3</title>
+    <title>
+      &#129302;
+         vs
+      &#128065;</title>
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="imgstruct.json"></script>
     <link rel="stylesheet" href="./assets/index.5b0e9bb8.css">
   </head>
   <body>
@@ -71,20 +76,26 @@
          <div id = "tab2" class = "hidden">
              <h2>Take this short quiz to see how well you can classify these images compared to the AI.</h2>
              <div class = "progress-bar">
-                 <p> Progress: <span id = "progress-number">1</span>/10</p>
+                 <p> Progress: <span id = "progress-number">1</span>/16</p>
                  <div id = "dots">
-                     <span class= "dot1 dot" style = "background-color: #3274b5;"></span>
-                     <span class= "dot2 dot"></span>
-                     <span class= "dot3 dot"></span>
-                     <span class= "dot4 dot"></span>
-                     <span class= "dot5 dot"></span>
-                     <span class= "dot6 dot"></span>
-                     <span class= "dot7 dot"></span>
-                     <span class= "dot8 dot"></span>
-                     <span class= "dot9 dot"></span>
-                     <span class= "dot10 dot"></span>
+                     <span class= "dot1 dot" id = "dot1 active" style = "background-color: #3274b5;"></span>
+                     <span class= "dot2 dot" id = "dot2 notactive"></span>
+                     <span class= "dot3 dot" id = "dot3 notactive" ></span>
+                     <span class= "dot4 dot" id = "dot4 notactive"></span>
+                     <span class= "dot5 dot" id = "dot5 notactive"></span>
+                     <span class= "dot6 dot" id = "dot6 notactive"></span>
+                     <span class= "dot7 dot" id = "dot7 notactive"></span>
+                     <span class= "dot8 dot" id = "dot8 notactive"></span>
+                     <span class= "dot9 dot" id = "dot9 notactive"></span>
+                     <span class= "dot10 dot" id = "dot10 notactive"></span>
+                     <span class= "dot11 dot" id = "dot11 notactive"></span>
+                     <span class= "dot12 dot" id = "dot12 notactive"></span>
+                     <span class= "dot13 dot" id = "dot13 notactive"></span>
+                     <span class= "dot14 dot" id = "dot14 notactive"></span>
+                     <span class= "dot15 dot" id = "dot15 notactive"></span>
+                     <span class= "dot16 dot" id = "dot16 notactive"></span>
                  </div>
-                 <img alt = "textured image of a cat" src = "./assets/Img1.2c689dc1.jpg">
+                 <img id = "quizImg">
                  <br>
                  <label>What's your prediction?</label>
                  <div class = "select">
@@ -94,7 +105,7 @@
                          <option value="selection2">selection2</option>
                      </select>
                  </div>
-                 <button class = "blue">Next</button>
+                 <button class = "blue" id = "quizbtn" onclick = "changeImage(document.getElementById('progress-number'))">Next</button>
              </div>
      
          </div>
@@ -130,4 +141,5 @@
      </div>
   </body>
   <script type="text/javascript" src="main.js"></script>
+  <!-- <script type="text/javascript" src="imgstruct.json"></script> -->
 </html>
