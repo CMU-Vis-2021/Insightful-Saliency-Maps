@@ -9,10 +9,13 @@ let tab2Button = document.getElementById("openTab2");
 let tab3Button = document.getElementById("openTab3");
 
 // quiz variables
-let classList = ["airplane", "bear", "bicycle", "bird", "boat", "bottle", "car", "cat", "chair", "clock", "dog", "elephant", 
-    "keyboard", "knife", "oven", "truck"];
+// let classList = ["airplane", "bear", "bicycle", "bird", "boat", "bottle", "car", "cat", "chair", "clock", "dog", "elephant", 
+//     "keyboard", "knife", "oven", "truck"];
+let shapeList = ['bear', 'cat', 'dog', 'elephant']
+let textureList = ['bikes', 'elephant', 'tiger', 'trucks', 'zebra']
 let mydata = JSON.stringify(data);
 let parseddata = JSON.parse(mydata)
+let prediction = "";
 
 // ml model variables and function
 const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
@@ -39,6 +42,7 @@ window.onload = function() {
   console.log(img)
   ctx.drawImage(img, 0, 0);
 }
+
 
 function changeTab(button, tabToReveal){
     
@@ -67,31 +71,95 @@ function changeTab(button, tabToReveal){
             tab3.classList= "";
         }
     }
+} 
+
+function shapeImg(){
+    var selectShape = document.getElementById('shapeselect')
+    console.log(selectShape)
+    console.log(selectShape.value)
+
+    var quizImage = $('#shapeimg')
+
+    classpath = "./assets/shapes/"+selectShape.value+".jpg";
+
+    $.ajax({
+        url: classpath,
+        type: "GET"
+    }).done(function() {
+        quizImage.attr('src', classpath);   // set the image source
+    }).fail(function() {
+        quizImage.hide();    // or something other
+    });
+}
+
+function textureImg(){
+    var selectTexture = document.getElementById('textureselect')
+    console.log(selectTexture)
+    console.log(selectTexture.value)
+
+    var quizImage = $('#textureimg')
+
+    classpath = "./assets/textures/"+selectTexture.value+".jpg";
+
+    $.ajax({
+        url: classpath,
+        type: "GET"
+    }).done(function() {
+        quizImage.attr('src', classpath);   // set the image source
+    }).fail(function() {
+        quizImage.hide();    // or something other
+    });
+}
+
+function stylizeImg(){
+    var selectShape = document.getElementById('shapeselect')
+    var selectTexture = document.getElementById('textureselect')
+
+    var quizImage = $('#stylizedimg')
+
+    classpath = "./assets/stylized-images/"+selectShape.value+"-stylized-"+ selectTexture.value + ".jpg";
+
+    $.ajax({
+        url: classpath,
+        type: "GET"
+    }).done(function() {
+        quizImage.attr('src', classpath);   // set the image source
+    }).fail(function() {
+        quizImage.hide();    // or something other
+    });
+
+    predictClass(document.getElementById('stylizedimg'));
+    document.getElementById('prediction').textContent = prediction;
 }
 
 function changeImage(progress){
     
-    console.log(classList)
+    console.log(shapeList)
+    var select = document.getElementById('quizselect')
+    console.log(select)
+    select.value = "-1";
+    console.log(select)
 
     // choose an image class and random image within that class
 
-    var selection = classList[Math.floor(Math.random()*classList.length)];
-    console.log("current selection", selection)
-    var imgNum = Math.floor(Math.random()*10)+1;
+    var selection_shape = shapeList[Math.floor(Math.random()*shapeList.length)];
+    var selection_texture = textureList[Math.floor(Math.random()*textureList.length)];
+    console.log("current selection shape: ", selection_shape)
+    // var imgNum = Math.floor(Math.random()*10)+1;
     var quizImage = document.getElementById("quizImg");
-    var classpath = "./assets/style-transfer-preprocessed-512/"+selection+"/"+selection+imgNum+"-";
+    var classpath = "./assets/stylized-images/"+selection_shape+"-stylized-"+selection_texture+'.jpg';
     
-    var randidx = parseddata[selection][imgNum][Math.floor(Math.random()*parseddata[selection][imgNum].length)]
-    var path = classpath + randidx;
+    // var randidx = parseddata[selection][imgNum][Math.floor(Math.random()*parseddata[selection][imgNum].length)]
+    // var path = classpath + randidx;
 
 
     var quizImage = $('#quizImg')
 
     $.ajax({
-        url: path,
+        url: classpath,
         type: "GET"
     }).done(function() {
-        quizImage.attr('src', path);   // set the image source
+        quizImage.attr('src', classpath);   // set the image source
     }).fail(function() {
         quizImage.hide();    // or something other
     });
@@ -100,7 +168,7 @@ function changeImage(progress){
 
     // Calculate progress for next dot -- change button to say submit if on the last question
     var nextnum = parseInt(progress.textContent) + 1;
-    if (nextnum == 16){
+    if (nextnum == 4){
         var subbtn = document.getElementById('quizbtn')
         subbtn.textContent = "Submit"
     } 
@@ -125,8 +193,11 @@ function changeImage(progress){
 
 
     // remove that option from the image selection list
-    classList = classList.filter(function(value, index, arr){
-        return value != selection;
+    shapeList = shapeList.filter(function(value, index, arr){
+        return value != selection_shape;
+    });
+    textureList = textureList.filter(function(value, index, arr){
+        return value != selection_texture;
     });
 }
 
@@ -138,6 +209,8 @@ function predictClass(image){
             console.log(results[0].label);
             console.log(results[0].confidence)
             console.log(results)
+
+            prediction = results[0].label;
         });
 }
 
@@ -146,40 +219,44 @@ function firstImage(){
     select = document.getElementById('quizselect')
     console.log(select)
 
-    // choose an image class and random image within that class
-    var selection = classList[Math.floor(Math.random()*classList.length)];
-    var imgNum = Math.floor(Math.random()*10)+1;
+    var selection_shape = shapeList[Math.floor(Math.random()*shapeList.length)];
+    var selection_texture = textureList[Math.floor(Math.random()*textureList.length)];
+    console.log("current selection shape: ", selection_shape)
+    // var imgNum = Math.floor(Math.random()*10)+1;
     var quizImage = document.getElementById("quizImg");
-    var classpath = "./assets/style-transfer-preprocessed-512/"+selection+"/"+selection+imgNum+"-";
+    var classpath = "./assets/stylized-images/"+selection_shape+"-stylized-"+selection_texture+'.jpg';
+    
+    // var randidx = parseddata[selection][imgNum][Math.floor(Math.random()*parseddata[selection][imgNum].length)]
+    // var path = classpath + randidx;
 
-    var randidx = parseddata[selection][imgNum][Math.floor(Math.random()*parseddata[selection][imgNum].length)]
-    var path = classpath + randidx;
-    // var path = './assets/quiz/dobermanorig.png' //it did correctly guess that it was a doberman -- just checking.
 
     var quizImage = $('#quizImg')
 
     $.ajax({
-        url: path,
+        url: classpath,
         type: "GET"
     }).done(function() {
-        quizImage.attr('src', path);   // set the image source
+        quizImage.attr('src', classpath);   // set the image source
     }).fail(function() {
         quizImage.hide();    // or something other
     });
 
     // remove that option from the image selection list
-    classList = classList.filter(function(value, index, arr){
-        return value != selection;
+    shapeList = shapeList.filter(function(value, index, arr){
+        return value != selection_shape;
+    });
+    textureList = textureList.filter(function(value, index, arr){
+        return value != selection_texture;
     });
 }
 
 function loadOptionsQuiz(){
     var select = document.getElementById('quizselect')
 
-    for(var i = 0; i < classList.length; i++){
+    for(var i = 0; i < shapeList.length; i++){
         option = document.createElement('option');
-        option.value = classList[i]
-        option.text = classList[i].charAt(0).toUpperCase() + classList[i].slice(1)
+        option.value = shapeList[i]
+        option.text = shapeList[i].charAt(0).toUpperCase() + shapeList[i].slice(1)
         select.add(option, -1);
     }
 };
