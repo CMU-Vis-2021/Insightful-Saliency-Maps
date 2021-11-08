@@ -1,5 +1,5 @@
 // Brush colour and size
-const colour = "#3d34a5";
+let colour = "#3d34a5";
 const strokeWidth = 5;
 
 // Drawing state
@@ -75,3 +75,13 @@ canvas.addEventListener("mousedown", mouseDown, false);
 canvas.addEventListener("mouseup", endStroke, false);
 canvas.addEventListener("mouseout", endStroke, false);
 canvas.addEventListener("mouseenter", mouseEnter, false);
+
+function changeColorCanvas(color){
+    if(color == 'red'){
+        colour = colorRed;
+    }else if(color == 'orange'){
+        colour = colorOrange;
+    }else if(color == 'purple'){
+        colour = colorPurple;
+    }
+}
