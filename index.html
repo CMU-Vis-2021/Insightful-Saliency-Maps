@@ -124,23 +124,30 @@
      
          </div>
          <div id = "tab3" class = "hidden">
-            <h2>Explain the classification of an image. See how your explanation compares to the AI.</h2>
-            <div class = "flex">
-                 <div class = "flex-inner step">
-                      <h3>Original Image</h3>
-                      <img id = "canvasImg">
-                 </div>
-                 <div class = "flex-inner step">
-                    <h3> Draw on this image to explain the classification. </h3>
-                     <canvas id="canvas" width="412" height="412" >
-                      Your browser does not support the HTML5 canvas tag.
-                    </canvas>
+            <h2>Draw what the AI sees.<br>See how your perception compares to the AI.</h2>
+            <div class = "flex instructions">
+                <div class = "flex-inner step">
+                     <h3>Original Image</h3>
+                     <img id = "canvasImg">
+                </div>
+               <div class = "flex-inner step">
+                   <h3>How does the AI see it?</h3>
+                   <img src = "assets/dobermanorig.gif">
+               </div>
+            </div>
+            <p>The AI makes predictions based on regions it feels are important to identifying the image. Can you guess what places on the image the AI feels are the <b><span class = "box orange"></span>most important</b> in this image of a dog?<br>What is <b><span class = "box red"></span>somewhat important</b>? Finally, what is <b><span class = "box purple"></span>least important</b>?</p>
+            <div class = "step">
+                <h3> Draw on this image to explain the classification. </h3>
+                 <canvas id="canvas" width="412" height="412" >
+                  Your browser does not support the HTML5 canvas tag.
+                </canvas>
+                <div class = "drawControls">
                     <h4>Select a color</h4>
-                    <button class ="color-btn red" onclick = "changeColorCanvas('red')">Red</button>
                     <button class ="color-btn orange" onclick = "changeColorCanvas('orange')">Orange</button>
+                    <button class ="color-btn red" onclick = "changeColorCanvas('red')">Red</button>
                     <button class ="color-btn purple" onclick = "changeColorCanvas('purple')">Purple</button>
-                 </div>
-             </div> 
+                </div>
+            </div>
              <!-- <div class = "flex graphics">
                  <div class = "flex-inner step">
                          <label for="texture"><span class = "number">1</span>Choose a model:</label>

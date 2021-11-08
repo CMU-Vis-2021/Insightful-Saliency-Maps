@@ -256,3 +256,34 @@ canvas {
 .purple{
   background:purple;
 }
+#tab3{
+  margin-bottom:100px;
+}
+#tab3 p{
+  max-width: 700px;
+  margin:50px auto;
+  display: block;
+  line-height: 24px;
+  font-size: 16px;
+}
+#tab3 h2{
+  margin-bottom: 30px;
+}
+#tab3 .box{
+  width:20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 20px;
+  margin-right:5px;
+}
+#tab3 .instructions{
+  max-width: 500px;
+  margin:auto;
+  
+}
+.drawControls{
+  max-width: 700px;
+  margin:auto;
+  display: block;
+  text-align: center;
+}
