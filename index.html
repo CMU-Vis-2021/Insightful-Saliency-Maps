@@ -78,40 +78,67 @@
              </div>
          </div>
          <div id = "tab2" class = "hidden">
-             <h2>Take this short quiz to see how well you can classify these images compared to the AI.</h2>
-             <div class = "progress-bar">
-                 <p> Progress: <span id = "progress-number">1</span>/4</p>
-                 <div id = "dots">
-                     <span class= "dot1 dot" id = "dot1 active" style = "background-color: #3274b5;"></span>
-                     <span class= "dot2 dot" id = "dot2 notactive"></span>
-                     <span class= "dot3 dot" id = "dot3 notactive" ></span>
-                     <span class= "dot4 dot" id = "dot4 notactive"></span>
-                 </div>
-                 <img id = "quizImg">
-                 <br>
-                 <label>What's your prediction?</label>
-                 <div class = "select">
-                     <select class = "standard-select" name="texture" id="quizselect">
-                        <option value="-1" selected disabled hidden>Select choice</option>
-                     </select>
-                 </div>
-                 <button class = "blue" id = "quizbtn" onclick = "changeImage(document.getElementById('progress-number'))">Next</button>
-             </div>
+                <h2>Take this short quiz to see how well you can classify these images compared to the AI.</h2> 
+            
+            <div id = "quiz-before"> 
+                <div class = "progress-bar">
+                    <p> Progress: <span id = "progress-number">1</span>/4</p>
+                    <div id = "dots">
+                        <span class= "dot1 dot" id = "dot1 active" style = "background-color: #3274b5;"></span>
+                        <span class= "dot2 dot" id = "dot2 notactive"></span>
+                        <span class= "dot3 dot" id = "dot3 notactive" ></span>
+                        <span class= "dot4 dot" id = "dot4 notactive"></span>
+                    </div>
+                    <img id = "quizImg">
+                    <br>
+                    <label>What's your prediction?</label>
+                    <div class = "select">
+                        <select class = "standard-select" name="texture" id="quizselect">
+                            <option value="-1" selected disabled hidden>Select choice</option>
+                        </select>
+                    </div>
+                    <button class = "blue" id = "quizbtn" onclick = "changeImage(document.getElementById('progress-number'))">Next</button>
+                </div>
+            </div>
+            <div id = "quiz-after">
+                <label>How did you do?</label>
+                <p>You got <span class = "number">1</span> out of 4 questions correct!</p>
+                <div class = "flex answers" id = "answer-template">
+                    <div class = "inner">
+                        <img class="image" alt = "" src = "">
+                    </div>
+                    <div class = "inner">
+                        <p><b>Your prediction:</b></p>
+                        <p class = "yourAnswer"></p>
+                    </div>
+                    <div class = "inner">
+                        <p><b>AI prediction:</b></p>
+                        <p class = "AIprediction"></p>
+                    </div>
+                    <div class = "inner">
+                        <p><b>Correct answer:</b></p>
+                        <p class = "correctAnswer"></p>
+                    </div>
+                </div>
+            </div>
      
          </div>
          <div id = "tab3" class = "hidden">
             <h2>Explain the classification of an image. See how your explanation compares to the AI.</h2>
             <div class = "flex">
                  <div class = "flex-inner step">
-                      <label>Original Image</label>
+                      <h3>Original Image</h3>
                       <img id = "canvasImg">
                  </div>
                  <div class = "flex-inner step">
-                    <label> Draw on this image to explain the classification. </label>
-                     <canvas id="canvas" width="412" height="412" style="border: 1px solid rgb(211, 211, 211)">
+                    <h3> Draw on this image to explain the classification. </h3>
+                     <canvas id="canvas" width="412" height="412" >
                       Your browser does not support the HTML5 canvas tag.
                     </canvas>
-                    <button>Select a color</button>
+                    <h4>Select a color</h4>
+                    <button>Red</button>
+                    <button>Orange</button>
+                    <button>Purple</button>
                  </div>
              </div> 
              <!-- <div class = "flex graphics">

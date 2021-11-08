@@ -148,6 +148,12 @@ button.blue{
   display: block;
   border:3px solid grey;
 }
+#tab3 #canvas{
+  border:3px solid grey;
+}
+#tab3 h3{
+  text-align: center;
+}
 .step p{
   margin:0px;
 }
@@ -189,13 +195,38 @@ button.blue{
 #tab2 .select{
   max-width:200px;
 }
+#tab2 {
+  margin-bottom: 100px;
+}
 
 .hidden{
   display: none;
   height: 0px;
 }
 
-
+#quiz-after{
+  text-align: center;
+  display:none;
+  margin-top:30px;
+}
+#answer-template{
+  display: none;
+}
+.answers{
+  margin:auto;
+  width:fit-content;
+  margin-top:30px;
+}
+.answers .inner{
+  padding: 0px 20px;
+}
+#quiz-after img{
+  max-width:100px;
+  margin:0px;
+}
+#quiz-after p{
+  margin:5px 0px;
+}
 /***********************************/
 /*        Canvas CSS               */
 /***********************************/
