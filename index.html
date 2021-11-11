@@ -32,7 +32,7 @@
                      <label for="shape"><span class = "number">1</span>Choose a shape:</label>
                      <br>
                      <div class = "select">
-                         <select class = "standard-select" name="shape" id="shapeselect" onchange="shapeImg()">
+                         <select class = "standard-select" name="shape" id="shapeselect0" onchange="shapeImg()">
                              <option value="-1" selected disabled hidden>Select choice</option>
                              <!-- <option value="cat">Cat</option> -->
                              <option value="dog">Dog</option>
@@ -40,14 +40,14 @@
                              <option value="bear">Bear</option>
                          </select>
                      </div>
-                     <img id="shapeimg">
+                     <img id="shapeimg0">
                  </div>
      
                  <div class = "flex-inner step">
                      <label for="texture"><span class = "number">2</span>Choose a texture:</label>
                      <br>
                      <div class = "select">
-                         <select class = "standard-select" name="texture" id="textureselect" onchange="textureImg()">
+                         <select class = "standard-select" name="texture" id="textureselect0" onchange="textureImg()">
                              <option value="-1" selected disabled hidden>Select choice</option>
                              <option value="bikes">Bicycle</option>
                              <option value="tiger">Tiger</option>
@@ -55,7 +55,7 @@
                              <option value="zebra">Zebra</option>
                          </select>
                      </div>
-                     <img id="textureimg">
+                     <img id="textureimg0">
                  </div>
      
                  <div class = "flex-inner step">
@@ -69,12 +69,12 @@
                          <p>AI Prediction: <span id = "prediction" class = "output"></span></p>
                          <!-- <p>Biased: <span id = "biased" class = "output">Texture</span></p> -->
                      </div>
-                     <img id="stylizedimg">
+                     <img id="stylizedimg0">
                  </div>
              </div>
              <div class = "more-images">
                  <p>Want to stylize another image?</p>
-                 <img alt = "plus icon" src = "assets/icons/plus.svg">
+                 <img alt = "plus icon" src = "assets/icons/plus.svg" id = "plusicon" onmouseenter="hoverImg()" onmouseleave="leaveImg()" onclick="styleAnother()">
              </div>
          </div>
          <div id = "tab2" class = "hidden">

@@ -8,6 +8,7 @@ var allImages = [];
 var selectedAnswer = [];
 var rightAnswer = [];
 var numberOfQuestions = 3;
+let count = 0;
 
 let tab1 = document.getElementById("tab1");
 let tab2 = document.getElementById("tab2");
@@ -87,11 +88,11 @@ function changeTab(button, tabToReveal){
 } 
 
 function shapeImg(){
-    var selectShape = document.getElementById('shapeselect')
+    var selectShape = document.getElementById('shapeselect'+count.toString())
     console.log(selectShape)
     console.log(selectShape.value)
 
-    var quizImage = $('#shapeimg')
+    var quizImage = $('#shapeimg'+count.toString())
 
     classpath = "./assets/shapes/"+selectShape.value+".jpg";
 
@@ -106,11 +107,11 @@ function shapeImg(){
 }
 
 function textureImg(){
-    var selectTexture = document.getElementById('textureselect')
+    var selectTexture = document.getElementById('textureselect'+count.toString())
     console.log(selectTexture)
     console.log(selectTexture.value)
 
-    var quizImage = $('#textureimg')
+    var quizImage = $('#textureimg'+count.toString())
 
     classpath = "./assets/textures/"+selectTexture.value+".jpg";
 
@@ -125,10 +126,11 @@ function textureImg(){
 }
 
 function stylizeImg(){
-    var selectShape = document.getElementById('shapeselect')
-    var selectTexture = document.getElementById('textureselect')
 
-    var quizImage = $('#stylizedimg')
+    var selectShape = document.getElementById('shapeselect'+count.toString())
+    var selectTexture = document.getElementById('textureselect'+count.toString())
+
+    var quizImage = $('#stylizedimg'+count.toString())
 
     classpath = "./assets/stylized-images/"+selectShape.value+"-stylized-"+ selectTexture.value + ".jpg";
 
@@ -141,7 +143,7 @@ function stylizeImg(){
         quizImage.hide();    // or something other
     });
 
-    predictClass(document.getElementById('stylizedimg'));
+    predictClass(document.getElementById('stylizedimg'+count.toString()));
     document.getElementById('prediction').textContent = prediction;
 }
 
@@ -222,6 +224,46 @@ function changeImage(progress){
             return value != selection_texture;
         });
     }
+}
+
+function styleAnother(){
+
+    console.log("icon clicked")
+    if(count == 0){
+        var prev_div = document.querySelector('.flex')
+    } else {
+        var lastcount = count - 1
+        var prev_div = document.querySelector('.appendimages'+lastcount.toString())
+    }
+    
+    prev_div.insertAdjacentHTML('afterend', '<div class="appendimages'+count.toString()+'"></div>')
+
+    elementid = "#appendimages" + count.toString()
+
+    var new_div = document.querySelector('.appendimages'+count.toString())
+    console.log(new_div)
+    new_div.setAttribute('id', elementid)
+
+    console.log(elementid)
+    count += 1;
+
+    new_div.innerHTML = '<br> <br> <br> <div class = "flex"> <div class = "flex-inner step"> <label for="shape"><span class = "number">1</span>Choose a shape:</label> <br> <div class = "select"> <select class = "standard-select" name="shape" id="shapeselect'+count.toString()+'" onchange="shapeImg()"> <option value="-1" selected disabled hidden>Select choice</option> <!-- <option value="cat">Cat</option> --> <option value="dog">Dog</option> <option value="elephant">Elephant</option> <option value="bear">Bear</option>  </select> </div> <img id="shapeimg'+count.toString()+'"> </div> <div class = "flex-inner step"> <label for="texture"><span class = "number">2</span>Choose a texture:</label> <br> <div class = "select"> <select class = "standard-select" name="texture" id="textureselect'+count.toString()+'" onchange="textureImg()"> <option value="-1" selected disabled hidden>Select choice</option> <option value="bikes">Bicycle</option> <option value="tiger">Tiger</option> <option value="trucks">Trucks</option> <option value="zebra">Zebra</option> </select> </div> <img id="textureimg'+count.toString()+'"> </div> <div class = "flex-inner step"> <label for="shape"><span class = "number">3</span>Stylize the Image:</label> <br> <button class = "blue" onclick="stylizeImg()">Stylize</button> </div> <div class = "flex-inner step"> <label for="shape">Stylized Image</label> <div class = "output-labels"> <p>AI Prediction: <span id = "prediction" class = "output"></span></p> <!-- <p>Biased: <span id = "biased" class = "output">Texture</span></p> --> </div> <img id="stylizedimg'+count.toString()+'"> </div> </div>'
+    // $( ".appendimages").load( "styleimg.html" );
+    
+
+    var cur_div = document.getElementById(elementid)
+    console.log(cur_div)
+
+}
+
+function hoverImg(){
+    iconimg = document.getElementById("plusicon")
+    iconimg.setAttribute('src', "assets/icons/plus-hover.svg")
+}
+
+function leaveImg(){
+    iconimg = document.getElementById("plusicon")
+    iconimg.setAttribute('src', "assets/icons/plus.svg")
 }
 
 function showQuizFinal(){
