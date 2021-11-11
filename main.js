@@ -11,7 +11,7 @@ let tab3Button = document.getElementById("openTab3");
 // quiz variables
 // let classList = ["airplane", "bear", "bicycle", "bird", "boat", "bottle", "car", "cat", "chair", "clock", "dog", "elephant", 
 //     "keyboard", "knife", "oven", "truck"];
-let shapeList = ['bear', 'cat', 'dog', 'elephant']
+let shapeList = ['bear', 'dog', 'elephant']
 let textureList = ['bikes', 'elephant', 'tiger', 'trucks', 'zebra']
 let mydata = JSON.stringify(data);
 let parseddata = JSON.parse(mydata)
@@ -132,6 +132,7 @@ function stylizeImg(){
     document.getElementById('prediction').textContent = prediction;
 }
 
+//for the quiz tab 
 function changeImage(progress){
     
     console.log(shapeList)
@@ -164,7 +165,7 @@ function changeImage(progress){
         quizImage.hide();    // or something other
     });
 
-    predictClass(document.getElementById('quizImg'));
+    predictClass(document.getElementById('quizImg')); //predict image
 
     // Calculate progress for next dot -- change button to say submit if on the last question
     var nextnum = parseInt(progress.textContent) + 1;
@@ -203,14 +204,15 @@ function changeImage(progress){
 
 function predictClass(image){
 
-    classifier.predict(image, 10,
+    classifier.predict(image, 10, //10 is the number of predioctions returned
         function (err, results) {
             // alert(results[0].label);
-            console.log(results[0].label);
+            console.log(results[0].label); //actual prediction
             console.log(results[0].confidence)
             console.log(results)
 
             prediction = results[0].label;
+            //another prediction variable
         });
 }
 
