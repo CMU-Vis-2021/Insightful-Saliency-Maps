@@ -148,6 +148,12 @@ button.blue{
   display: block;
   border:3px solid grey;
 }
+#tab3 #canvas{
+  border:3px solid grey;
+}
+#tab3 h3{
+  text-align: center;
+}
 .step p{
   margin:0px;
 }
@@ -189,13 +195,38 @@ button.blue{
 #tab2 .select{
   max-width:200px;
 }
+#tab2 {
+  margin-bottom: 100px;
+}
 
 .hidden{
   display: none;
   height: 0px;
 }
 
-
+#quiz-after{
+  text-align: center;
+  display:none;
+  margin-top:30px;
+}
+#answer-template{
+  display: none;
+}
+.answers{
+  margin:auto;
+  width:fit-content;
+  margin-top:30px;
+}
+.answers .inner{
+  padding: 0px 20px;
+}
+#quiz-after img{
+  max-width:100px;
+  margin:0px;
+}
+#quiz-after p{
+  margin:5px 0px;
+}
 /***********************************/
 /*        Canvas CSS               */
 /***********************************/
@@ -208,4 +239,51 @@ canvas {
     display: block;
     width: "100%";
     height: "100%";
+}
+.color-btn{
+  width:28%;
+  padding:10px 0px;
+  border: none;
+  border-radius: 10px;
+  margin:0px 1%;
+}
+.red{
+  background:red;
+}
+.orange{
+  background:orange;
+}
+.purple{
+  background:purple;
+}
+#tab3{
+  margin-bottom:100px;
+}
+#tab3 p{
+  max-width: 700px;
+  margin:50px auto;
+  display: block;
+  line-height: 24px;
+  font-size: 16px;
+}
+#tab3 h2{
+  margin-bottom: 30px;
+}
+#tab3 .box{
+  width:20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 20px;
+  margin-right:5px;
+}
+#tab3 .instructions{
+  max-width: 500px;
+  margin:auto;
+  
+}
+.drawControls{
+  max-width: 700px;
+  margin:auto;
+  display: block;
+  text-align: center;
 }
