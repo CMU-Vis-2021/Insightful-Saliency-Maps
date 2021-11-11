@@ -7,7 +7,7 @@ var colorPurple = '#793ac2';
 var allImages = [];
 var selectedAnswer = [];
 var rightAnswer = [];
-var numberOfQuestions = 4;
+var numberOfQuestions = 3;
 
 let tab1 = document.getElementById("tab1");
 let tab2 = document.getElementById("tab2");
@@ -20,7 +20,7 @@ let tab3Button = document.getElementById("openTab3");
 // quiz variables
 // let classList = ["airplane", "bear", "bicycle", "bird", "boat", "bottle", "car", "cat", "chair", "clock", "dog", "elephant", 
 //     "keyboard", "knife", "oven", "truck"];
-let shapeList = ['bear', 'cat', 'dog', 'elephant']
+let shapeList = ['bear', 'dog', 'elephant']
 let textureList = ['bikes', 'elephant', 'tiger', 'trucks', 'zebra']
 let mydata = JSON.stringify(data);
 let parseddata = JSON.parse(mydata)
@@ -154,7 +154,7 @@ function changeImage(progress){
     select.value = "-1";
     console.log(select)
 
-    if(parseInt(progress.textContent) == 4){
+    if(parseInt(progress.textContent) == 3){
         console.log("show Finale");
         showQuizFinal();
     }
@@ -189,7 +189,7 @@ function changeImage(progress){
 
         // Calculate progress for next dot -- change button to say submit if on the last question
         var nextnum = parseInt(progress.textContent) + 1;
-        if (nextnum == 4){
+        if (nextnum == 3){
             var subbtn = document.getElementById('quizbtn')
             subbtn.textContent = "Submit"
         } 
