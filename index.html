@@ -82,9 +82,9 @@
             <div class="flex">
               <div class = "flex-inner step" id = "stylized-saliency"> 
                   
-                  <p> <b> Choose a stylized image:</b></p>
+                  <p style="text-align: center;"> <b> Choose a stylized image:</b></p>
                   
-                  <div class="stylized-select" style="padding: 10px;">
+                  <div class="stylized-select" style="padding: 10px; text-align: center;">
                        <select class = "standard-select" name="stylized" id="stylized-ss" onchange="ssimg()" style="width:30%;">
                            <option value="-1" selected disabled hidden>Select choice</option>
                            <option value="dog-stylized-tiger">Dog x Tiger</option>
@@ -98,9 +98,11 @@
                   <div id="sliders" style="display: none;">
                     <input type="range" id="sliderOpacity" min="0" max="100" value="40" class="sliders" oninput="changeOpacity()" /> <span id="numOpacity">100</span>%
                   </div>
-                  <input type="radio" name="xraiList" value="show" id="xrai" onchange="xrairadio()">Show XRAI
-                  <input type="radio" name="xraiList" value="hide" id="xrai" onchange="xrairadio()" checked>Hide XRAI
-                  <input type="radio" name="xraiList" value="overlap" id="overlap" onchange="xraioverlap()">Overlap XRAI
+                  <div style="text-align: center;">
+                    <input type="radio" name="xraiList" value="show" id="xrai" onchange="xrairadio()">Show XRAI
+                    <input type="radio" name="xraiList" value="hide" id="xrai" onchange="xrairadio()" checked>Hide XRAI
+                    <input type="radio" name="xraiList" value="overlap" id="overlap" onchange="xraioverlap()">Overlap XRAI
+                  </div>
 
                 
               </div>
