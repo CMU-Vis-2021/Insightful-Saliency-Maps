@@ -185,6 +185,12 @@ function ssimg(){
     var radio = document.getElementsByName("xraiList")
     if(radio[0].checked){
         set_xraiimg()
+
+        var radio_og = document.getElementsByName("ogList")
+
+        if(radio_og[0].checked){
+            saliencySim()
+        }
     } else if(radio[2].checked){
         const sliderOpacity = document.querySelector("#sliderOpacity");
         sliderOpacity.value = 40;
@@ -268,16 +274,29 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
                 slider.style.display = "none";
                 set_xraiimg(choice = document.getElementById("original-ss"), imgobj = '#original-img-xrai');
            }
-            
+
+           var radio_og = document.getElementsByName("ogList")
+           var radio_xrai = document.getElementsByName("xraiList")
+
+           if(radio_og[0].checked && radio_xrai[0].checked){
+            saliencySim()
+           }
 
         }
         else if (radio[i].value == "hide"){
             var img_div = document.querySelector(query)
             img_div.innerHTML = originalHTML
 
+            document.getElementById("salsim-div").style.display = "none";
+
             var slider = document.getElementById("sliders")
             slider.style.display = "none";
             ssimg()
+        } else if(radio[i].value == "overlap"){
+            document.getElementById("salsim-div").style.display = "none";
+            const sliderOpacity = document.querySelector("#sliderOpacity");
+            sliderOpacity.value = 40;
+            xraioverlap();
         }
 
         // only one radio can be logically checked, don't check the rest
@@ -362,6 +381,30 @@ function styleAnother(){
 
 }
 
+function saliencySim(){
+    console.log("they are the same!")
+    var sal_div = document.getElementById("salsim-div")
+    console.log(sal_div)
+    sal_div.style.display = "block";
+
+    var choice = document.getElementById("stylized-ss")
+
+    var styleImage = $('#salsim-img')
+
+    var style_classpath = "./assets/saliency-similarity/"+ choice.value + ".png";
+
+    $.ajax({
+        url: style_classpath,
+        type: "GET"
+    }).done(function() {
+        console.log("adding image")
+        styleImage.attr('src', style_classpath);   // set the image source
+    }).fail(function() {
+        console.log("failed")
+        styleImage.hide();    // or something other
+    });
+}
+
 function hoverImg(){
     iconimg = document.getElementById("plusicon")
     iconimg.setAttribute('src', "assets/icons/plus-hover.svg")
@@ -391,4 +434,6 @@ function changeOpacity(){
     const img = document.querySelector("#xrai-img");
 
     img.style.opacity = (sliderOpacity.value)/100;
+
+    document.getElementById("numOpacity").innerHTML = sliderOpacity.value;
 }
