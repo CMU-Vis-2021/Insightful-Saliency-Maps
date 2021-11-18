@@ -12,7 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
     <script type="text/javascript" src="imgstruct.json"></script>
-    <link rel="stylesheet" href="./assets/index.b962c1b9.css">
+    <link rel="stylesheet" href="./assets/index.25e06f4d.css">
   </head>
   <body>
     <div class="container">
@@ -97,7 +97,7 @@
                     <img id="stylized-img-ss">
                   </div>
                   <div id="sliders" style="display: none;">
-                    <input type="range" id="sliderOpacity" min="0" max="100" value="40" class="sliders" oninput="changeOpacity()" /> <span id="numOpacity">100</span>%
+                    <input type="range" id="sliderOpacity" min="0" max="100" value="40" class="sliders" oninput="changeOpacity()" /> <span id="numOpacity">40</span>%
                   </div>
                   <div style="text-align: center;">
                     <input type="radio" name="xraiList" value="show" id="xrai" onchange="xrairadio()">Show XRAI
@@ -127,8 +127,30 @@
               </div>
             </div>
             <div class="visualize-similarity">
-                <p> <b> Visualize the similarity between the two saliency maps. </b> </p>
-              </div>
+                <div id="salsim-div" style="display: none;">
+                  <p> <b> Visualize the similarity between the two saliency maps. </b> </p>
+                  <div class="flex">
+                    <div class="flex-inner step">
+                      <div style="text-align: center;">
+                        <input type="radio" name="salsimList" value="intersection" id="salsim" onchange="saliencySim()" checked>Intersection
+                        <input type="radio" name="salsimList" value="difference" id="salsim" onchange="saliencySim()">Difference
+                      </div>
+                      <div id="sliders">
+                        <input type="range" id="sliderAlpha" min="0" max="50" step="5" value="0" class="sliders" oninput="changeAlpha()" /> <span id="numAlpha">0</span> pixels deviation
+                      </div>
+                      <img id="salsim-img" style="border: 0px; margin: auto;"/>
+                    </div>
+                    <div class="flex-inner step">
+                      <p> <b> Similarity Metrics </b> </p>
+                      <ul style="list-style: none;">
+                          <li> Saliency Similarity: %</li>
+                          <li> Structual Similarity: %</li>
+                          <li> Mean Squared Error: </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+            </div>
             <div class="more-images">
               <p>Compute the average saliency</p>
             </div>
