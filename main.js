@@ -147,84 +147,192 @@ function stylizeImg(){
     document.getElementById('prediction').textContent = prediction;
 }
 
-// function changeImage(progress){
-    
-//     console.log(shapeList)
-//     var select = document.getElementById('quizselect')
-//     selectedAnswer.push(select.value);
-//     console.log(select)
-//     select.value = "-1";
-//     console.log(select)
+function ssimg(){
 
-//     if(parseInt(progress.textContent) == 3){
-//         console.log("show Finale");
-//         showQuizFinal();
-//     }
-//     else{
+    var remove_img = document.getElementById("xrai-img")
+    console.log("REMOVE IMG", remove_img)
+    if (remove_img != null){
+        remove_img.src = ""
+    }
 
-//         // choose an image class and random image within that class
-//         var selection_shape = shapeList[Math.floor(Math.random()*shapeList.length)];
-//         var selection_texture = textureList[Math.floor(Math.random()*textureList.length)];
-//         console.log("current selection shape: ", selection_shape)
-//         rightAnswer.push(selection_shape);
-//         // var imgNum = Math.floor(Math.random()*10)+1;
-//         var quizImage = document.getElementById("quizImg");
-//         var classpath = "./assets/stylized-images/"+selection_shape+"-stylized-"+selection_texture+'.jpg';
-        
-//         allImages.push(classpath);
-//         // var randidx = parseddata[selection][imgNum][Math.floor(Math.random()*parseddata[selection][imgNum].length)]
-//         // var path = classpath + randidx;
+    var choice = document.getElementById("stylized-ss")
 
+    console.log(choice)
+    console.log(choice.value)
+    var shapename = choice.value.split("-")[0]
+    console.log(shapename)
 
-//         var quizImage = $('#quizImg')
+    var ogselect = document.getElementById("original-ss");
+    ogselect.value = shapename;
 
-//         $.ajax({
-//             url: classpath,
-//             type: "GET"
-//         }).done(function() {
-//             quizImage.attr('src', classpath);   // set the image source
-//         }).fail(function() {
-//             quizImage.hide();    // or something other
-//         });
+    ogimg();
 
-//         predictClass(document.getElementById('quizImg'));
+    var styleImage = $('#stylized-img-ss')
 
-//         // Calculate progress for next dot -- change button to say submit if on the last question
-//         var nextnum = parseInt(progress.textContent) + 1;
-//         if (nextnum == 3){
-//             var subbtn = document.getElementById('quizbtn')
-//             subbtn.textContent = "Submit"
-//         } 
+    var style_classpath = "./assets/stylized-images/"+ choice.value + ".jpg";
 
+    $.ajax({
+        url: style_classpath,
+        type: "GET"
+    }).done(function() {
+        console.log("adding image")
+        styleImage.attr('src', style_classpath);   // set the image source
+    }).fail(function() {
+        console.log("failed")
+        styleImage.hide();    // or something other
+    });
 
-//         // create current and next id based on progress
-//         var nextid = "dot" + nextnum.toString() + " notactive";
-//         var curid = "dot" + progress.textContent + " active";
+    var radio = document.getElementsByName("xraiList")
+    if(radio[0].checked){
+        set_xraiimg()
+    } else if(radio[2].checked){
+        const sliderOpacity = document.querySelector("#sliderOpacity");
+        sliderOpacity.value = 40;
+        xraioverlap();
+    }
 
-//         // modify style of current dot
-//         var currentdot = document.getElementById(curid);
-//         currentdot.style.backgroundColor = "rgb(211, 211, 211)";
-//         curid = "dot" + progress.textContent + " notactive";
-//         currentdot.id = curid;
+}
 
-//         // modify style of next dot
-//         var nextdot = document.getElementById(nextid);
-//         nextdot.style.backgroundColor = "#3274b5";
-//         nextdot.id = "dot" + nextnum.toString() + " active";
+function ogimg(){
 
-//         // update progress and image
-//         progress.textContent = nextnum;
+    var choice = document.getElementById("original-ss")
 
+    console.log(choice)
+    console.log(choice.value)
 
-//         // remove that option from the image selection list
-//         shapeList = shapeList.filter(function(value, index, arr){
-//             return value != selection_shape;
-//         });
-//         textureList = textureList.filter(function(value, index, arr){
-//             return value != selection_texture;
-//         });
-//     }
-// }
+    var styleImage = $('#original-img-ss')
+
+    var og_classpath = "./assets/shapes/"+ choice.value + ".jpg";
+
+    $.ajax({
+        url: og_classpath,
+        type: "GET"
+    }).done(function() {
+        console.log("adding image")
+        styleImage.attr('src', og_classpath);   // set the image source
+    }).fail(function() {
+        console.log("failed")
+        styleImage.hide();    // or something other
+    });
+
+}
+
+function set_xraiimg(choice = document.getElementById("stylized-ss"), imgobj = '#stylized-img-xrai'){
+
+    var remove_img = document.getElementById("xrai-img")
+    console.log("REMOVE IMG", remove_img)
+    if (remove_img != null){
+        remove_img.src = ""
+    }
+
+    var xrai_classpath = "./assets/heatmaps/"+ choice.value + ".png";
+
+    console.log(imgobj)
+    var xraiImage = $(imgobj)
+
+    console.log(xraiImage)
+    $.ajax({
+        url: xrai_classpath,
+        type: "GET"
+    }).done(function() {
+        console.log("adding image")
+        xraiImage.attr('src', xrai_classpath);   // set the image source
+    }).fail(function() {
+        console.log("failed")
+        xraiImage.hide();    // or something other
+    });
+
+}
+
+function xrairadio(radio = document.getElementsByName("xraiList"), query = '.flex #stylized-img-div', appendHTML = '<img id="stylized-img-xrai">', originalHTML = '<img id="stylized-img-ss">'){
+
+    for (var i = 0, length = radio.length; i < length; i++) {
+      if (radio[i].checked) {
+        // do whatever you want with the checked radio
+        console.log(radio[i].value);
+
+        if(radio[i].value == "show"){
+            var img_div = document.querySelector(query)
+            console.log(img_div)
+            console.log(img_div.innerHTML)
+
+            img_div.innerHTML = img_div.innerHTML + appendHTML
+
+            if(radio[i].id == "xrai"){
+                console.log("in xrai")
+                var slider = document.getElementById("sliders")
+                slider.style.display = "none";
+                set_xraiimg(); 
+           } else if(radio[i].id == "og"){
+                var slider = document.getElementById("sliders")
+                slider.style.display = "none";
+                set_xraiimg(choice = document.getElementById("original-ss"), imgobj = '#original-img-xrai');
+           }
+            
+
+        }
+        else if (radio[i].value == "hide"){
+            var img_div = document.querySelector(query)
+            img_div.innerHTML = originalHTML
+
+            var slider = document.getElementById("sliders")
+            slider.style.display = "none";
+            ssimg()
+        }
+
+        // only one radio can be logically checked, don't check the rest
+        break;
+      }
+    }
+
+}
+
+function xraioverlap(choice = document.getElementById("stylized-ss"), query = '.flex #stylized-img-div', appendHTML = '<img id="stylized-img-ss" style="position: relative;"> <img id="xrai-img" style="position: absolute; opacity: 40%"> '){
+
+    var img_div = document.querySelector(query)
+    img_div.innerHTML = appendHTML
+
+    console.log("OVERLAP", choice.value)
+    if (choice.value.split("-")[1] == "stylized"){
+        var beg_path = "./assets/stylized-images/"
+        var option = choice.value
+    } else {
+        var beg_path = "./assets/shapes/"
+        var option = choice.value.split("-")[0]
+    }
+
+    var og_classpath = beg_path+option + ".jpg";
+    var xrai_classpath = "./assets/heatmaps/"+ choice.value + ".png";
+
+    var xraiImage = $('#xrai-img')
+    var ogImage = $('#stylized-img-ss')
+
+    $.ajax({
+        url: xrai_classpath,
+        type: "GET"
+    }).done(function() {
+        console.log("adding image")
+        xraiImage.attr('src', xrai_classpath);   // set the image source
+    }).fail(function() {
+        console.log("failed")
+        xraiImage.hide();    // or something other
+    });
+
+    $.ajax({
+        url: og_classpath,
+        type: "GET"
+    }).done(function() {
+        console.log("adding image")
+        ogImage.attr('src', og_classpath);   // set the image source
+    }).fail(function() {
+        console.log("failed")
+        ogImage.hide();    // or something other
+    });
+
+    var slider = document.getElementById("sliders")
+    slider.style.display = "block";
+
+}
 
 function styleAnother(){
 
@@ -264,58 +372,6 @@ function leaveImg(){
     iconimg.setAttribute('src', "assets/icons/plus.svg")
 }
 
-// function showQuizFinal(){
-//     let quizDiv = document.getElementById('quiz-before');
-//     let answerDiv = document.getElementById('quiz-after');
-//     let answersRight = 0;
-
-//     quizDiv.style.display = "none";
-//     answerDiv.style.display = "block";
-//     // console.log("allImages = ");
-//     // console.log(allImages);
-//     // console.log("selectedAnswer = ");
-//     // console.log(selectedAnswer);
-//     // console.log("rightAnswer = ");
-//     // console.log(rightAnswer);
-
-//     let templateAnswer = document.getElementById('answer-template');
-//     for(let i = 0; i < numberOfQuestions; i++){
-//         const answerElement = templateAnswer.cloneNode(true);
-//         answerElement.id = "";
-
-//         const imageElement = answerElement.getElementsByClassName("image")[0];
-//         imageElement.src = allImages[i];
-        
-//         const userElement = answerElement.getElementsByClassName("yourAnswer")[0];
-//         if(selectedAnswer[i] == "-1"){
-//             selectedAnswer[i] = "nothing selected"
-//         }
-//         userElement.innerHTML = selectedAnswer[i];
-//         if(selectedAnswer[i] == rightAnswer[i])
-//             userElement.style.color = "green";
-//         else
-//             userElement.style.color = "red";
-
-//         const predictionElement = answerElement.getElementsByClassName("AIprediction")[0];
-//         predictionElement.innerHTML = rightAnswer[i];
-//         if(rightAnswer[i] == rightAnswer[i])
-//             predictionElement.style.color = "green";
-//         else
-//             predictionElement.style.color = "red";
-
-//         const rightAnswerElement = answerElement.getElementsByClassName("correctAnswer")[0];
-//         rightAnswerElement.innerHTML = rightAnswer[i];
-//         rightAnswerElement.style.color = "green";
-
-//         if(selectedAnswer[i] == rightAnswer[i]){
-//             answersRight += 1;
-//         }
-//         answerDiv.append(answerElement);
-//     }
-//     let answersRightElement = answerDiv.getElementsByClassName('number')[0];
-//     answersRightElement.innerHTML = answersRight;
-
-// }
 
 function predictClass(image){
 
@@ -330,54 +386,9 @@ function predictClass(image){
         });
 }
 
-// function firstImage(){
+function changeOpacity(){
+    const sliderOpacity = document.querySelector("#sliderOpacity");
+    const img = document.querySelector("#xrai-img");
 
-//     select = document.getElementById('quizselect')
-//     console.log(select)
-
-//     var selection_shape = shapeList[Math.floor(Math.random()*shapeList.length)];
-//     var selection_texture = textureList[Math.floor(Math.random()*textureList.length)];
-//     console.log("current selection shape: ", selection_shape)
-//     rightAnswer.push(selection_shape);
-//     // var imgNum = Math.floor(Math.random()*10)+1;
-//     var quizImage = document.getElementById("quizImg");
-//     var classpath = "./assets/stylized-images/"+selection_shape+"-stylized-"+selection_texture+'.jpg';
-//     allImages.push(classpath);
-//     // var randidx = parseddata[selection][imgNum][Math.floor(Math.random()*parseddata[selection][imgNum].length)]
-//     // var path = classpath + randidx;
-
-
-//     var quizImage = $('#quizImg')
-
-//     $.ajax({
-//         url: classpath,
-//         type: "GET"
-//     }).done(function() {
-//         quizImage.attr('src', classpath);   // set the image source
-//     }).fail(function() {
-//         quizImage.hide();    // or something other
-//     });
-
-//     // remove that option from the image selection list
-//     shapeList = shapeList.filter(function(value, index, arr){
-//         return value != selection_shape;
-//     });
-//     textureList = textureList.filter(function(value, index, arr){
-//         return value != selection_texture;
-//     });
-// }
-
-// function loadOptionsQuiz(){
-//     var select = document.getElementById('quizselect')
-
-//     for(var i = 0; i < shapeList.length; i++){
-//         option = document.createElement('option');
-//         option.value = shapeList[i]
-//         option.text = shapeList[i].charAt(0).toUpperCase() + shapeList[i].slice(1)
-//         select.add(option, -1);
-//     }
-// };
-
-// loadOptionsQuiz();
-// firstImage();
-// predictClass(document.getElementById('quizImg'));
+    img.style.opacity = (sliderOpacity.value)/100;
+}

@@ -22,7 +22,7 @@
       </h1>
       <nav>
           <button id = "openTab1" onclick = "changeTab(this,'tab1')" class = "active">Stylize an Image</button>
-          <button id = "openTab2" onclick = "changeTab(this,'tab2')">Explore Robustness</button>
+          <button id = "openTab2" onclick = "changeTab(this,'tab2')">Saliency Similarity</button>
           <button id = "openTab3" onclick = "changeTab(this,'tab3')">Explain an Image</button>
       </nav>
       <div id = "tab1">
@@ -78,49 +78,57 @@
              </div>
          </div>
          <div id = "tab2" class = "hidden">
-                <h2>Take this short quiz to see how well you can classify these images compared to the AI.</h2> 
-            
-            <div id = "quiz-before"> 
-                <div class = "progress-bar">
-                    <p> Progress: <span id = "progress-number">1</span>/3</p>
-                    <div id = "dots">
-                        <span class= "dot1 dot" id = "dot1 active" style = "background-color: #3274b5;"></span>
-                        <span class= "dot2 dot" id = "dot2 notactive"></span>
-                        <span class= "dot3 dot" id = "dot3 notactive" ></span>
-                    </div>
-                    <img id = "quizImg">
-                    <br>
-                    <label>What's your prediction?</label>
-                    <div class = "select">
-                        <select class = "standard-select" name="texture" id="quizselect">
-                            <option value="-1" selected disabled hidden>Select choice</option>
-                        </select>
-                    </div>
-                    <button class = "blue" id = "quizbtn" onclick = "changeImage(document.getElementById('progress-number'))">Next</button>
-                </div>
+                <h2>Explore the saliency maps of stylized images. See how they compare to the saliency map of the original, un-stylized image.</h2> 
+            <div class="flex">
+              <div class = "flex-inner step" id = "stylized-saliency"> 
+                  
+                  <p> <b> Choose a stylized image:</b></p>
+                  
+                  <div class="stylized-select" style="padding: 10px;">
+                       <select class = "standard-select" name="stylized" id="stylized-ss" onchange="ssimg()" style="width:30%;">
+                           <option value="-1" selected disabled hidden>Select choice</option>
+                           <option value="dog-stylized-tiger">Dog x Tiger</option>
+                           <option value="dog-stylized-zebra">Dog x Zebra</option>
+                           <option value="dog-stylized-trucks">Dog x Trucks</option>
+                       </select>
+                  </div>
+                  <div class="flex" id="stylized-img-div">
+                    <img id="stylized-img-ss">
+                  </div>
+                  <div id="sliders" style="display: none;">
+                    <input type="range" id="sliderOpacity" min="0" max="100" value="40" class="sliders" oninput="changeOpacity()" /> <span id="numOpacity">100</span>%
+                  </div>
+                  <input type="radio" name="xraiList" value="show" id="xrai" onchange="xrairadio()">Show XRAI
+                  <input type="radio" name="xraiList" value="hide" id="xrai" onchange="xrairadio()" checked>Hide XRAI
+                  <input type="radio" name="xraiList" value="overlap" id="overlap" onchange="xraioverlap()">Overlap XRAI
+
+                
+              </div>
+              <div class = "flex-inner step" id = "original-saliency">
+                <p> <b> Original image: </b> </p>
+
+                <div class="original-select" style="padding: 10px;">
+                       <select class = "standard-select" name="original" id="original-ss" onchange="ogimg()" style="width:30%;">
+                           <option value="-1" selected disabled hidden>Select stylized image</option>
+                           <option value="dog" disabled>Dog</option>
+                           <option value="elephant" disabled>Elephant</option>
+                           <option value="bear" disabled>Bear</option>
+                       </select>
+                  </div>
+                  <div class="flex" id="original-img-div">
+                    <img id="original-img-ss">
+                    
+                  </div>
+                  <input type="radio" name="ogList" value="show" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-xrai\">", originalHTML = "<img id=\"original-img-ss\">")'>Show XRAI
+                  <input type="radio" name="ogList" value="hide" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-xrai\">", originalHTML = "<img id=\"original-img-ss\">")' checked>Hide XRAI
+              </div>
             </div>
-            <div id = "quiz-after">
-                <label>How did you do?</label>
-                <p>You got <span class = "number">1</span> out of 3 questions correct!</p>
-                <div class = "flex answers" id = "answer-template">
-                    <div class = "inner">
-                        <img class="image" alt = "" src = "">
-                    </div>
-                    <div class = "inner">
-                        <p><b>Your prediction:</b></p>
-                        <p class = "yourAnswer"></p>
-                    </div>
-                    <div class = "inner">
-                        <p><b>AI prediction:</b></p>
-                        <p class = "AIprediction"></p>
-                    </div>
-                    <div class = "inner">
-                        <p><b>Correct answer:</b></p>
-                        <p class = "correctAnswer"></p>
-                    </div>
-                </div>
+            <div class="visualize-similarity">
+                <p> <b> Visualize the similarity between the two saliency maps. </b> </p>
+              </div>
+            <div class="more-images">
+              <p>Compute the average saliency</p>
             </div>
-     
          </div>
          <div id = "tab3" class = "hidden">
             <h2>Draw what the AI sees.<br>See how your perception compares to the AI.</h2>
