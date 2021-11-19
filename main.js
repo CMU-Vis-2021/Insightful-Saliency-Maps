@@ -150,45 +150,54 @@ function stylizeImg(){
 function ssimg(){
 
     var remove_img = document.getElementById("xrai-img")
-    console.log("REMOVE IMG", remove_img)
     if (remove_img != null){
         remove_img.src = ""
     }
 
     var choice = document.getElementById("stylized-ss")
 
-    console.log(choice)
-    console.log(choice.value)
+    var style_classpathss = "./assets/stylized-images/"+ choice.value + ".jpg";
+
+    var img_style = document.getElementById("stylized-img-ss")
+    img_style.setAttribute('src', style_classpathss)
+
     var shapename = choice.value.split("-")[0]
-    console.log(shapename)
 
     var ogselect = document.getElementById("original-ss");
     ogselect.value = shapename;
 
     ogimg();
 
-    var styleImage = $('#stylized-img-ss')
-
-    var style_classpath = "./assets/stylized-images/"+ choice.value + ".jpg";
-
-    $.ajax({
-        url: style_classpath,
-        type: "GET"
-    }).done(function() {
-        console.log("adding image")
-        styleImage.attr('src', style_classpath);   // set the image source
-    }).fail(function() {
-        console.log("failed")
-        styleImage.hide();    // or something other
-    });
-
     var radio = document.getElementsByName("xraiList")
     if(radio[0].checked){
+        console.log("Show is checked")
+        set_xraiimg()
+
+        var remove_img = document.getElementById("stylized-img-xrai")
+        if (remove_img != null){
+            remove_img.src = ""
+        } else {
+            var img_div = document.querySelector('.flex #stylized-img-div')
+            console.log(img_div.innerHTML)
+            img_div.innerHTML = img_div.innerHTML + '<img id="stylized-img-xrai">'
+        }
+        
         set_xraiimg()
 
         var radio_og = document.getElementsByName("ogList")
 
         if(radio_og[0].checked){
+
+            var remove_img = document.getElementById("original-img-xrai")
+            if (remove_img != null){
+                remove_img.src = ""
+            } else {
+                var img_div = document.querySelector('.flex #original-img-div')
+                console.log(img_div.innerHTML)
+                img_div.innerHTML = img_div.innerHTML + '<img id="original-img-xrai">'
+            }
+
+            set_xraiimg(choice = document.getElementById("original-ss"), imgobj = '#original-img-xrai')
             saliencySim()
         }
     } else if(radio[2].checked){
@@ -203,23 +212,10 @@ function ogimg(){
 
     var choice = document.getElementById("original-ss")
 
-    console.log(choice)
-    console.log(choice.value)
-
-    var styleImage = $('#original-img-ss')
-
     var og_classpath = "./assets/shapes/"+ choice.value + ".jpg";
 
-    $.ajax({
-        url: og_classpath,
-        type: "GET"
-    }).done(function() {
-        console.log("adding image")
-        styleImage.attr('src', og_classpath);   // set the image source
-    }).fail(function() {
-        console.log("failed")
-        styleImage.hide();    // or something other
-    });
+    var img_style = document.getElementById("original-img-ss")
+    img_style.setAttribute('src', og_classpath)
 
 }
 
@@ -387,11 +383,27 @@ function saliencySim(){
     console.log(sal_div)
     sal_div.style.display = "block";
 
+    changeAlpha();
+}
+
+function changeAlpha(){
+
     var choice = document.getElementById("stylized-ss")
+
+    const sliderAlpha = document.querySelector("#sliderAlpha");
+
+    var radio_ss = document.getElementsByName("salsimList")
+    var type = ""
+    if (radio_ss[0].checked){
+        type = "intersection"
+    } else {
+        type = "difference"
+    }
 
     var styleImage = $('#salsim-img')
 
-    var style_classpath = "./assets/saliency-similarity/"+ choice.value + ".png";
+
+    var style_classpath = "./assets/saliency-similarity/"+ choice.value + "-" + sliderAlpha.value.toString() + "-" +  type + ".png";
 
     $.ajax({
         url: style_classpath,
@@ -403,6 +415,7 @@ function saliencySim(){
         console.log("failed")
         styleImage.hide();    // or something other
     });
+
 }
 
 function hoverImg(){
