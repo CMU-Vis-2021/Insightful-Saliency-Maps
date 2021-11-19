@@ -390,7 +390,11 @@ function changeAlpha(){
 
     var choice = document.getElementById("stylized-ss")
 
+
+
     const sliderAlpha = document.querySelector("#sliderAlpha");
+
+    document.getElementById("numAlpha").innerHTML = sliderAlpha.value;
 
     var radio_ss = document.getElementsByName("salsimList")
     var type = ""
