@@ -133,26 +133,21 @@
                     <div class="flex-inner step">
                       <div style="text-align: center;">
                         <input type="radio" name="salsimList" value="intersection" id="salsim" onchange="saliencySim()" checked>Intersection
-                        <input type="radio" name="salsimList" value="difference" id="salsim" onchange="saliencySim()">Difference
+                        <!-- <input type="radio" name="salsimList" value="difference" id="salsim" onchange="saliencySim()">Difference -->
                       </div>
                       <div id="sliders">
-                        <input type="range" id="sliderAlpha" min="0" max="50" step="5" value="0" class="sliders" oninput="changeAlpha()" /> <span id="numAlpha">0</span> pixels deviation
+                        <input type="range" id="sliderAlpha" min="0" max="20" step="5" value="0" class="sliders" oninput="changeAlpha()" /> <span id="numAlpha">20</span> pixels deviation
                       </div>
-                      <img id="salsim-img" style="border: 0px; margin: auto;"/>
+                      <img id="salsim-img" style="border: 0px"/>
                     </div>
                     <div class="flex-inner step">
-                      <p> <b> Similarity Metrics </b> </p>
-                      <ul style="list-style: none;">
-                          <li> Saliency Similarity: %</li>
-                          <li> Structual Similarity: %</li>
-                          <li> Mean Squared Error: </li>
-                      </ul>
+                      something else here
                     </div>
                   </div>
                 </div>
             </div>
-            <div class="more-images">
-              <p>Compute the average saliency</p>
+            <div class="visualize-similarity">
+              <p> <b> Compute the average saliency </b> </p>
             </div>
          </div>
          <div id = "tab3" class = "hidden">
@@ -179,32 +174,7 @@
                     <button class ="color-btn red" onclick = "changeColorCanvas('red')">Red</button>
                     <button class ="color-btn purple" onclick = "changeColorCanvas('purple')">Purple</button>
                 </div>
-            </div>
-             <!-- <div class = "flex graphics">
-                 <div class = "flex-inner step">
-                         <label for="texture"><span class = "number">1</span>Choose a model:</label>
-                         <br>
-                         <div class = "select">
-                             <select class = "standard-select" name="texture" id="texture">
-                                 <option value="elephant">Model 1 (ResNet-50)</option>
-                                 <option value="dog">Dog</option>
-                                 <option value="tex3">tex3</option>
-                             </select>
-                         </div>
-                 </div>
-                 <div class = "flex-inner step">
-                     <label for="texture"><span class = "number">1</span>Select models to compare to:</label>
-                     <br>
-                     <div class = "select">
-                         <select class = "standard-select" name="texture" id="texture">
-                             <option value="elephant">Model 1</option>
-                             <option value="dog">Model 2</option>
-                             <option value="tex3">Model 3</option>
-                         </select>
-                     </div>  
-                 </div>
-             </div>  -->
-     
+            </div>     
          </div>
      
      </div>
