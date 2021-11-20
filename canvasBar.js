@@ -204,11 +204,14 @@ d3.selectAll("#canvas").on("mouseup",updateData);
   function calcNewPixels(){
     const imgData = context.getImageData(0, 0, canvas.width, canvas.height);
     const imgDataCompare = contextCompare.getImageData(0, 0, canvasCompare.width, canvasCompare.height);
+    
+    //the heatmap on the bottom will be what we compare the input to
     const data = imgData.data;
     const dataCompare = imgDataCompare.data;
     console.log("length of data = "+data.length)
     console.log("length of heat data = "+dataCompare.length)
     
+    //when I am going through each pixel, I want to count the correctly colord ones. That's what this is setting up
     let countYellow = 0;
     let countRed = 0;
     let countOrange = 0;
