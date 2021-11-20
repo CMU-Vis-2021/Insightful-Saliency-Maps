@@ -166,11 +166,12 @@
                 <h3> Draw on this image to explain the classification. </h3>
                 <div class = "flex">
                     <div>
-                        <canvas id="canvas" width="412" height="412" >
+                        <canvas id="canvas" width="330" height="330" >
                         Your browser does not support the HTML5 canvas tag.
                         </canvas>
                         <div class = "drawControls">
                             <h4>Select a color</h4>
+                            <button class ="color-btn yellow active" onclick = "changeColorCanvas('yellow')">Yellow</button>
                             <button class ="color-btn orange" onclick = "changeColorCanvas('orange')">Orange</button>
                             <button class ="color-btn red" onclick = "changeColorCanvas('red')">Red</button>
                             <button class ="color-btn purple" onclick = "changeColorCanvas('purple')">Purple</button>
@@ -180,7 +181,7 @@
                         <h4>Percentage of pixels correct so far</h4>
                     </div>
                 </div>
-                <button class = "button">Update data</button>
+                <!-- <button class = "button">Update data</button> -->
             </div>     
          </div>
      

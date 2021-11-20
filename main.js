@@ -1,7 +1,7 @@
-
-var colorRed = '#e32d2d';
-var colorOrange = '#e8900c';
-var colorPurple = '#793ac2';
+var colorYellow = '#ffcb2e';
+var colorRed = '#bb0f44';
+var colorOrange = '#f3781e';
+var colorPurple = '#5b0b67';
 var colorGrey = '#A9A9A9';
 
 var allImages = [];
@@ -42,6 +42,8 @@ $.ajax({
     cImg.attr('src', "./assets/quiz/dobermanorig.png");   // set the image source
 }).fail(function() {
     cImg.hide();    // or something other
+    cImg.attr('src', "./assets/quiz/dobermanorig.png");
+    console.log("FAILED TO LOAD IMAGE")
 });
 
 // Canvas image loaded
@@ -53,6 +55,7 @@ window.onload = function() {
     // At this point, the image is fully loaded
     ctx.drawImage(img, 0, 0,c.width,c.height);
 };
+ctx.drawImage(img, 0, 0,c.width,c.height);
   console.log(img);
   console.log(c.width);
 }

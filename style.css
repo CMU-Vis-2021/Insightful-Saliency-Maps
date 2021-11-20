@@ -257,20 +257,23 @@ canvas {
     height: "100%";
 }
 .color-btn{
-  width:28%;
+  width: 22%;
   padding:10px 0px;
   border: none;
   border-radius: 10px;
   margin:0px 1%;
 }
 .red{
-  background:red;
+  background:#bb0f44;
 }
 .orange{
-  background:orange;
+  background:#f3781e;
 }
 .purple{
-  background:purple;
+  background:#5b0b67;
+}
+.yellow{
+  background: #ffcb2e;
 }
 #tab3{
   margin-bottom:100px;
@@ -310,5 +313,11 @@ h4{
 #tab3 .flex{
   margin: auto;
   width: fit-content;
+}
+#tab3 .flex div{
+  padding:0px 10px;
+}
+#tab3 button.active{
+  border: 3px solid black;
 }
 

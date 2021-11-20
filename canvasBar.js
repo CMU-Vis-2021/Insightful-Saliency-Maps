@@ -160,8 +160,9 @@ svg.append("text")
 
 
 
-d3.selectAll(".button").on("click",updateData);
-  
+// d3.selectAll(".button").on("click",updateData);
+d3.selectAll("#canvas").on("mouseup",updateData);
+
   function updateData(){
     console.log(dataColors[1].user_percentage);
     dataColors[1].user_percentage += 2;

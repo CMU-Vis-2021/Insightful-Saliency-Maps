@@ -1,5 +1,5 @@
 // Brush colour and size
-let colour = "#3d34a5";
+let colour = colorYellow;
 const strokeWidth = 5;
 
 // Drawing state
@@ -67,6 +67,7 @@ const endStroke = evt => {
     }
     drawing = false;
     console.log('drawing');
+    
     evt.currentTarget.removeEventListener("mousemove", mouseMove, false);
 };
 
@@ -77,13 +78,23 @@ canvas.addEventListener("mouseup", endStroke, false);
 canvas.addEventListener("mouseout", endStroke, false);
 canvas.addEventListener("mouseenter", mouseEnter, false);
 
+var allColorButtons = document.getElementsByClassName("color-btn")
 function changeColorCanvas(color){
+    for(let i = 0; i<allColorButtons.length;i++){
+        allColorButtons[i].classList.remove("active");
+        if(allColorButtons[i].classList.contains(color)){
+            allColorButtons[i].classList.add("active");
+        }
+    } 
+    
     if(color == 'red'){
         colour = colorRed;
     }else if(color == 'orange'){
         colour = colorOrange;
     }else if(color == 'purple'){
         colour = colorPurple;
+    }else if(color == 'yellow'){
+        colour = colorYellow;
     }
 }
 
