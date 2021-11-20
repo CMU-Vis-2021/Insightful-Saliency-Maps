@@ -195,7 +195,12 @@ function ssimg(){
             }
 
             set_xraiimg(choice = document.getElementById("original-ss"), imgobj = '#original-img-xrai')
-            saliencySim()
+            
+            console.log("they are the same!")
+            var sal_div = document.getElementById("salsim-div")
+            console.log(sal_div)
+            sal_div.style.display = "block";
+            changeAlpha();
         }
     } else if(radio[2].checked){
         const sliderOpacity = document.querySelector("#sliderOpacity");
@@ -272,7 +277,11 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
            var radio_xrai = document.getElementsByName("xraiList")
 
            if(radio_og[0].checked && radio_xrai[0].checked){
-            saliencySim()
+                console.log("they are the same!")
+                var sal_div = document.getElementById("salsim-div")
+                console.log(sal_div)
+                sal_div.style.display = "block";
+                changeAlpha();
            }
 
         }
@@ -374,37 +383,18 @@ function styleAnother(){
 
 }
 
-function saliencySim(){
-    console.log("they are the same!")
-    var sal_div = document.getElementById("salsim-div")
-    console.log(sal_div)
-    sal_div.style.display = "block";
-
-    changeAlpha();
-}
-
 function changeAlpha(){
 
     var choice = document.getElementById("stylized-ss")
-
-
 
     const sliderAlpha = document.querySelector("#sliderAlpha");
 
     document.getElementById("numAlpha").innerHTML = sliderAlpha.value;
 
-    var radio_ss = document.getElementsByName("salsimList")
-    var type = ""
-    if (radio_ss[0].checked){
-        type = "intersection"
-    } else {
-        type = "difference"
-    }
-
     var styleImage = $('#salsim-img')
 
 
-    var style_classpath = "./assets/saliency-similarity/"+ choice.value + "-" + sliderAlpha.value.toString() + "-" +  type + ".png";
+    var style_classpath = "./assets/saliency-similarity/"+ choice.value + "-" + sliderAlpha.value.toString() + ".png";
 
     $.ajax({
         url: style_classpath,

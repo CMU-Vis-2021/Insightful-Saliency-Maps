@@ -132,7 +132,8 @@
                   <div class="flex">
                     <div class="flex-inner step">
                       <div style="text-align: center;">
-                        <input type="radio" name="salsimList" value="intersection" id="salsim" onchange="saliencySim()" checked>Intersection
+                        Intersection of Saliency Maps:
+                        <!-- <input type="radio" name="salsimList" value="intersection" id="salsim" onchange="saliencySim()" checked>Intersection -->
                         <!-- <input type="radio" name="salsimList" value="difference" id="salsim" onchange="saliencySim()">Difference -->
                       </div>
                       <div id="sliders">
@@ -141,7 +142,10 @@
                       <img id="salsim-img" style="border: 0px; width: auto;"/>
                     </div>
                     <div class="flex-inner step">
-                      Similiarity Metrics:
+                      Comparison of Top-K Colors:
+                      <div id="sliders">
+                        <input type="range" id="sliderK" min="2" max="7" step="1" value="2" class="sliders" oninput="changeK()" /> <span id="numAlpha">2</span> colors
+                      </div>
                       <div class="flex">
                         <div class="flex-inner step">
                             <div id="salsim-pie1"> </div>
