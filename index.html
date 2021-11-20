@@ -12,9 +12,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
     <script type="text/javascript" src="imgstruct.json"></script>
-    <script type="module" crossorigin src="./assets/index.36a4e01b.js"></script>
+    <script type="module" crossorigin src="./assets/index.b395046b.js"></script>
     <link rel="modulepreload" href="./assets/vendor.79436710.js">
-    <link rel="stylesheet" href="./assets/index.e8076f38.css">
+    <link rel="stylesheet" href="./assets/index.5b712d60.css">
   </head>
   <body>
     <div class="container">
@@ -169,11 +169,12 @@
                 <h3> Draw on this image to explain the classification. </h3>
                 <div class = "flex">
                     <div>
-                        <canvas id="canvas" width="412" height="412" >
+                        <canvas id="canvas" width="330" height="330" >
                         Your browser does not support the HTML5 canvas tag.
                         </canvas>
                         <div class = "drawControls">
                             <h4>Select a color</h4>
+                            <button class ="color-btn yellow active" onclick = "changeColorCanvas('yellow')">Yellow</button>
                             <button class ="color-btn orange" onclick = "changeColorCanvas('orange')">Orange</button>
                             <button class ="color-btn red" onclick = "changeColorCanvas('red')">Red</button>
                             <button class ="color-btn purple" onclick = "changeColorCanvas('purple')">Purple</button>
@@ -183,7 +184,7 @@
                         <h4>Percentage of pixels correct so far</h4>
                     </div>
                 </div>
-                <button class = "button">Update data</button>
+                <!-- <button class = "button">Update data</button> -->
             </div>     
          </div>
      
