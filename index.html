@@ -164,20 +164,29 @@
             <p>The AI makes predictions based on regions it feels are important to identifying the image. Can you guess what places in this image the AI feels are the <b><span class = "box orange"></span>most important</b> to identifying it?<br>What is <b><span class = "box red"></span>somewhat important</b>? Finally, what is <b><span class = "box purple"></span>least important</b>?</p>
             <div class = "step">
                 <h3> Draw on this image to explain the classification. </h3>
-                 <canvas id="canvas" width="412" height="412" >
-                  Your browser does not support the HTML5 canvas tag.
-                </canvas>
-                <div class = "drawControls">
-                    <h4>Select a color</h4>
-                    <button class ="color-btn orange" onclick = "changeColorCanvas('orange')">Orange</button>
-                    <button class ="color-btn red" onclick = "changeColorCanvas('red')">Red</button>
-                    <button class ="color-btn purple" onclick = "changeColorCanvas('purple')">Purple</button>
+                <div class = "flex">
+                    <div>
+                        <canvas id="canvas" width="412" height="412" >
+                        Your browser does not support the HTML5 canvas tag.
+                        </canvas>
+                        <div class = "drawControls">
+                            <h4>Select a color</h4>
+                            <button class ="color-btn orange" onclick = "changeColorCanvas('orange')">Orange</button>
+                            <button class ="color-btn red" onclick = "changeColorCanvas('red')">Red</button>
+                            <button class ="color-btn purple" onclick = "changeColorCanvas('purple')">Purple</button>
+                        </div>
+                    </div>
+                    <div id = "d3-canvas-bar">
+                        <h4>Percentage of pixels correct so far</h4>
+                    </div>
                 </div>
+                <button class = "button">Update data</button>
             </div>     
          </div>
      
      </div>
   </body>
+  <script type="module" src="./canvasBar.js"></script>
   <script type="text/javascript" src="main.js"></script>
   <script type="text/javascript" src="draw.js"></script>
 </html>

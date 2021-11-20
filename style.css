@@ -304,3 +304,11 @@ canvas {
   text-align: center;
 }
 
+h4{
+  text-align: center;
+}
+#tab3 .flex{
+  margin: auto;
+  width: fit-content;
+}
+

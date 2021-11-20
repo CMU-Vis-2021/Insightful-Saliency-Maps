@@ -1,8 +1,8 @@
-// import * as d3 from "d3";
 
 var colorRed = '#e32d2d';
 var colorOrange = '#e8900c';
 var colorPurple = '#793ac2';
+var colorGrey = '#A9A9A9';
 
 var allImages = [];
 var selectedAnswer = [];

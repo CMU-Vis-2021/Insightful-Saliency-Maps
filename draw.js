@@ -66,6 +66,7 @@ const endStroke = evt => {
         return;
     }
     drawing = false;
+    console.log('drawing');
     evt.currentTarget.removeEventListener("mousemove", mouseMove, false);
 };
 
@@ -85,3 +86,4 @@ function changeColorCanvas(color){
         colour = colorPurple;
     }
 }
+
