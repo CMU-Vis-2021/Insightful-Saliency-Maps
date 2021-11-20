@@ -6,25 +6,25 @@ var dataColors = [
       "color": "yellow",
       "pixel_count": 1069,
       "percentage": 0.98,
-      "user_percentage": 1
+      "user_percentage": 0
     },
     {
       "color": "orange",
       "pixel_count": 3494,
       "percentage": 3.21,
-      "user_percentage": 2
+      "user_percentage": 0
     },
     {
       "color": "red",
-      "pixel_count": 16193,
-      "percentage": 14.87,
-      "user_percentage": 3
+      "pixel_count": 7892,
+      "percentage": 7.25,
+      "user_percentage": 0
     },
     {
       "color": "purple",
-      "pixel_count": 7892,
-      "percentage": 7.25,
-      "user_percentage": 4
+      "pixel_count": 16193,
+      "percentage": 14.87,
+      "user_percentage": 0
     }
   ];
 
@@ -164,8 +164,8 @@ d3.selectAll("#canvas").on("mouseup",updateData);
 
   function updateData(){
     calcNewPixels();
-    console.log(dataColors[1].user_percentage);
-    dataColors[1].user_percentage += 2;
+    //console.log(dataColors[1].user_percentage);
+    // dataColors[1].user_percentage += 2;
 
     // var bars = svg.selectAll("g")
     //               .data(dataColors)
@@ -203,16 +203,72 @@ d3.selectAll("#canvas").on("mouseup",updateData);
 
   function calcNewPixels(){
     const imgData = context.getImageData(0, 0, canvas.width, canvas.height);
+    const imgDataCompare = contextCompare.getImageData(0, 0, canvasCompare.width, canvasCompare.height);
     const data = imgData.data;
+    const dataCompare = imgDataCompare.data;
     console.log("length of data = "+data.length)
+    console.log("length of heat data = "+dataCompare.length)
+    
+    let countYellow = 0;
+    let countRed = 0;
+    let countOrange = 0;
+    let countPurple = 0;
+
+    //Iterate through all pixels. We add 4 each time bc we are skipping throuhg the rgba(4) values
     for(let i = 0; i < data.length; i += 4) {
-      const red = data[i];
-      const green = data[i + 1];
-      const blue = data[i + 2];
-      const alpha = data[i + 3];
-      if(red == 255 && green == 218 && blue == 46){
-        console.log("found yellow #ffda2e")
+      //The number values at the end of the function correspond to the hex color we are using in each instance
+      countYellow += compareColor(data, dataCompare, i, 255, 218, 46);
+      countOrange += compareColor(data, dataCompare, i, 243, 120, 30);
+      countRed += compareColor(data, dataCompare, i, 187, 15, 68);
+      countPurple += compareColor(data, dataCompare, i, 91, 11, 103);
+    }
+    //Let's pirint the pixels its found to compare with our data
+    console.log("countYellow = "+countYellow);
+    console.log("countOrange = "+countOrange);
+    console.log("countRed = "+countRed);
+    console.log("countPurple = "+countPurple);
+
+    //now update data json with user's inputted values.
+    for(let e = 0; e < dataColors.length; e += 1){
+      if(dataColors[e].color == "yellow"){
+        //make values into percentages and pass it into the correct place in the json
+        dataColors[e].user_percentage = ((countYellow/(data.length/4))*100).toFixed(2);
       }
+      if(dataColors[e].color == "orange"){
+        dataColors[e].user_percentage = ((countOrange/(data.length/4))*100).toFixed(2);
+      }
+      if(dataColors[e].color == "red"){
+        dataColors[e].user_percentage = ((countRed/(data.length/4))*100).toFixed(2);
+      }
+      if(dataColors[e].color == "purple"){
+        dataColors[e].user_percentage = ((countPurple/(data.length/4))*100).toFixed(2);
+      }
+    }
+
+  }
+  function compareColor(data, dataCompare, i, r, g, b){
+    let red = false;
+    let green = false;
+    let blue = false;
+
+    //compare red value in rgba
+    if( data[i] == r && data[i] == dataCompare[i]){
+      red = true;
+    }
+    //compare green
+    if( data[i + 1] == g && data[i + 1] == dataCompare[i + 1]){
+      green = true;
+    }
+    //compare blue
+    if( data[i + 2] == b && data[i + 2] == dataCompare[i + 2]){
+      blue = true;
+    }
+
+    //If rgb is all the same we've found the color we want!
+    if(red && green && blue){
+      return 1;
+    }else{
+      return 0;
     }
 
   }

@@ -9,8 +9,9 @@ let drawing = false;
 // Set up our drawing context
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
-console.log("canvas.width = ");
-console.log( canvas);
+
+const canvasCompare = document.getElementById("canvas-compare");
+const contextCompare = canvasCompare.getContext("2d");
 // Drawing functions
 
 const continueStroke = newPoint => {
