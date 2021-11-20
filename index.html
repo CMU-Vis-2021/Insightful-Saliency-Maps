@@ -9,6 +9,7 @@
          vs
       &#128065;</title>
     <link rel="stylesheet" href="./style.css" />
+    <script src="https://d3js.org/d3.v6.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
     <script type="text/javascript" src="imgstruct.json"></script>
@@ -135,16 +136,21 @@
                         <!-- <input type="radio" name="salsimList" value="difference" id="salsim" onchange="saliencySim()">Difference -->
                       </div>
                       <div id="sliders">
-                        <input type="range" id="sliderAlpha" min="0" max="20" step="5" value="0" class="sliders" oninput="changeAlpha()" /> <span id="numAlpha">20</span> pixels deviation
+                        <input type="range" id="sliderAlpha" min="0" max="20" step="5" value="0" class="sliders" oninput="changeAlpha()" /> <span id="numAlpha">20</span> delta
                       </div>
-                      <img id="salsim-img" style="border: 0px"/>
+                      <img id="salsim-img" style="border: 0px; width: auto;"/>
                     </div>
                     <div class="flex-inner step">
                       Similiarity Metrics:
-                      <ul style="list-style: none;">
-                        <li> % pixels intersect </li>
-                        <li> Mean Squared Error </li>
-                      </ul>
+                      <div class="flex">
+                        <div class="flex-inner step">
+                            <div id="salsim-pie1"> </div>
+                        </div>
+
+                        <div class="flex-inner step">
+                            <div id="salsim-pie2"> </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

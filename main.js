@@ -18,9 +18,6 @@ let tab1Button = document.getElementById("openTab1");
 let tab2Button = document.getElementById("openTab2");
 let tab3Button = document.getElementById("openTab3");
 
-// quiz variables
-// let classList = ["airplane", "bear", "bicycle", "bird", "boat", "bottle", "car", "cat", "chair", "clock", "dog", "elephant", 
-//     "keyboard", "knife", "oven", "truck"];
 let shapeList = ['bear', 'dog', 'elephant']
 let textureList = ['bikes', 'elephant', 'tiger', 'trucks', 'zebra']
 let mydata = JSON.stringify(data);
@@ -420,6 +417,7 @@ function changeAlpha(){
         styleImage.hide();    // or something other
     });
 
+    pieChart();
 }
 
 function hoverImg(){
@@ -430,6 +428,81 @@ function hoverImg(){
 function leaveImg(){
     iconimg = document.getElementById("plusicon")
     iconimg.setAttribute('src', "assets/icons/plus.svg")
+}
+
+function pieChart(){
+
+    const width = 250,
+    height = 250,
+    margin = 20;
+
+    // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+    const radius = Math.min(width, height) / 2 - margin;
+
+    // append the svg object to the div called 'my_dataviz'
+    const svg1 = d3.select("#salsim-pie1")
+      .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+      .append("g")
+        .attr("transform", `translate(${width/2}, ${height/2})`);
+
+    // Create dummy data
+    const data = {'a': 27.32598714416896, 'b': 6.991735537190083, 'c': 27.94674012855831, 'd': 13.248852157943067, 'e': 4.104683195592287, 'f': 20.382001836547292}
+
+    // set the color scale
+    const color = d3.scaleOrdinal()
+      .range(["rgb(71.05588413  12.75169702 102.14197863)", "rgb(248.81245075 144.52350932  10.63107434)", "rgb(20.15177105   8.99516988  51.40770191)", "rgb(195.07069587  61.05572498  77.20571112)", "rgb(247.94384787 219.15346756  84.25682327)", "rgb(137.44823392  33.87876194 104.65083799)"])
+
+    // Compute the position of each group on the pie:
+    const pie = d3.pie()
+      .value(function(d) {return d[1]})
+    const data_ready = pie(Object.entries(data))
+
+    // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+    svg1
+      .selectAll('circles')
+      .data(data_ready)
+      .join('path')
+      .attr('fill', function(d){ return(color(d.data[1])) })
+      .attr("stroke", "grey")
+      .attr('d', d3.arc()
+        .innerRadius(0)
+        .outerRadius(radius)
+      )
+      .style("stroke-width", "2px")
+
+
+    // append the svg object to the div called 'my_dataviz'
+    const svg2 = d3.select("#salsim-pie2")
+      .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+      .append("g")
+        .attr("transform", `translate(${width/2}, ${height/2})`);
+
+    // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+    svg2
+      .selectAll('circles')
+      .data(data_ready)
+      .join('path')
+      .attr('d', d3.arc()
+        .innerRadius(0)
+        .outerRadius(radius)
+      )
+      .attr('fill', function(d){ return(color(d.data[1])) })
+      .attr("stroke", "grey")
+      .style("stroke-width", "2px")
+
+    // Animation
+    svg.selectAll("circles")
+      .transition()
+      .duration(800)
+      .attr('d', d3.arc()
+        .innerRadius(0)
+        .outerRadius(radius)
+      )
+      .delay((d,i) => {console.log(i); return i*100})
 }
 
 
