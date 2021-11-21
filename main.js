@@ -407,7 +407,12 @@ function changeAlpha(){
         styleImage.hide();    // or something other
     });
 
-    pieChart();
+    console.log(choice)
+    var piechart = JSON.parse(piechartdata);
+    console.log(piechart[choice.value]['pie1']['data'])
+
+
+    pieChart(piechart[choice.value]['pie1']['data'], piechart[choice.value]['pie2']['data'], piechart[choice.value]['pie1']['colors'], piechart[choice.value]['pie2']['colors']);
 }
 
 function hoverImg(){
@@ -420,7 +425,9 @@ function leaveImg(){
     iconimg.setAttribute('src', "assets/icons/plus.svg")
 }
 
-function pieChart(){
+function pieChart(pie1data, pie2data, colors1, colors2){
+    // pie1data is original image
+    // pie2data is stylized image
 
     const width = 250,
     height = 250,
@@ -438,23 +445,26 @@ function pieChart(){
         .attr("transform", `translate(${width/2}, ${height/2})`);
 
     // Create dummy data
-    const data = {'a': 27.32598714416896, 'b': 6.991735537190083, 'c': 27.94674012855831, 'd': 13.248852157943067, 'e': 4.104683195592287, 'f': 20.382001836547292}
+    const data1 = pie1data
 
     // set the color scale
-    const color = d3.scaleOrdinal()
-      .range(["rgb(71.05588413  12.75169702 102.14197863)", "rgb(248.81245075 144.52350932  10.63107434)", "rgb(20.15177105   8.99516988  51.40770191)", "rgb(195.07069587  61.05572498  77.20571112)", "rgb(247.94384787 219.15346756  84.25682327)", "rgb(137.44823392  33.87876194 104.65083799)"])
+    const color1 = d3.scaleOrdinal().range(colors1)
+    console.log(color1)
 
     // Compute the position of each group on the pie:
     const pie = d3.pie()
       .value(function(d) {return d[1]})
-    const data_ready = pie(Object.entries(data))
+
+    const data_ready1 = pie(Object.entries(data1))
 
     // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
     svg1
       .selectAll('circles')
-      .data(data_ready)
+      .data(data_ready1)
       .join('path')
-      .attr('fill', function(d){ return(color(d.data[1])) })
+      .attr('fill', function(d){ 
+            return(color1(d.data[0])) 
+    })
       .attr("stroke", "grey")
       .attr('d', d3.arc()
         .innerRadius(0)
@@ -462,6 +472,11 @@ function pieChart(){
       )
       .style("stroke-width", "2px")
 
+    const data2 = pie2data
+
+    const color2 = d3.scaleOrdinal().range(colors2)
+
+    const data_ready2 = pie(Object.entries(data2))
 
     // append the svg object to the div called 'my_dataviz'
     const svg2 = d3.select("#salsim-pie2")
@@ -474,25 +489,23 @@ function pieChart(){
     // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
     svg2
       .selectAll('circles')
-      .data(data_ready)
+      .data(data_ready2)
       .join('path')
       .attr('d', d3.arc()
         .innerRadius(0)
         .outerRadius(radius)
       )
-      .attr('fill', function(d){ return(color(d.data[1])) })
+      .attr('fill', function(d){ return(color2(d.data[1])) })
       .attr("stroke", "grey")
       .style("stroke-width", "2px")
 
-    // Animation
-    svg.selectAll("circles")
-      .transition()
-      .duration(800)
-      .attr('d', d3.arc()
-        .innerRadius(0)
-        .outerRadius(radius)
-      )
-      .delay((d,i) => {console.log(i); return i*100})
+    svg2.append("text")
+        .attr("x", -100)             
+        .attr("y", -100)
+        .attr("text-anchor", "top")  
+        .style("font-size", "16px") 
+        .style("text-decoration", "underline")  
+        .text("Value vs Date Graph");
 }
 
 
