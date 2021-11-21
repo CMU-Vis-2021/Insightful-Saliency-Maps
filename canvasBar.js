@@ -83,7 +83,7 @@ var color = d3.scaleOrdinal()
 //   .attr("fill", function(d){ console.log(d.color);return color(d.color)})
 
 // set the dimensions and margins of the graph
-const margin = {top: 10, right: 30, bottom: 20, left: 50},
+const margin = {top: 10, right: 0, bottom: 20, left: 50},
     width = 460 - margin.left - margin.right,
     height = 350 - margin.top - margin.bottom;
 
@@ -153,9 +153,9 @@ svg.append("text")
     .attr("class", "y label")
     .attr("text-anchor", "end")
     .attr("dy", "-35px")
-    .attr("dx", "-"+(width/2-40)+"px")
+    .attr("dx", "-"+(width/2-140)+"px")
     .attr("transform", "rotate(-90)")
-    .text("Percentage");
+    .text("Percentage seen in that color");
 
 
 
@@ -209,7 +209,7 @@ d3.selectAll("#canvas").on("mouseup",updateData);
     const data = imgData.data;
     const dataCompare = imgDataCompare.data;
     console.log("length of data = "+data.length)
-    console.log("length of heat data = "+dataCompare.length)
+    // console.log("length of heat data = "+dataCompare)
     
     //when I am going through each pixel, I want to count the correctly colord ones. That's what this is setting up
     let countYellow = 0;
@@ -269,7 +269,7 @@ d3.selectAll("#canvas").on("mouseup",updateData);
 
     //If rgb is all the same we've found the color we want!
     if(red && green && blue){
-      return 1;
+      return 4;
     }else{
       return 0;
     }

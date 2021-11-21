@@ -467,3 +467,8 @@ function changeOpacity(){
 
     document.getElementById("numOpacity").innerHTML = sliderOpacity.value;
 }
+function revealAnswer(){
+    var answerDiv = document.getElementById("answerCanvas");
+    answerDiv.classList.add("reveal");    
+    document.getElementById("revealAnswerButton").remove();
+}

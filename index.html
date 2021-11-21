@@ -150,20 +150,15 @@
             </div>
          </div>
          <div id = "tab3" class = "hidden">
-            <h2>Draw what the AI sees.<br>See how your perception compares to the AI.</h2>
-            <div class = "flex instructions">
-                <div class = "flex-inner step">
-                     <h3>Original Image</h3>
-                     <img id = "canvasImg">
-                </div>
-               <div class = "flex-inner step">
-                   <h3>How does the AI see it?</h3>
-                   <img src = "assets/dobermanorig.gif">
-               </div>
-            </div>
-            <p>The AI makes predictions based on regions it feels are important to identifying the image. Can you guess what places in this image the AI feels are the <b><span class = "box orange"></span>most important</b> to identifying it?<br>What is <b><span class = "box red"></span>somewhat important</b>? Finally, what is <b><span class = "box purple"></span>least important</b>?</p>
+            <div class = "flex">
+              <div  class = "flex-inner step"><h2>Draw what the AI sees.<br>See how your perception compares to the AI.</h2></div>
+              <div class = "flex-inner gifTopper">
+                <img id = "canvasImg">
+              </div>
+           </div>
+            <p>The AI makes predictions based on regions it feels are important to identifying the image. Can you guess what places in this image the AI feels are the <b><span class = "box yellow"></span>most important</b> to identifying it?<br>What is <b><span class = "box orange"></span>important</b> and <b><span class = "box red"></span>somewhat important</b>? Finally, what is <b><span class = "box purple"></span>least important</b>?</p>
             <div class = "step">
-                <h3> Draw on this image to explain the classification. </h3>
+                <h3> Draw on the image how you think a computer would classify it</h3>
                 <div class = "flex">
                     <div>
                         <canvas id="canvas" width="330" height="330" >
@@ -179,13 +174,19 @@
                     </div>
                     <div id = "d3-canvas-bar">
                         <h4>Percentage of pixels correct so far</h4>
+                        <p><span class = "ai"></span>= Here's a hint! This is how the computer sees</p>
+                        <!-- <p><span class = "yellow"></span><span class = "orange"></span><span class = "red"></span><span class = "purple"></span>= your predictions so far</p> -->
                     </div>
-                </div>
-                <canvas id="canvas-compare" width="330" height="330" >
-                  Your browser does not support the HTML5 canvas tag.
-                </canvas>
+                  </div>
+                  <div id = "answerCanvas">
+                      <h3>Here what the computer sees</h3>
+                      <canvas id="canvas-compare" width="330" height="330" >
+                        Your browser does not support the HTML5 canvas tag.
+                      </canvas>
+                  </div>
                 <img id = "canvasImg-compare" src = "./assets/quiz/doberman-heat.png" style="display: none;">
                 <!-- <button class = "button">Update data</button> -->
+                <button id = "revealAnswerButton" class = "blue" onclick="revealAnswer(this)">I'm done! Show me how an AI sees this image</button>
             </div>     
          </div>
      
@@ -193,5 +194,6 @@
   </body>
   <script type="text/javascript" src="main.js"></script>
   <script type="text/javascript" src="draw.js"></script>
+  <script type="text/javascript" src="heatmapColors.js"></script>
   <script type="module" src="./canvasBar.js"></script>
 </html>

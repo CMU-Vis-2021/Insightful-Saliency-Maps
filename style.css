@@ -161,6 +161,7 @@ button.blue{
 }
 #tab3 h3{
   text-align: center;
+  margin:40px 0px;
 }
 .step p{
   margin:0px;
@@ -309,6 +310,8 @@ canvas {
 
 h4{
   text-align: center;
+  margin-bottom: 10px;
+  margin-top: 0px;
 }
 #tab3 .flex{
   margin: auto;
@@ -320,4 +323,41 @@ h4{
 #tab3 button.active{
   border: 3px solid black;
 }
+#answerCanvas{
+  max-height:0px;
+  transition: max-height 0.15s ease-out;
+  overflow: hidden;
+}
+.reveal{
+  max-height: 500px!important;
+  transition: max-height 0.25s ease-in!important;
+}
+#d3-canvas-bar span{
+  width:10px;
+  height: 10px;
+  margin:3px;
+  vertical-align: middle;
+  display: inline-block;
+}
+#d3-canvas-bar .ai{
+  background-color:rgb(169, 169, 169);
+}
+#d3-canvas-bar p{
+  margin:0px;
+  padding:0px;
+  text-align: center;
+  font-size: 13px;
+}
+#canvas{
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.gifTopper{
+  max-width: 180px;
+  padding:30px 0px 0px 30px!important;
+}
+.gifTopper img{
+  width:100%;
+}
+
 
