@@ -201,6 +201,7 @@ function ssimg(){
             console.log(sal_div)
             sal_div.style.display = "block";
             changeAlpha();
+            changeK();
         }
     } else if(radio[2].checked){
         const sliderOpacity = document.querySelector("#sliderOpacity");
@@ -282,6 +283,7 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
                 console.log(sal_div)
                 sal_div.style.display = "block";
                 changeAlpha();
+                changeK();
            }
 
         }
@@ -388,6 +390,7 @@ function changeAlpha(){
     var choice = document.getElementById("stylized-ss")
 
     const sliderAlpha = document.querySelector("#sliderAlpha");
+    const sliderK = document.querySelector("#sliderK");
 
     document.getElementById("numAlpha").innerHTML = sliderAlpha.value;
 
@@ -407,12 +410,35 @@ function changeAlpha(){
         styleImage.hide();    // or something other
     });
 
-    console.log(choice)
+
+}
+
+function changeK(){
+    const sliderK = document.querySelector("#sliderK");
+    document.getElementById("numK").innerHTML = sliderK.value;
+
+    var choice = document.getElementById("stylized-ss")
+
     var piechart = JSON.parse(piechartdata);
-    console.log(piechart[choice.value]['pie1']['data'])
 
+    var remove_pie1 = document.getElementById("salsim-pie1")
+    console.log("REMOVE PIE", remove_pie1)
+    if (remove_pie1 != null){
+        remove_pie1.innerHTML = ""
+    }
 
-    pieChart(piechart[choice.value]['pie1']['data'], piechart[choice.value]['pie2']['data'], piechart[choice.value]['pie1']['colors'], piechart[choice.value]['pie2']['colors']);
+    var remove_pie2 = document.getElementById("salsim-pie2")
+    console.log("REMOVE PIE", remove_pie2)
+    if (remove_pie2 != null){
+        remove_pie2.innerHTML = ""
+    }
+
+    console.log(sliderK.value)
+
+    console.log(piechart[choice.value]['pie2'])
+
+    pieChart(piechart[choice.value]['pie1'][sliderK.value]['data'], piechart[choice.value]['pie2'][sliderK.value]['data'], piechart[choice.value]['pie1'][sliderK.value]['colors'], piechart[choice.value]['pie2'][sliderK.value]['colors']);
+
 }
 
 function hoverImg(){
@@ -426,23 +452,23 @@ function leaveImg(){
 }
 
 function pieChart(pie1data, pie2data, colors1, colors2){
-    // pie1data is original image
-    // pie2data is stylized image
+    // pie2data is original image
+    // pie1data is stylized image
 
-    const width = 250,
-    height = 250,
+    const width = 275,
+    height = 275,
     margin = 20;
 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-    const radius = Math.min(width, height) / 2 - margin;
+    const radius = Math.min(width-25, height-25) / 2 - margin;
 
     // append the svg object to the div called 'my_dataviz'
     const svg1 = d3.select("#salsim-pie1")
       .append("svg")
-        .attr("width", width)
-        .attr("height", height)
+        .attr("width", width-25)
+        .attr("height", height-25)
       .append("g")
-        .attr("transform", `translate(${width/2}, ${height/2})`);
+        .attr("transform", `translate(${(width-25)/2}, ${(height-25)/2})`);
 
     // Create dummy data
     const data1 = pie1data
@@ -481,10 +507,10 @@ function pieChart(pie1data, pie2data, colors1, colors2){
     // append the svg object to the div called 'my_dataviz'
     const svg2 = d3.select("#salsim-pie2")
       .append("svg")
-        .attr("width", width)
-        .attr("height", height)
+        .attr("width", width-25)
+        .attr("height", height-25)
       .append("g")
-        .attr("transform", `translate(${width/2}, ${height/2})`);
+        .attr("transform", `translate(${(width-25)/2}, ${(height-25)/2})`);
 
     // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
     svg2
@@ -500,12 +526,20 @@ function pieChart(pie1data, pie2data, colors1, colors2){
       .style("stroke-width", "2px")
 
     svg2.append("text")
-        .attr("x", -100)             
-        .attr("y", -100)
-        .attr("text-anchor", "top")  
-        .style("font-size", "16px") 
-        .style("text-decoration", "underline")  
-        .text("Value vs Date Graph");
+        .attr("x", -50)             
+        .attr("y", 120)
+        .attr("text-anchor", "bottom")  
+        .style("font-size", "14px") 
+        .style("font-weight", "bold")  
+        .text("Original Image");
+
+    svg1.append("text")
+        .attr("x", -50)             
+        .attr("y", 120)
+        .attr("text-anchor", "bottom")  
+        .style("font-size", "14px") 
+        .style("font-weight", "bold")  
+        .text("Stylized Image");
 }
 
 
