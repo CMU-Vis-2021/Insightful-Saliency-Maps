@@ -543,6 +543,40 @@ function pieChart(pie1data, pie2data, colors1, colors2){
         .text("Stylized Image");
 }
 
+function updatePieChart(pie1data, pie2data, colors1, colors2){
+
+    const width = 275,
+    height = 275,
+    margin = 20;
+
+    // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+    const radius = Math.min(width-25, height-25) / 2 - margin;
+
+    // Create dummy data
+    const data1 = pie1data
+
+    // set the color scale
+    const color1 = d3.scaleOrdinal().range(colors1)
+    console.log(color1)
+
+    // Compute the position of each group on the pie:
+    const pie = d3.pie()
+      .value(function(d) {return d[1]})
+
+    const data_ready1 = pie(Object.entries(data1))
+
+    const data2 = pie2data
+
+    const color2 = d3.scaleOrdinal().range(colors2)
+
+    const data_ready2 = pie(Object.entries(data2))
+
+    // change the pie charts
+    
+
+
+}
+
 
 function predictClass(image){
 
