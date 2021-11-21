@@ -15,7 +15,7 @@
     <script type="text/javascript" src="imgstruct.json"></script>
     <script type="module" crossorigin src="./assets/index.75de11d8.js"></script>
     <link rel="modulepreload" href="./assets/vendor.79436710.js">
-    <link rel="stylesheet" href="./assets/index.1e4f5f0f.css">
+    <link rel="stylesheet" href="./assets/index.c73444a7.css">
   </head>
   <body>
     <div class="container" id="top">
@@ -79,12 +79,11 @@
                  <img alt = "plus icon" src = "./assets/plus.dc1c978c.svg" id = "plusicon" onmouseenter="hoverImg()" onmouseleave="leaveImg()" onclick="styleAnother()">
              </div>
 <!--              <a href="#details">Learn about Style Transfers and Saliency Maps</a>
- -->             <button id = "detailsButton" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="location.href='#details';">Learn about Style Transfers and Saliency Maps</button>
+ -->             <button id = "detailsButton" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="location.href='#details'; includeHTML();">Learn about Style Transfers and Saliency Maps</button>
              <div id="details">
                 <button id = "topButton" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="location.href='#top';">Go to top</button>
                  <h1>About  In<span style="font-style:  italic;">sight</span>ful Saliency Maps</h1>
-                 Details
-
+                 <div w3-include-html="./content.html"></div>
              </div>
          </div>
          <div id = "tab2" class = "hidden">
@@ -218,4 +217,5 @@
   <script type="text/javascript" src="/js/main.js"></script>
   <script type="text/javascript" src="/js/draw.js"></script>
   
+  <script type="text/javascript" src="/js/includeHTML.js"></script>
 </html>
