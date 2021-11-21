@@ -131,9 +131,9 @@
                 <div id="salsim-div" style="display: none;">
                   <p> <b> Visualize the similarity between the two saliency maps. </b> </p>
                   <div class="flex">
-                    <div class="flex-inner step">
+                    <div class="flex-inner step" style="padding: 20px;">
                       <div style="text-align: center;">
-                        Intersection of Saliency Maps:
+                        Intersection:
                         <!-- <input type="radio" name="salsimList" value="intersection" id="salsim" onchange="saliencySim()" checked>Intersection -->
                         <!-- <input type="radio" name="salsimList" value="difference" id="salsim" onchange="saliencySim()">Difference -->
                       </div>
@@ -142,25 +142,25 @@
                       </div>
                       <img id="salsim-img" style="border: 0px; width: auto;"/>
                     </div>
-                    <div class="flex-inner step">
+                    <div class="flex-inner step" style="padding: 20px;">
                       Comparison of Top-K Colors:
                       <div id="sliders">
                         <input type="range" id="sliderK" min="2" max="7" step="1" value="2" class="sliders" oninput="changeK()" /> <span id="numAlpha">2</span> colors
                       </div>
                       <div class="flex">
                         <div class="flex-inner step">
-                            <div id="salsim-pie1"> </div>
+                            <div id="salsim-pie1" style="padding: 5px;"> </div>
                         </div>
 
                         <div class="flex-inner step">
-                            <div id="salsim-pie2"> </div>
+                            <div id="salsim-pie2" style="padding: 5px;"> </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
             </div>
-            <div class="visualize-similarity">
+            <div class="visualize-similarity" >
               <p> <b> Compute the average saliency </b> </p>
             </div>
          </div>
@@ -193,6 +193,7 @@
      
      </div>
   </body>
+  <script type="text/javascript" src="/assets/piechartdata.json"></script>
   <script type="text/javascript" src="main.js"></script>
   <script type="text/javascript" src="draw.js"></script>
 </html>
