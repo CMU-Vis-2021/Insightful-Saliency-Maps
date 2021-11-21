@@ -28,59 +28,9 @@ var dataColors = [
     }
   ];
 
-// // set the dimensions and margins of the graph
-// var margin = {top: 20, right: 30, bottom: 40, left: 90},
-//     width = 460 - margin.left - margin.right,
-//     height = 400 - margin.top - margin.bottom;
-
 var color = d3.scaleOrdinal()
     .domain(["yellow","orange","red","purple"])
     .range(["#ffda2e","#f3781e","#bb0f44","#5b0b67"])
-
-// // append the svg object to the body of the page
-// var svg = d3.select("#d3-canvas-bar")
-//   .append("svg")
-//     .attr("width", width + margin.left + margin.right)
-//     .attr("height", height + margin.top + margin.bottom)
-//   .append("g")
-//     .attr("transform",
-//           "translate(" + margin.left + "," + margin.top + ")");
-
-// const x = d3.scaleLinear()
-//           .domain([0, 15])
-//           .range([ 0, width]);
-// svg.append("g")
-//           .attr("transform", `translate(0, ${height})`)
-//           .call(d3.axisBottom(x))
-//           .selectAll("text")
-//             .attr("transform", "translate(-10,0)rotate(-45)")
-//             .style("text-anchor", "end");
-      
-//         // Y axis
-// const y = d3.scaleBand()
-//           .range([ 0, height ])
-//           .domain(dataColors.map(d => d.color))
-//           .padding(.1);
-// svg.append("g")
-//           .call(d3.axisLeft(y))
-
-// const subgroups = ["yellow","orange","red","purple"];
-
-// // Another scale for subgroup position?
-// const ySubgroup = d3.scaleBand()
-// .domain(subgroups)
-// .range([0, width])
-// .padding([0.05])
-
-//Bars
-// svg.selectAll("myRect")
-//   .data(dataColors)
-//   .join("rect")
-//   .attr("x", x(0) )
-//   .attr("y", d => y(d.color))
-//   .attr("width", d => x(d.percentage))
-//   .attr("height", y.bandwidth())
-//   .attr("fill", function(d){ console.log(d.color);return color(d.color)})
 
 // set the dimensions and margins of the graph
 const margin = {top: 10, right: 0, bottom: 20, left: 50},
@@ -126,11 +76,6 @@ const svg = d3.select("#d3-canvas-bar")
     .range([0, x.bandwidth()])
     .padding([0.05])
 
-  // color palette = one color per subgroup
-  // const color = d3.scaleOrdinal()
-  //   .domain(subgroups)
-  //   .range(['#e41a1c','#377eb8','#4daf4a'])
-
   // Show the bars
   svg.append("g")
     .selectAll("g")
@@ -164,27 +109,10 @@ d3.selectAll("#canvas").on("mouseup",updateData);
 
   function updateData(){
     calcNewPixels();
-    //console.log(dataColors[1].user_percentage);
-    // dataColors[1].user_percentage += 2;
-
-    // var bars = svg.selectAll("g")
-    //               .data(dataColors)
-                  
-
-      // Show the bars
+    
+    // Show the bars
     var bars = svg.selectAll(".user_percentage")
                   .data(dataColors)
-    console.log(bars);
-    // bars
-    // .data(function(d) {return subgroups.map(function(key) { if(key == "user_percentage"){return {key: key, value: d.user_percentage, color: d.color};} return {key: key, value: d.percentage, color: d.color}; }); })
-    // .join("rect")
-    // .transition()
-    // .duration(1000)
-    //   .attr("x", d => xSubgroup(d.key))
-    //   .attr("y", d => y(d.value))
-    //   .attr("width", xSubgroup.bandwidth())
-    //   .attr("height", d => height - y(d.value))
-    //   .attr("fill", d => color(d.color));
     
     bars
       .join(".user_percentage")
@@ -197,6 +125,7 @@ d3.selectAll("#canvas").on("mouseup",updateData);
         .attr("fill", d => color(d.color));
 
   }
+  
 // Set up our drawing context
 
 

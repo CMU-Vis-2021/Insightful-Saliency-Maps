@@ -252,6 +252,11 @@ button.blue{
   border: 3px solid rgb(151, 183, 201);
   border-radius: 20px;
 } 
+
+#tab1 {
+  margin-top: 0%;
+  padding-bottom: 100%;
+} 
 /***********************************/
 /*        Canvas CSS               */
 /***********************************/

@@ -15,7 +15,7 @@
     <script type="text/javascript" src="imgstruct.json"></script>
   </head>
   <body>
-    <div class="container">
+    <div class="container" id="top">
       <h1>
          In<span style="font-style:  italic;">sight</span>ful Saliency Maps
       </h1>
@@ -78,7 +78,7 @@
 <!--              <a href="#details">Learn about Style Transfers and Saliency Maps</a>
  -->             <button id = "detailsButton" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="location.href='#details';">Learn about Style Transfers and Saliency Maps</button>
              <div id="details">
-                <button id = "detailsButton" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="location.href='#tab1';">Go to top</button>
+                <button id = "topButton" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="location.href='#top';">Go to top</button>
                  <h1>About  In<span style="font-style:  italic;">sight</span>ful Saliency Maps</h1>
                  Details
 
@@ -196,7 +196,6 @@
                     <div id = "d3-canvas-bar">
                         <h4>Percentage of pixels correct so far</h4>
                         <p><span class = "ai"></span>= Here's a hint! This is how the computer sees</p>
-                        <!-- <p><span class = "yellow"></span><span class = "orange"></span><span class = "red"></span><span class = "purple"></span>= your predictions so far</p> -->
                     </div>
                   </div>
                   <div id = "answerCanvas">
@@ -206,7 +205,6 @@
                       </canvas>
                   </div>
                 <img id = "canvasImg-compare" src = "./assets/quiz/doberman-heat.png" style="display: none;">
-                <!-- <button class = "button">Update data</button> -->
                 <button id = "revealAnswerButton" class = "blue" onclick="revealAnswer(this)">I'm done! Show me how an AI sees this image</button>
             </div>     
          </div>
@@ -216,6 +214,5 @@
   <script type="text/javascript" src="/assets/piechartdata.json"></script>
   <script type="text/javascript" src="/js/main.js"></script>
   <script type="text/javascript" src="/js/draw.js"></script>
-  <!-- <script type="text/javascript" src="heatmapColors.js"></script> -->
   <script type="module" src="/js/canvasBar.js"></script>
 </html>
