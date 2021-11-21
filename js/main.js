@@ -525,9 +525,9 @@ function updatePieChart(pie1data, pie2data, colors1, colors2){
 
     // Compute the position of each group on the pie:
     const pie = d3.pie()
-        // .sort(null)
-        // .startAngle(1.1*Math.PI)
-        // .endAngle(3.1*Math.PI)
+        
+        .startAngle(1.1*Math.PI)
+        .endAngle(3.1*Math.PI)
       .value(function(d) {return d[1]})
 
     const data_ready1 = pie(Object.entries(data1))
