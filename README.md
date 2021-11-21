@@ -1,4 +1,4 @@
-# 🤖 vs 👁
+# In*sight*ful Saliency Maps
 Authors: 
 * Swetha Kannan
 * Katelyn Morrison
