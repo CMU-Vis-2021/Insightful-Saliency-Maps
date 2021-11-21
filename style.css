@@ -47,6 +47,25 @@ h2{
   margin:70px auto;
 }
 
+#detailsSubTitles{
+  font-size: 25px;
+  font-style: normal;
+  color: #313942;
+  font-weight: normal;
+  text-align: left;
+  max-width: 700px;
+  margin:40px;
+}
+
+#detailsText{
+  font-size: 18px;
+  font-style: normal;
+  font-weight: normal;
+  text-align: left;
+  max-width: 700px;
+  margin:40px;
+}
+
 .flex{
   display: flex;
 }
@@ -249,8 +268,6 @@ button.blue{
 #details {
   margin-top: 100%;
   padding-bottom: 25%;
-  border: 3px solid rgb(151, 183, 201);
-  border-radius: 20px;
 } 
 
 #tab1 {
