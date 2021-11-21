@@ -16,7 +16,7 @@ View this [Google Colab](https://colab.research.google.com/drive/1khWyR4UrNW6KL6
 
 View this [Google Colab](#) to see how we generated the saliency maps for each image.
 
-View this [Google Colab](https://colab.research.google.com/drive/1X-Fk6anwYs4SDcfnIAdZBxUzoofwvNBt?usp=sharing) to see how we computed the intersection between two saliency maps.
+View this [Google Colab](https://colab.research.google.com/drive/1X-Fk6anwYs4SDcfnIAdZBxUzoofwvNBt?usp=sharing) to see how we computed the intersection between two saliency maps and the average saliency map.
 
 (*Looking back...given we have all this Python code, it probably would have made sense to develop this in flask. Oops.*)
 
