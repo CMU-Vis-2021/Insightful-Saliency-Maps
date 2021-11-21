@@ -13,12 +13,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
     <script type="text/javascript" src="imgstruct.json"></script>
-    <script type="module" crossorigin src="./assets/index.33dfe7f3.js"></script>
+    <script type="module" crossorigin src="./assets/index.75de11d8.js"></script>
     <link rel="modulepreload" href="./assets/vendor.79436710.js">
-    <link rel="stylesheet" href="./assets/index.9940c47f.css">
+    <link rel="stylesheet" href="./assets/index.1e4f5f0f.css">
   </head>
   <body>
-    <div class="container">
+    <div class="container" id="top">
       <h1>
          In<span style="font-style:  italic;">sight</span>ful Saliency Maps
       </h1>
@@ -81,7 +81,7 @@
 <!--              <a href="#details">Learn about Style Transfers and Saliency Maps</a>
  -->             <button id = "detailsButton" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="location.href='#details';">Learn about Style Transfers and Saliency Maps</button>
              <div id="details">
-                <button id = "detailsButton" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="location.href='#tab1';">Go to top</button>
+                <button id = "topButton" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="location.href='#top';">Go to top</button>
                  <h1>About  In<span style="font-style:  italic;">sight</span>ful Saliency Maps</h1>
                  Details
 
@@ -199,7 +199,6 @@
                     <div id = "d3-canvas-bar">
                         <h4>Percentage of pixels correct so far</h4>
                         <p><span class = "ai"></span>= Here's a hint! This is how the computer sees</p>
-                        <!-- <p><span class = "yellow"></span><span class = "orange"></span><span class = "red"></span><span class = "purple"></span>= your predictions so far</p> -->
                     </div>
                   </div>
                   <div id = "answerCanvas">
@@ -209,7 +208,6 @@
                       </canvas>
                   </div>
                 <img id = "canvasImg-compare" src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAAFKCAMAAABM9+Y3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAzVpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDcuMC1jMDAwIDc5LmRhYmFjYmIsIDIwMjEvMDQvMTQtMDA6Mzk6NDQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9Im1hdHBsb3RsaWIgdmVyc2lvbjMuMi4yLCBodHRwOi8vbWF0cGxvdGxpYi5vcmcvIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjFEMTA3RkY4NDFCNzExRUM5RTIyQTFCQThFQTI1NjlCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjFEMTA3RkY5NDFCNzExRUM5RTIyQTFCQThFQTI1NjlCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RDVFNDM5NzU0MUI2MTFFQzlFMjJBMUJBOEVBMjU2OUIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RDVFNDM5NzY0MUI2MTFFQzlFMjJBMUJBOEVBMjU2OUIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4N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" style="display: none;">
-                <!-- <button class = "button">Update data</button> -->
                 <button id = "revealAnswerButton" class = "blue" onclick="revealAnswer(this)">I'm done! Show me how an AI sees this image</button>
             </div>     
          </div>
@@ -219,6 +217,5 @@
   <script type="text/javascript" src="/assets/piechartdata.json"></script>
   <script type="text/javascript" src="/js/main.js"></script>
   <script type="text/javascript" src="/js/draw.js"></script>
-  <!-- <script type="text/javascript" src="heatmapColors.js"></script> -->
   
 </html>
