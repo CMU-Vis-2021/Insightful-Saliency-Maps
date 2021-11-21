@@ -482,23 +482,29 @@ function changeK(){
 
     var choice = document.getElementById("stylized-ss")
 
-    var piechart = JSON.parse(piechartdata);
+    var shpnme = choice.value.split("-")[0]
 
     var remove_pie1 = document.getElementById("salsim-pie1")
     console.log("REMOVE PIE", remove_pie1)
     if (remove_pie1 != null){
-        updatePieChart(piechart[choice.value]['pie1'][sliderK.value]['data'], piechart[choice.value]['pie2'][sliderK.value]['data'], piechart[choice.value]['pie1'][sliderK.value]['colors'], piechart[choice.value]['pie2'][sliderK.value]['colors'])
+        updatePieChart(piechartjson[choice.value][sliderK.value]['data'], piechartjson[shpnme][sliderK.value]['data'], piechartjson[choice.value][sliderK.value]['colors'], piechartjson[shpnme][sliderK.value]['colors'])
     }
 
     var remove_pie2 = document.getElementById("salsim-pie2")
     console.log("REMOVE PIE", remove_pie2)
     if (remove_pie2 != null){
-        updatePieChart(piechart[choice.value]['pie1'][sliderK.value]['data'], piechart[choice.value]['pie2'][sliderK.value]['data'], piechart[choice.value]['pie1'][sliderK.value]['colors'], piechart[choice.value]['pie2'][sliderK.value]['colors'])
+        updatePieChart(piechartjson[choice.value][sliderK.value]['data'], piechartjson[shpnme][sliderK.value]['data'], piechartjson[choice.value][sliderK.value]['colors'], piechartjson[shpnme][sliderK.value]['colors'])
     }
 }
 
 
 function updatePieChart(pie1data, pie2data, colors1, colors2){
+
+    console.log(pie1data)
+    console.log(pie2data)
+    console.log(colors1)
+    console.log(colors2)
+
 
     // pie2 is original image
     //pie1 is stylized image
@@ -519,9 +525,9 @@ function updatePieChart(pie1data, pie2data, colors1, colors2){
 
     // Compute the position of each group on the pie:
     const pie = d3.pie()
-        .sort(null)
-        .startAngle(1.1*Math.PI)
-        .endAngle(3.1*Math.PI)
+        // .sort(null)
+        // .startAngle(1.1*Math.PI)
+        // .endAngle(3.1*Math.PI)
       .value(function(d) {return d[1]})
 
     const data_ready1 = pie(Object.entries(data1))
@@ -558,11 +564,20 @@ function updatePieChart(pie1data, pie2data, colors1, colors2){
         .style("font-weight", "bold")  
         .text("Original Image");
 
+    svg2
+      .selectAll('.arc')
+      .data(data_ready2)
+      .join('text')
+      .text(function(d){ return (d.data[1]*100).toFixed(1)})
+      .attr("transform", function(d) { return `translate(${arc.centroid(d)})`})
+      .style("text-anchor", "middle")
+      .style("font-size", 12)
+
 
     var g1 = svg1.selectAll(".arc")
       .data(data_ready1)
         .join("path")
-      .style("fill", function(d) { return color2(d.data[1]); })
+      .style("fill", function(d) { return color1(d.data[1]); })
       .transition().delay(function(d, i) { return i * 500; }).duration(500)
       .attrTween('d', function(d) {
            var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
@@ -579,6 +594,15 @@ function updatePieChart(pie1data, pie2data, colors1, colors2){
         .style("font-size", "14px") 
         .style("font-weight", "bold")  
         .text("Stylized Image");
+
+    svg1
+      .selectAll('.arc')
+      .data(data_ready1)
+      .join('text')
+      .text(function(d){ return (d.data[1]*100).toFixed(1)})
+      .attr("transform", function(d) { return `translate(${arc.centroid(d)})`})
+      .style("text-anchor", "middle")
+      .style("font-size", 12)
 
 }
 
