@@ -18,14 +18,33 @@ let tab1Button = document.getElementById("openTab1");
 let tab2Button = document.getElementById("openTab2");
 let tab3Button = document.getElementById("openTab3");
 
-// quiz variables
-// let classList = ["airplane", "bear", "bicycle", "bird", "boat", "bottle", "car", "cat", "chair", "clock", "dog", "elephant", 
-//     "keyboard", "knife", "oven", "truck"];
 let shapeList = ['bear', 'dog', 'elephant']
 let textureList = ['bikes', 'elephant', 'tiger', 'trucks', 'zebra']
 let mydata = JSON.stringify(data);
 let parseddata = JSON.parse(mydata)
 let prediction = "";
+
+
+// Piechart variables
+const width = 275,
+    height = 275,
+    margin = 20;
+
+const svg1 = d3.select("#salsim-pie1")
+  .append("svg")
+    .attr("width", width-25)
+    .attr("height", height-25)
+  .append("g")
+    .attr("transform", `translate(${(width-25)/2}, ${(height-25)/2})`);
+
+// append the svg object to the div called 'my_dataviz'
+const svg2 = d3.select("#salsim-pie2")
+  .append("svg")
+    .attr("width", width-25)
+    .attr("height", height-25)
+  .append("g")
+    .attr("transform", `translate(${(width-25)/2}, ${(height-25)/2})`);
+
 
 // ml model variables and function
 const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
@@ -215,7 +234,13 @@ function ssimg(){
             }
 
             set_xraiimg(choice = document.getElementById("original-ss"), imgobj = '#original-img-xrai')
-            saliencySim()
+            
+            console.log("they are the same!")
+            var sal_div = document.getElementById("salsim-div")
+            console.log(sal_div)
+            sal_div.style.display = "block";
+            changeAlpha();
+            changeK();
         }
     } else if(radio[2].checked){
         const sliderOpacity = document.querySelector("#sliderOpacity");
@@ -292,7 +317,12 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
            var radio_xrai = document.getElementsByName("xraiList")
 
            if(radio_og[0].checked && radio_xrai[0].checked){
-            saliencySim()
+                console.log("they are the same!")
+                var sal_div = document.getElementById("salsim-div")
+                console.log(sal_div)
+                sal_div.style.display = "block";
+                changeAlpha();
+                changeK();
            }
 
         }
@@ -394,33 +424,19 @@ function styleAnother(){
 
 }
 
-function saliencySim(){
-    console.log("they are the same!")
-    var sal_div = document.getElementById("salsim-div")
-    console.log(sal_div)
-    sal_div.style.display = "block";
-
-    changeAlpha();
-}
-
 function changeAlpha(){
 
     var choice = document.getElementById("stylized-ss")
 
     const sliderAlpha = document.querySelector("#sliderAlpha");
+    const sliderK = document.querySelector("#sliderK");
 
-    var radio_ss = document.getElementsByName("salsimList")
-    var type = ""
-    if (radio_ss[0].checked){
-        type = "intersection"
-    } else {
-        type = "difference"
-    }
+    document.getElementById("numAlpha").innerHTML = sliderAlpha.value;
 
     var styleImage = $('#salsim-img')
 
 
-    var style_classpath = "./assets/saliency-similarity/"+ choice.value + "-" + sliderAlpha.value.toString() + "-" +  type + ".png";
+    var style_classpath = "./assets/saliency-similarity/"+ choice.value + "-" + sliderAlpha.value.toString() + ".png";
 
     $.ajax({
         url: style_classpath,
@@ -433,6 +449,30 @@ function changeAlpha(){
         styleImage.hide();    // or something other
     });
 
+
+}
+
+function changeK(){
+    const sliderK = document.querySelector("#sliderK");
+    document.getElementById("numK").innerHTML = sliderK.value;
+
+    var choice = document.getElementById("stylized-ss")
+
+    var piechart = JSON.parse(piechartdata);
+
+    var remove_pie1 = document.getElementById("salsim-pie1")
+    console.log("REMOVE PIE", remove_pie1)
+    if (remove_pie1 != null){
+        updatePieChart(piechart[choice.value]['pie1'][sliderK.value]['data'], piechart[choice.value]['pie2'][sliderK.value]['data'], piechart[choice.value]['pie1'][sliderK.value]['colors'], piechart[choice.value]['pie2'][sliderK.value]['colors'])
+    }
+
+    var remove_pie2 = document.getElementById("salsim-pie2")
+    console.log("REMOVE PIE", remove_pie2)
+    if (remove_pie2 != null){
+        updatePieChart(piechart[choice.value]['pie1'][sliderK.value]['data'], piechart[choice.value]['pie2'][sliderK.value]['data'], piechart[choice.value]['pie1'][sliderK.value]['colors'], piechart[choice.value]['pie2'][sliderK.value]['colors'])
+    }
+
+
 }
 
 function hoverImg(){
@@ -443,6 +483,88 @@ function hoverImg(){
 function leaveImg(){
     iconimg = document.getElementById("plusicon")
     iconimg.setAttribute('src', "assets/icons/plus.svg")
+}
+
+function updatePieChart(pie1data, pie2data, colors1, colors2){
+
+    const width = 275,
+    height = 275,
+    margin = 20;
+
+    // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+    const radius = Math.min(width-25, height-25) / 2 - margin;
+
+    // Create dummy data
+    const data1 = pie1data
+
+    // set the color scale
+    const color1 = d3.scaleOrdinal().range(colors1)
+    console.log(color1)
+
+    // Compute the position of each group on the pie:
+    const pie = d3.pie()
+        .sort(null)
+        .startAngle(1.1*Math.PI)
+        .endAngle(3.1*Math.PI)
+      .value(function(d) {return d[1]})
+
+    const data_ready1 = pie(Object.entries(data1))
+
+    const data2 = pie2data
+
+    const color2 = d3.scaleOrdinal().range(colors2)
+
+    const data_ready2 = pie(Object.entries(data2))
+
+    // change the pie charts
+
+    var arc = d3.arc()
+        .outerRadius(radius)
+        .innerRadius(0);
+
+    var g = svg2.selectAll(".arc")
+      .data(data_ready2)
+        .join("path")
+      .style("fill", function(d) { return color2(d.data[1]); })
+      .transition().delay(function(d, i) { return i * 500; }).duration(500)
+      .attrTween('d', function(d) {
+           var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
+           return function(t) {
+               d.endAngle = i(t);
+             return arc(d);
+           }
+      });
+
+    svg2.append("text")
+        .attr("x", -50)             
+        .attr("y", 120)
+        .attr("text-anchor", "bottom")  
+        .style("font-size", "14px") 
+        .style("font-weight", "bold")  
+        .text("Original Image");
+
+
+    var g1 = svg1.selectAll(".arc")
+      .data(data_ready1)
+        .join("path")
+      .style("fill", function(d) { return color2(d.data[1]); })
+      .transition().delay(function(d, i) { return i * 500; }).duration(500)
+      .attrTween('d', function(d) {
+           var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
+           return function(t) {
+               d.endAngle = i(t);
+             return arc(d);
+           }
+      });
+
+      svg1.append("text")
+        .attr("x", -50)             
+        .attr("y", 120)
+        .attr("text-anchor", "bottom")  
+        .style("font-size", "14px") 
+        .style("font-weight", "bold")  
+        .text("Original Image");
+
 }
 
 
