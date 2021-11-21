@@ -25,7 +25,10 @@ let parseddata = JSON.parse(mydata)
 let prediction = "";
 
 
-// Piechart variables
+/***********************************************/
+//            PIECHART VARIABLES               //
+/***********************************************/
+
 const width = 275,
     height = 275,
     margin = 20;
@@ -45,13 +48,9 @@ const svg2 = d3.select("#salsim-pie2")
   .append("g")
     .attr("transform", `translate(${(width-25)/2}, ${(height-25)/2})`);
 
-
-// ml model variables and function
-const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
-// When the model is loaded
-function modelLoaded() {
-    console.log("Model Loaded!");
-}
+/***********************************************/
+//             CANVAS FUNCTIONS                //
+/***********************************************/
 
 var cImg = $('#canvasImg')
 $.ajax({
@@ -64,17 +63,6 @@ $.ajax({
     cImg.attr('src', "./assets/quiz/doberman-size.png");
     console.log("FAILED TO LOAD IMAGE")
 });
-// cImg = $('#canvasImg-Compare')
-// $.ajax({
-//     url: "./assets/quiz/doberman-heat.png",
-//     type: "GET"
-// }).done(function() {
-//     cImg.attr('src', "./assets/quiz/doberman-size.png");   // set the image source
-// }).fail(function() {
-//     cImg.hide();    // or something other
-//     cImg.attr('src', "./assets/quiz/doberman-size.png");
-//     console.log("FAILED TO LOAD IMAGE")
-// });
 
 // Canvas image loaded
 window.onload = function() {
@@ -93,6 +81,29 @@ ctx.drawImage(img, 0, 0,c.width,c.height);
 contextCompare.drawImage(img2, 0, 0,c.width,c.height);
 }
 
+/***********************************************/
+//             GENERAL FUNCTIONS               //
+/***********************************************/
+
+// ml model variables and function
+const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
+// When the model is loaded
+function modelLoaded() {
+    console.log("Model Loaded!");
+}
+
+function predictClass(image){
+
+    classifier.predict(image, 10,
+        function (err, results) {
+            // alert(results[0].label);
+            console.log(results[0].label);
+            console.log(results[0].confidence)
+            console.log(results)
+
+            prediction = results[0].label;
+        });
+}
 
 function changeTab(button, tabToReveal){
     
@@ -122,6 +133,10 @@ function changeTab(button, tabToReveal){
         }
     }
 } 
+
+/***********************************************/
+//               TAB 1 FUNCTIONS               //
+/***********************************************/
 
 function shapeImg(){
     var selectShape = document.getElementById('shapeselect'+count.toString())
@@ -182,6 +197,38 @@ function stylizeImg(){
     predictClass(document.getElementById('stylizedimg'+count.toString()));
     document.getElementById('prediction').textContent = prediction;
 }
+
+function styleAnother(){
+
+    console.log("icon clicked")
+    if(count == 0){
+        var prev_div = document.querySelector('.flex')
+    } else {
+        var lastcount = count - 1
+        var prev_div = document.querySelector('.appendimages'+lastcount.toString())
+    }
+    
+    prev_div.insertAdjacentHTML('afterend', '<div class="appendimages'+count.toString()+'"></div>')
+
+    elementid = "#appendimages" + count.toString()
+
+    var new_div = document.querySelector('.appendimages'+count.toString())
+    console.log(new_div)
+    new_div.setAttribute('id', elementid)
+
+    console.log(elementid)
+    count += 1;
+
+    new_div.innerHTML = '<br> <br> <br> <div class = "flex"> <div class = "flex-inner step"> <label for="shape"><span class = "number">1</span>Choose a shape:</label> <br> <div class = "select"> <select class = "standard-select" name="shape" id="shapeselect'+count.toString()+'" onchange="shapeImg()"> <option value="-1" selected disabled hidden>Select choice</option> <!-- <option value="cat">Cat</option> --> <option value="dog">Dog</option> <option value="elephant">Elephant</option> <option value="bear">Bear</option>  </select> </div> <img id="shapeimg'+count.toString()+'"> </div> <div class = "flex-inner step"> <label for="texture"><span class = "number">2</span>Choose a texture:</label> <br> <div class = "select"> <select class = "standard-select" name="texture" id="textureselect'+count.toString()+'" onchange="textureImg()"> <option value="-1" selected disabled hidden>Select choice</option> <option value="bikes">Bicycle</option> <option value="tiger">Tiger</option> <option value="trucks">Trucks</option> <option value="zebra">Zebra</option> </select> </div> <img id="textureimg'+count.toString()+'"> </div> <div class = "flex-inner step"> <label for="shape"><span class = "number">3</span>Stylize the Image:</label> <br> <button class = "blue" onclick="stylizeImg()">Stylize</button> </div> <div class = "flex-inner step"> <label for="shape">Stylized Image</label> <div class = "output-labels"> <p>AI Prediction: <span id = "prediction" class = "output"></span></p> <!-- <p>Biased: <span id = "biased" class = "output">Texture</span></p> --> </div> <img id="stylizedimg'+count.toString()+'"> </div> </div>'    
+
+    var cur_div = document.getElementById(elementid)
+    console.log(cur_div)
+
+}
+
+/***********************************************/
+//               TAB 2 FUNCTIONS               //
+/***********************************************/
 
 function ssimg(){
 
@@ -244,6 +291,7 @@ function ssimg(){
         }
     } else if(radio[2].checked){
         const sliderOpacity = document.querySelector("#sliderOpacity");
+        document.getElementById("salsim-div").style.display = "none";
         sliderOpacity.value = 40;
         xraioverlap();
     }
@@ -340,7 +388,9 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
             const sliderOpacity = document.querySelector("#sliderOpacity");
             sliderOpacity.value = 40;
             xraioverlap();
-        }
+        } 
+
+        
 
         // only one radio can be logically checked, don't check the rest
         break;
@@ -350,6 +400,8 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
 }
 
 function xraioverlap(choice = document.getElementById("stylized-ss"), query = '.flex #stylized-img-div', appendHTML = '<img id="stylized-img-ss" style="position: relative;"> <img id="xrai-img" style="position: absolute; opacity: 40%"> '){
+
+    document.getElementById("salsim-div").style.display = "none";
 
     var img_div = document.querySelector(query)
     img_div.innerHTML = appendHTML
@@ -393,34 +445,6 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), query = '.
 
     var slider = document.getElementById("sliders")
     slider.style.display = "block";
-
-}
-
-function styleAnother(){
-
-    console.log("icon clicked")
-    if(count == 0){
-        var prev_div = document.querySelector('.flex')
-    } else {
-        var lastcount = count - 1
-        var prev_div = document.querySelector('.appendimages'+lastcount.toString())
-    }
-    
-    prev_div.insertAdjacentHTML('afterend', '<div class="appendimages'+count.toString()+'"></div>')
-
-    elementid = "#appendimages" + count.toString()
-
-    var new_div = document.querySelector('.appendimages'+count.toString())
-    console.log(new_div)
-    new_div.setAttribute('id', elementid)
-
-    console.log(elementid)
-    count += 1;
-
-    new_div.innerHTML = '<br> <br> <br> <div class = "flex"> <div class = "flex-inner step"> <label for="shape"><span class = "number">1</span>Choose a shape:</label> <br> <div class = "select"> <select class = "standard-select" name="shape" id="shapeselect'+count.toString()+'" onchange="shapeImg()"> <option value="-1" selected disabled hidden>Select choice</option> <!-- <option value="cat">Cat</option> --> <option value="dog">Dog</option> <option value="elephant">Elephant</option> <option value="bear">Bear</option>  </select> </div> <img id="shapeimg'+count.toString()+'"> </div> <div class = "flex-inner step"> <label for="texture"><span class = "number">2</span>Choose a texture:</label> <br> <div class = "select"> <select class = "standard-select" name="texture" id="textureselect'+count.toString()+'" onchange="textureImg()"> <option value="-1" selected disabled hidden>Select choice</option> <option value="bikes">Bicycle</option> <option value="tiger">Tiger</option> <option value="trucks">Trucks</option> <option value="zebra">Zebra</option> </select> </div> <img id="textureimg'+count.toString()+'"> </div> <div class = "flex-inner step"> <label for="shape"><span class = "number">3</span>Stylize the Image:</label> <br> <button class = "blue" onclick="stylizeImg()">Stylize</button> </div> <div class = "flex-inner step"> <label for="shape">Stylized Image</label> <div class = "output-labels"> <p>AI Prediction: <span id = "prediction" class = "output"></span></p> <!-- <p>Biased: <span id = "biased" class = "output">Texture</span></p> --> </div> <img id="stylizedimg'+count.toString()+'"> </div> </div>'    
-
-    var cur_div = document.getElementById(elementid)
-    console.log(cur_div)
 
 }
 
@@ -471,31 +495,13 @@ function changeK(){
     if (remove_pie2 != null){
         updatePieChart(piechart[choice.value]['pie1'][sliderK.value]['data'], piechart[choice.value]['pie2'][sliderK.value]['data'], piechart[choice.value]['pie1'][sliderK.value]['colors'], piechart[choice.value]['pie2'][sliderK.value]['colors'])
     }
-
-
 }
 
-function hoverImg(){
-    iconimg = document.getElementById("plusicon")
-    iconimg.setAttribute('src', "assets/icons/plus-hover.svg")
-}
-
-function leaveImg(){
-    iconimg = document.getElementById("plusicon")
-    iconimg.setAttribute('src', "assets/icons/plus.svg")
-}
-
-function hoverBtn(){
-    btn = document.getElementById("detailsButton")
-    btn.style.background = "#246db6"
-}
-
-function leaveBtn(){
-    btn = document.getElementById("detailsButton")
-    btn.style.background = "#479ff8"
-}
 
 function updatePieChart(pie1data, pie2data, colors1, colors2){
+
+    // pie2 is original image
+    //pie1 is stylized image
 
     const width = 275,
     height = 275,
@@ -527,7 +533,6 @@ function updatePieChart(pie1data, pie2data, colors1, colors2){
     const data_ready2 = pie(Object.entries(data2))
 
     // change the pie charts
-
     var arc = d3.arc()
         .outerRadius(radius)
         .innerRadius(0);
@@ -573,22 +578,8 @@ function updatePieChart(pie1data, pie2data, colors1, colors2){
         .attr("text-anchor", "bottom")  
         .style("font-size", "14px") 
         .style("font-weight", "bold")  
-        .text("Original Image");
+        .text("Stylized Image");
 
-}
-
-
-function predictClass(image){
-
-    classifier.predict(image, 10,
-        function (err, results) {
-            // alert(results[0].label);
-            console.log(results[0].label);
-            console.log(results[0].confidence)
-            console.log(results)
-
-            prediction = results[0].label;
-        });
 }
 
 function changeOpacity(){
@@ -599,6 +590,36 @@ function changeOpacity(){
 
     document.getElementById("numOpacity").innerHTML = sliderOpacity.value;
 }
+
+
+/***********************************************/
+//               HOVER ANIMATIONS              //
+/***********************************************/
+
+function hoverImg(){
+    iconimg = document.getElementById("plusicon")
+    iconimg.setAttribute('src', "assets/icons/plus-hover.svg")
+}
+
+function leaveImg(){
+    iconimg = document.getElementById("plusicon")
+    iconimg.setAttribute('src', "assets/icons/plus.svg")
+}
+
+function hoverBtn(){
+    btn = document.getElementById("detailsButton")
+    btn.style.background = "#246db6"
+}
+
+function leaveBtn(){
+    btn = document.getElementById("detailsButton")
+    btn.style.background = "#479ff8"
+}
+
+/***********************************************/
+//               TAB 3 FUNCTIONS               //
+/***********************************************/
+
 function revealAnswer(){
     var answerDiv = document.getElementById("answerCanvas");
     answerDiv.classList.add("reveal");    
