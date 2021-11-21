@@ -485,6 +485,16 @@ function leaveImg(){
     iconimg.setAttribute('src', "assets/icons/plus.svg")
 }
 
+function hoverBtn(){
+    btn = document.getElementById("detailsButton")
+    btn.style.background = "#246db6"
+}
+
+function leaveBtn(){
+    btn = document.getElementById("detailsButton")
+    btn.style.background = "#479ff8"
+}
+
 function updatePieChart(pie1data, pie2data, colors1, colors2){
 
     const width = 275,
