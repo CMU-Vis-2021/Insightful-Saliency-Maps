@@ -24,6 +24,28 @@ let mydata = JSON.stringify(data);
 let parseddata = JSON.parse(mydata)
 let prediction = "";
 
+
+// Piechart variables
+const width = 275,
+    height = 275,
+    margin = 20;
+
+const svg1 = d3.select("#salsim-pie1")
+  .append("svg")
+    .attr("width", width-25)
+    .attr("height", height-25)
+  .append("g")
+    .attr("transform", `translate(${(width-25)/2}, ${(height-25)/2})`);
+
+// append the svg object to the div called 'my_dataviz'
+const svg2 = d3.select("#salsim-pie2")
+  .append("svg")
+    .attr("width", width-25)
+    .attr("height", height-25)
+  .append("g")
+    .attr("transform", `translate(${(width-25)/2}, ${(height-25)/2})`);
+
+
 // ml model variables and function
 const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
 // When the model is loaded
@@ -420,25 +442,19 @@ function changeK(){
     var choice = document.getElementById("stylized-ss")
 
     var piechart = JSON.parse(piechartdata);
-    // console.log(piechartdata)
 
     var remove_pie1 = document.getElementById("salsim-pie1")
     console.log("REMOVE PIE", remove_pie1)
     if (remove_pie1 != null){
-        remove_pie1.innerHTML = ""
+        updatePieChart(piechart[choice.value]['pie1'][sliderK.value]['data'], piechart[choice.value]['pie2'][sliderK.value]['data'], piechart[choice.value]['pie1'][sliderK.value]['colors'], piechart[choice.value]['pie2'][sliderK.value]['colors'])
     }
 
     var remove_pie2 = document.getElementById("salsim-pie2")
     console.log("REMOVE PIE", remove_pie2)
     if (remove_pie2 != null){
-        remove_pie2.innerHTML = ""
+        updatePieChart(piechart[choice.value]['pie1'][sliderK.value]['data'], piechart[choice.value]['pie2'][sliderK.value]['data'], piechart[choice.value]['pie1'][sliderK.value]['colors'], piechart[choice.value]['pie2'][sliderK.value]['colors'])
     }
 
-    console.log(sliderK.value)
-
-    console.log(piechart[choice.value]['pie2'])
-
-    pieChart(piechart[choice.value]['pie1'][sliderK.value]['data'], piechart[choice.value]['pie2'][sliderK.value]['data'], piechart[choice.value]['pie1'][sliderK.value]['colors'], piechart[choice.value]['pie2'][sliderK.value]['colors']);
 
 }
 
@@ -450,97 +466,6 @@ function hoverImg(){
 function leaveImg(){
     iconimg = document.getElementById("plusicon")
     iconimg.setAttribute('src', "assets/icons/plus.svg")
-}
-
-function pieChart(pie1data, pie2data, colors1, colors2){
-    // pie2data is original image
-    // pie1data is stylized image
-
-    const width = 275,
-    height = 275,
-    margin = 20;
-
-    // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-    const radius = Math.min(width-25, height-25) / 2 - margin;
-
-    // append the svg object to the div called 'my_dataviz'
-    const svg1 = d3.select("#salsim-pie1")
-      .append("svg")
-        .attr("width", width-25)
-        .attr("height", height-25)
-      .append("g")
-        .attr("transform", `translate(${(width-25)/2}, ${(height-25)/2})`);
-
-    // Create dummy data
-    const data1 = pie1data
-
-    // set the color scale
-    const color1 = d3.scaleOrdinal().range(colors1)
-    console.log(color1)
-
-    // Compute the position of each group on the pie:
-    const pie = d3.pie()
-      .value(function(d) {return d[1]})
-
-    const data_ready1 = pie(Object.entries(data1))
-
-    // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
-    svg1
-      .selectAll('circles')
-      .data(data_ready1)
-      .join('path')
-      .attr('fill', function(d){ 
-            return(color1(d.data[0])) 
-    })
-      .attr("stroke", "grey")
-      .attr('d', d3.arc()
-        .innerRadius(0)
-        .outerRadius(radius)
-      )
-      .style("stroke-width", "2px")
-
-    const data2 = pie2data
-
-    const color2 = d3.scaleOrdinal().range(colors2)
-
-    const data_ready2 = pie(Object.entries(data2))
-
-    // append the svg object to the div called 'my_dataviz'
-    const svg2 = d3.select("#salsim-pie2")
-      .append("svg")
-        .attr("width", width-25)
-        .attr("height", height-25)
-      .append("g")
-        .attr("transform", `translate(${(width-25)/2}, ${(height-25)/2})`);
-
-    // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
-    svg2
-      .selectAll('circles')
-      .data(data_ready2)
-      .join('path')
-      .attr('d', d3.arc()
-        .innerRadius(0)
-        .outerRadius(radius)
-      )
-      .attr('fill', function(d){ return(color2(d.data[1])) })
-      .attr("stroke", "grey")
-      .style("stroke-width", "2px")
-
-    svg2.append("text")
-        .attr("x", -50)             
-        .attr("y", 120)
-        .attr("text-anchor", "bottom")  
-        .style("font-size", "14px") 
-        .style("font-weight", "bold")  
-        .text("Original Image");
-
-    svg1.append("text")
-        .attr("x", -50)             
-        .attr("y", 120)
-        .attr("text-anchor", "bottom")  
-        .style("font-size", "14px") 
-        .style("font-weight", "bold")  
-        .text("Stylized Image");
 }
 
 function updatePieChart(pie1data, pie2data, colors1, colors2){
@@ -561,6 +486,9 @@ function updatePieChart(pie1data, pie2data, colors1, colors2){
 
     // Compute the position of each group on the pie:
     const pie = d3.pie()
+        .sort(null)
+        .startAngle(1.1*Math.PI)
+        .endAngle(3.1*Math.PI)
       .value(function(d) {return d[1]})
 
     const data_ready1 = pie(Object.entries(data1))
@@ -572,8 +500,53 @@ function updatePieChart(pie1data, pie2data, colors1, colors2){
     const data_ready2 = pie(Object.entries(data2))
 
     // change the pie charts
-    
 
+    var arc = d3.arc()
+        .outerRadius(radius)
+        .innerRadius(0);
+
+    var g = svg2.selectAll(".arc")
+      .data(data_ready2)
+        .join("path")
+      .style("fill", function(d) { return color2(d.data[1]); })
+      .transition().delay(function(d, i) { return i * 500; }).duration(500)
+      .attrTween('d', function(d) {
+           var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
+           return function(t) {
+               d.endAngle = i(t);
+             return arc(d);
+           }
+      });
+
+    svg2.append("text")
+        .attr("x", -50)             
+        .attr("y", 120)
+        .attr("text-anchor", "bottom")  
+        .style("font-size", "14px") 
+        .style("font-weight", "bold")  
+        .text("Original Image");
+
+
+    var g1 = svg1.selectAll(".arc")
+      .data(data_ready1)
+        .join("path")
+      .style("fill", function(d) { return color2(d.data[1]); })
+      .transition().delay(function(d, i) { return i * 500; }).duration(500)
+      .attrTween('d', function(d) {
+           var i = d3.interpolate(d.startAngle+0.1, d.endAngle);
+           return function(t) {
+               d.endAngle = i(t);
+             return arc(d);
+           }
+      });
+
+      svg1.append("text")
+        .attr("x", -50)             
+        .attr("y", 120)
+        .attr("text-anchor", "bottom")  
+        .style("font-size", "14px") 
+        .style("font-weight", "bold")  
+        .text("Original Image");
 
 }
 
