@@ -420,6 +420,7 @@ function changeK(){
     var choice = document.getElementById("stylized-ss")
 
     var piechart = JSON.parse(piechartdata);
+    // console.log(piechartdata)
 
     var remove_pie1 = document.getElementById("salsim-pie1")
     console.log("REMOVE PIE", remove_pie1)
