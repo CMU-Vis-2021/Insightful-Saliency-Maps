@@ -2,8 +2,8 @@
 let shapeList = ['bear', 'dog']
 let textureList = ['bikes', 'elephant', 'tiger', 'trucks', 'zebra']
 
-var stylepath = "/assets/stylized-images/"
+var stylepath = "./assets/stylized-images/"
 var stylefile = ".jpg"
 
-var heatpath = "/assets/heatmaps/"
+var heatpath = "./assets/heatmaps/"
 var heatfile = ".png"
