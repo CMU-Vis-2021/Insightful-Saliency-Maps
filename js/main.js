@@ -18,6 +18,7 @@ let mydata = JSON.stringify(data);
 let parseddata = JSON.parse(mydata)
 let prediction = "";
 let averageImgList = [];
+let count = 0
 
 
 /***********************************************/
@@ -81,24 +82,24 @@ contextCompare.drawImage(img2, 0, 0,c.width,c.height);
 /***********************************************/
 
 // ml model variables and function
-const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
-// When the model is loaded
-function modelLoaded() {
-    console.log("Model Loaded!");
-}
+// const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
+// // When the model is loaded
+// function modelLoaded() {
+//     console.log("Model Loaded!");
+// }
 
-function predictClass(image){
+// function predictClass(image){
 
-    classifier.predict(image, 10,
-        function (err, results) {
-            // alert(results[0].label);
-            console.log(results[0].label);
-            console.log(results[0].confidence)
-            console.log(results)
+//     classifier.predict(image, 10,
+//         function (err, results) {
+//             // alert(results[0].label);
+//             console.log(results[0].label);
+//             console.log(results[0].confidence)
+//             console.log(results)
 
-            prediction = results[0].label;
-        });
-}
+//             prediction = results[0].label;
+//         });
+// }
 
 function changeTab(button, tabToReveal){
     
@@ -200,8 +201,8 @@ function stylizeImg(){
         quizImage.hide();    // or something other
     });
 
-    predictClass(document.getElementById('stylizedimg'+count.toString()));
-    document.getElementById('prediction').textContent = prediction;
+    // predictClass(document.getElementById('stylizedimg'+count.toString()));
+    // document.getElementById('prediction').textContent = prediction;
 }
 
 function styleAnother(){
