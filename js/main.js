@@ -73,7 +73,7 @@ window.onload = function() {
     // At this point, the image is fully loaded
     ctx.drawImage(img, 0, 0,c.width,c.height);
 };
-// ctx.drawImage(img, 0, 0,c.width,c.height);
+ctx.drawImage(img, 0, 0,c.width,c.height);
 contextCompare.drawImage(img2, 0, 0,c.width,c.height);
 }
 
