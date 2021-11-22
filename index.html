@@ -31,34 +31,18 @@
                         <label for="shape"><span class = "number">1</span>Choose a shape:</label>
                         <br>
                         <div class = "select">
-                            <select class = "standard-select" name="shape" id="shapeselect0">
+                            <select class = "standard-select" name="shape" id="shapeselect0" onchange="shapeImg()">
                                  <option value="-1" selected disabled hidden>Select choice</option>
+                                 <!-- <option value="cat">Cat</option> -->
                                  <option value="dog">Dog</option>
+                                 <!-- <option value="elephant">Elephant</option> -->
                                  <option value="bear">Bear</option>
                              </select>
                          </div>
-                         <!-- <img id="shapeimg0"> -->
-                         <label for="texture"><span class = "number">2</span>Choose a texture:</label>
-                         <br>
-                         <div class = "select">
-                             <select class = "standard-select" name="texture" id="textureselect0" onchange="stylizeImg()">
-                                 <option value="-1" selected disabled hidden>Select choice</option>
-                                 <option value="bikes">Bicycle</option>
-                                 <option value="tiger">Tiger</option>
-                                 <option value="trucks">Trucks</option>
-                                 <option value="zebra">Zebra</option>
-                                 <option value="elephant">Elephant</option>
-                             </select>
-                         </div>
-                         <img id="stylizedimg0" style="width: 60%;">
-                    </div>
-
-                    <div class="flex-inner step">
-
-                        <label for="graph"><span class = "number">3</span>Top-K Predictions</label>
-                        <div id="d3-bar"></div>
-                    </div>
-                     <!-- <div class = "flex-inner step">
+                         <img id="shapeimg0">
+                     </div>
+     
+                     <div class = "flex-inner step">
                          <label for="texture"><span class = "number">2</span>Choose a texture:</label>
                          <br>
                          <div class = "select">
@@ -72,20 +56,21 @@
                              </select>
                          </div>
                          <img id="textureimg0">
-                     </div> -->
+                     </div>
      
-                     <!-- <div class = "flex-inner step">
+                     <div class = "flex-inner step">
                          <label for="shape"><span class = "number">3</span>Stylize the Image:</label>
                          <br>
                          <button class = "blue" onclick="stylizeImg()">Stylize</button>
-                     </div> -->
-                     <!-- <div class = "flex-inner step">
+                     </div>
+                     <div class = "flex-inner step">
                          <label for="shape">Stylized Image</label>
                          <div class = "output-labels">
                              <p>AI Prediction: <span id = "prediction" class = "output"></span></p>
+                             <!-- <p>Biased: <span id = "biased" class = "output">Texture</span></p> -->
                          </div>
                          <img id="stylizedimg0">
-                     </div> -->
+                     </div>
                 </div>
                 <div class = "more-images">
                     <p>Want to stylize another image?</p>
