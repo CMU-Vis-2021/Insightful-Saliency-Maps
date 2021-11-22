@@ -4,22 +4,16 @@ var colorOrange = '#f3781e';
 var colorPurple = '#5b0b67';
 var colorGrey = '#A9A9A9';
 
-var allImages = [];
-var selectedAnswer = [];
-var rightAnswer = [];
-var numberOfQuestions = 3;
-let count = 0;
-
 let tab1 = document.getElementById("tab1");
 let tab2 = document.getElementById("tab2");
 let tab3 = document.getElementById("tab3");
+let tab4 = document.getElementById("tab4");
 
 let tab1Button = document.getElementById("openTab1");
 let tab2Button = document.getElementById("openTab2");
 let tab3Button = document.getElementById("openTab3");
+let tab4button = document.getElementById("openTab4");
 
-let shapeList = ['bear', 'dog', 'elephant']
-let textureList = ['bikes', 'elephant', 'tiger', 'trucks', 'zebra']
 let mydata = JSON.stringify(data);
 let parseddata = JSON.parse(mydata)
 let prediction = "";
@@ -112,6 +106,7 @@ function changeTab(button, tabToReveal){
         tab1Button.classList = "";
         tab2Button.classList = "";
         tab3Button.classList = "";
+        tab4button.classList = "";
         button.classList = "active"
 
         if(tabToReveal == "tab1")
@@ -119,18 +114,28 @@ function changeTab(button, tabToReveal){
                 tab1.classList= "";
                 tab2.classList= "hidden";
                 tab3.classList= "hidden";
+                tab4.classList="hidden";
             }
         else if(tabToReveal == "tab2")
         {
             tab1.classList= "hidden";
             tab2.classList= "";
             tab3.classList= "hidden";
+            tab4.classList="hidden";
         }
         else if(tabToReveal == "tab3")
         {
             tab1.classList= "hidden";
             tab2.classList= "hidden";
             tab3.classList= "";
+            tab4.classList="hidden";
+        }
+        else if(tabToReveal == "tab4")
+        {
+            tab1.classList= "hidden";
+            tab2.classList= "hidden";
+            tab3.classList= "hidden";
+            tab4.classList="";
         }
     }
 } 
@@ -616,6 +621,39 @@ function changeOpacity(){
     document.getElementById("numOpacity").innerHTML = sliderOpacity.value;
 }
 
+function displayImgs(){
+
+    var choice = document.getElementById("average-select")
+
+    var imgList = []
+
+    textureList.forEach(element => imgList.push(choice.value + "-stylized-" + element))
+
+    var rows = document.getElementById("imageOptions rows").children;
+    console.log(imgList)
+
+    for (var i =0; i < rows.length; i++){
+        console.log("NEW ONE")
+        console.log("style")
+        imgchild_style = rows[i].children[0].children[0]
+        imgchild_heat = rows[i].children[0].children[1]
+
+        newsrc = stylepath + imgList[i] + stylefile
+        console.log("NEW SRC", newsrc)
+        imgchild_style.src = stylepath + imgList[i] + stylefile
+        imgchild_heat.src = heatpath + imgList[i] + heatfile
+        console.log(imgchild_style)
+        console.log("heat")
+        console.log(imgchild_heat)
+
+
+    }
+
+    document.getElementById("imageOptions rows").style.display = "block";
+    document.getElementById("averageCompute imageOptions").style.display = "block";
+    document.getElementById("imageOptions").style.display = "block";
+}
+
 function addImg(imgid){
 
     split = imgid.id.split(" ")
@@ -642,7 +680,8 @@ function addImg(imgid){
 
 function computeAvg(){
 
-  // imlist=[filename for filename in allfiles if filename[-4:] in [".png",".PNG"]]
+    // function modified from: https://stackoverflow.com/questions/17291455/how-to-get-an-average-picture-from-100-pictures-using-pil
+
   let heatmap_list = []
 
   averageImgList.forEach(function(element){
@@ -677,7 +716,7 @@ function computeAvg(){
     cv.add(temp, avg_img, avg_img)
 
   }
-  
+
   cv.imshow(document.getElementById('outputCanvas'), avg_img);
 }
 /***********************************************/
