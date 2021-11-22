@@ -30,18 +30,18 @@ var color = d3.scaleOrdinal()
     .range(["#ffda2e","#f3781e","#bb0f44","#5b0b67"])
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 0, bottom: 20, left: 50},
-    width = 460 - margin.left - margin.right,
-    height = 350 - margin.top - margin.bottom;
+var marginT3 = {top: 10, right: 0, bottom: 20, left: 50},
+    widthT3 = 460 - marginT3.left - marginT3.right,
+    heightT3 = 350 - marginT3.top - marginT3.bottom;
 
 
 // append the svg object to the body of the page
 const svg = d3.select("#d3-canvas-bar")
   .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", widthT3 + marginT3.left + marginT3.right)
+    .attr("height", heightT3 + marginT3.top + marginT3.bottom)
   .append("g")
-    .attr("transform",`translate(${margin.left},${margin.top})`);
+    .attr("transform",`translate(${marginT3.left},${marginT3.top})`);
 
   // List of subgroups = header of the csv files = soil condition here
   const subgroups = ["percentage","user_percentage"];
@@ -54,16 +54,16 @@ const svg = d3.select("#d3-canvas-bar")
   // Add X axis
   const x = d3.scaleBand()
       .domain(groups)
-      .range([0, width])
+      .range([0, widthT3])
       .padding([0.2])
   svg.append("g")
-    .attr("transform", `translate(0, ${height})`)
+    .attr("transform", `translate(0, ${heightT3})`)
     .call(d3.axisBottom(x).tickSize(0));
 
   // Add Y axis
   const y = d3.scaleLinear()
     .domain([0, 15])
-    .range([ height, 0 ]);
+    .range([ heightT3, 0 ]);
   svg.append("g")
     .call(d3.axisLeft(y));
 
@@ -87,7 +87,7 @@ const svg = d3.select("#d3-canvas-bar")
       .attr("x", d => xSubgroup(d.key))
       .attr("y", d => y(d.value))
       .attr("width", xSubgroup.bandwidth())
-      .attr("height", d => height - y(d.value))
+      .attr("height", d => heightT3 - y(d.value))
       .attr("fill", function(d) { if(d.key == "percentage"){ return colorGrey}; return color(d.color) });
 
 // Make y axis label
@@ -95,7 +95,7 @@ svg.append("text")
     .attr("class", "y label")
     .attr("text-anchor", "end")
     .attr("dy", "-35px")
-    .attr("dx", "-"+(width/2-140)+"px")
+    .attr("dx", "-"+(widthT3/2-140)+"px")
     .attr("transform", "rotate(-90)")
     .text("Percentage seen in that color");
 
@@ -118,7 +118,7 @@ d3.selectAll("#canvas").on("mouseup",updateData);
         .attr("x", d => xSubgroup("user_percentage"))
         .attr("y", d => y(d.user_percentage))
         .attr("width", xSubgroup.bandwidth())
-        .attr("height", d => height - y(d.user_percentage))
+        .attr("height", d => heightT3 - y(d.user_percentage))
         .attr("fill", d => color(d.color));
 
   }
