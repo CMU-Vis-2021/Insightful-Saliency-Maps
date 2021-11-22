@@ -23,6 +23,7 @@ let textureList = ['bikes', 'elephant', 'tiger', 'trucks', 'zebra']
 let mydata = JSON.stringify(data);
 let parseddata = JSON.parse(mydata)
 let prediction = "";
+let averageImgList = [];
 
 
 /***********************************************/
@@ -615,7 +616,75 @@ function changeOpacity(){
     document.getElementById("numOpacity").innerHTML = sliderOpacity.value;
 }
 
+function addImg(imgid){
 
+    split = imgid.id.split(" ")
+    imgidname = split[0] + "grid" + " " + split[1]
+
+    if (imgid.name == "selected"){
+        console.log("in if")
+        document.getElementById(imgid.id).style.border = "0px"
+        document.getElementById(imgid.id).style.opacity = "100%"
+        document.getElementById(imgid.id).name = "none"
+
+        averageImgList = averageImgList.filter(function(item) {
+            return item !== imgidname
+        })
+        
+    } else {
+
+        document.getElementById(imgid.id).style.border = "2px solid #479ff8"
+        document.getElementById(imgid.id).style.opacity = "85%"
+        document.getElementById(imgid.id).name = "selected"
+        averageImgList.push(imgidname)
+    }
+}
+
+function computeAvg(){
+
+  // imlist=[filename for filename in allfiles if filename[-4:] in [".png",".PNG"]]
+  let heatmap_list = []
+
+  averageImgList.forEach(function(element){
+    heatmap_list.push(element + " heatmap")
+  })
+
+  console.log(heatmap_list)
+  let N = averageImgList.length
+
+  let first_img = cv.imread(document.getElementById(heatmap_list[0]))
+  let size = first_img.size()
+
+  let avg_img = new cv.Mat();
+  let dst = new cv.Mat();
+
+  for (var i = 0; i < N; i++) {
+
+    console.log(heatmap_list[i])
+    let src = cv.imread(document.getElementById(heatmap_list[i]))
+
+    cv.cvtColor(src, dst, cv.COLOR_RGBA2RGB);
+
+    avg_img += dst
+
+    // avg_img += src
+
+    // dst = new cv.Mat();
+  }
+
+  avg_img = avg_img / N
+
+  // path = "/assets/heatmaps/average/"
+  // filename = document.getElementById(heatmap_list[0].split("-")[0]) + "-average.png"
+  // console.log(filename)
+  // cv.imwrite(path+filename, avg_img)
+
+  cv.imshow(document.getElementById('outputCanvas'), first_img);
+
+  // // Generate, save and preview final image
+  // out=Image.fromarray(arr,mode="RGB")
+  // out.save(output)
+}
 /***********************************************/
 //               HOVER ANIMATIONS              //
 /***********************************************/
@@ -628,6 +697,16 @@ function hoverImg(){
 function leaveImg(){
     iconimg = document.getElementById("plusicon")
     iconimg.setAttribute('src', "assets/icons/plus.svg")
+}
+
+function hoverImggrid(imgid){
+    img = document.getElementById(imgid.id)
+    img.style.opacity = "75%";
+}
+
+function leaveImggrid(imgid){
+    img = document.getElementById(imgid.id)
+    img.style.opacity = "100%";
 }
 
 function hoverBtn(){
