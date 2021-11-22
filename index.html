@@ -84,7 +84,7 @@
             </div>
             <div id = "tab2" class = "hidden">
                 <h2>Explore the saliency maps of stylized images. See how they compare to the saliency map of the original, un-stylized image.</h2> 
-            
+
                 <div class="flex">
                     <div class = "flex-inner step" id = "stylized-saliency"> 
                       
@@ -131,8 +131,12 @@
                         <div class="flex" id="original-img-div">
                             <img id="original-img-ss">
                         </div>
-                        <input type="radio" name="ogList" value="show" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-xrai\">", originalHTML = "<img id=\"original-img-ss\">")' checked>Show XRAI
-                        <input type="radio" name="ogList" value="hide" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-xrai\">", originalHTML = "<img id=\"original-img-ss\">")'>Hide XRAI
+                        <div id="slidersOg" style="display: none;">
+                            <input type="range" id="sliderOpacityOg" min="0" max="100" value="40" class="sliders" oninput='changeOpacity(slider = document.querySelector("#sliderOpacityOg"), imggchoice = document.querySelector("#xrai-og-img"), text = document.getElementById("numOpacityOg"))' /> <span id="numOpacityOg">40</span>%
+                        </div>
+                        <input type="radio" name="ogList" value="show" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-xrai\">", originalHTML = "<img id=\"original-img-ss\">", sliders= document.getElementById("slidersOg"),opacityNum = document.querySelector("#sliderOpacityOg"))' checked>Show XRAI
+                        <input type="radio" name="ogList" value="hide" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-xrai\">", originalHTML = "<img id=\"original-img-ss\">", sliders= document.getElementById("slidersOg"), opacityNum = document.querySelector("#sliderOpacityOg"))'>Hide XRAI
+                        <input type="radio" name="ogList" value="hide" id="og" onchange='xraioverlap(document.getElementById("original-ss"), id="original-img-ss", query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-ss\" style=\"position: relative;\"> <img id=\"xrai-og-img\" style=\"position: absolute; opacity: 40%\">", sliders = document.getElementById("slidersOg"))'>Overlap XRAI
                     </div>
                 </div>
                 <div class="visualize-similarity">

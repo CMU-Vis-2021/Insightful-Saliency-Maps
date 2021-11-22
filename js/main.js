@@ -236,10 +236,13 @@ function styleAnother(){
 //               TAB 2 FUNCTIONS               //
 /***********************************************/
 
-function ssimg(){
+function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = document.querySelector("#sliderOpacity")){
 
-    var remove_img = document.getElementById("xrai-img")
+    var remove_img = xraiimg
+    console.log(remove_img)
     if (remove_img != null){
+        console.log(remove_img)
+        console.log("REMOVING IT")
         remove_img.src = ""
     }
 
@@ -288,23 +291,32 @@ function ssimg(){
 
             set_xraiimg(choice = document.getElementById("original-ss"), imgobj = '#original-img-xrai')
             
-            console.log("they are the same!")
             var sal_div = document.getElementById("salsim-div")
-            console.log(sal_div)
+            
             sal_div.style.display = "block";
             changeAlpha();
             changeK();
         }
     } else if(radio[2].checked){
-        const sliderOpacity = document.querySelector("#sliderOpacity");
+        const sliderOpacity = opacityNum;
         document.getElementById("salsim-div").style.display = "none";
         sliderOpacity.value = 40;
+        
         xraioverlap();
+        
     }
+
+
 
 }
 
 function ogimg(){
+
+    // var remove_img = document.getElementById("xrai-og-img")
+    // if (remove_img != null){
+    //     console.log("WE DONT WANT THIS")
+    //     remove_img.src = ""
+    // }
 
     var choice = document.getElementById("original-ss")
 
@@ -315,11 +327,12 @@ function ogimg(){
 
 }
 
-function set_xraiimg(choice = document.getElementById("stylized-ss"), imgobj = '#stylized-img-xrai'){
+function set_xraiimg(choice = document.getElementById("stylized-ss"), imgobj = '#stylized-img-xrai', xrai =document.getElementById("xrai-img")){
 
-    var remove_img = document.getElementById("xrai-img")
+    var remove_img = xrai
     console.log("REMOVE IMG", remove_img)
     if (remove_img != null){
+        console.log("SET XRAI HELLLOOOO")
         remove_img.src = ""
     }
 
@@ -342,7 +355,7 @@ function set_xraiimg(choice = document.getElementById("stylized-ss"), imgobj = '
 
 }
 
-function xrairadio(radio = document.getElementsByName("xraiList"), query = '.flex #stylized-img-div', appendHTML = '<img id="stylized-img-xrai">', originalHTML = '<img id="stylized-img-ss">'){
+function xrairadio(radio = document.getElementsByName("xraiList"), query = '.flex #stylized-img-div', appendHTML = '<img id="stylized-img-xrai">', originalHTML = '<img id="stylized-img-ss">', sliders = document.getElementById("sliders"), opacityNum = document.querySelector("#sliderOpacity")){
 
     for (var i = 0, length = radio.length; i < length; i++) {
       if (radio[i].checked) {
@@ -358,13 +371,13 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
 
             if(radio[i].id == "xrai"){
                 console.log("in xrai")
-                var slider = document.getElementById("sliders")
+                var slider = sliders
                 slider.style.display = "none";
                 set_xraiimg(); 
            } else if(radio[i].id == "og"){
-                var slider = document.getElementById("sliders")
+                var slider = sliders
                 slider.style.display = "none";
-                set_xraiimg(choice = document.getElementById("original-ss"), imgobj = '#original-img-xrai');
+                set_xraiimg(choice = document.getElementById("original-ss"), imgobj = '#original-img-xrai', xrai=document.getElementById("xrai-og-img"));
            }
 
            var radio_og = document.getElementsByName("ogList")
@@ -381,31 +394,42 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
 
         }
         else if (radio[i].value == "hide"){
+            console.log("HIDING")
             var img_div = document.querySelector(query)
             img_div.innerHTML = originalHTML
 
+            console.log(img_div)
+
             document.getElementById("salsim-div").style.display = "none";
 
-            var slider = document.getElementById("sliders")
+            var slider = sliders
             slider.style.display = "none";
-            ssimg()
+            if(radio[i].id == "xrai"){
+                console.log("HELLOOO")
+                ssimg()
+            }else if(radio[i].id =="og"){
+                console.log("IN OG HIDE")
+                ssimg(xraiimg=document.getElementById("xrai-og-img"), opacityNum = document.querySelector("#sliderOpacityOg"))
+            }
+            
         } else if(radio[i].value == "overlap"){
             document.getElementById("salsim-div").style.display = "none";
-            const sliderOpacity = document.querySelector("#sliderOpacity");
+            const sliderOpacity = opacityNum;
             sliderOpacity.value = 40;
-            xraioverlap();
+
+            if(radio[i].id == "xrai"){
+                xraioverlap();
+            } else if(radio[i].id == "og"){
+                xraioverlap(document.getElementById("original-ss"), id="original-img-ss", query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-ss\" style=\"position: relative;\"> <img id=\"xrai-og-img\" style=\"position: absolute; opacity: 40%\">", sliders = document.getElementById("slidersOg"))
+            }
         } 
-
-        
-
-        // only one radio can be logically checked, don't check the rest
         break;
       }
     }
 
 }
 
-function xraioverlap(choice = document.getElementById("stylized-ss"), query = '.flex #stylized-img-div', appendHTML = '<img id="stylized-img-ss" style="position: relative;"> <img id="xrai-img" style="position: absolute; opacity: 40%"> '){
+function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'stylized-img-ss', query = '.flex #stylized-img-div', appendHTML = '<img id="stylized-img-ss" style="position: relative;"> <img id="xrai-img" style="position: absolute; opacity: 40%"> ', sliders = document.getElementById("sliders")){
 
     document.getElementById("salsim-div").style.display = "none";
 
@@ -424,8 +448,15 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), query = '.
     var og_classpath = beg_path+option + ".jpg";
     var xrai_classpath = "./assets/heatmaps/"+ choice.value + ".png";
 
-    var xraiImage = $('#xrai-img')
-    var ogImage = $('#stylized-img-ss')
+    
+    if(id == 'original-img-ss'){
+        var ogImage = $('#original-img-ss')
+        var xraiImage = $('#xrai-og-img')
+    } else {
+        var ogImage = $('#stylized-img-ss')
+        var xraiImage = $('#xrai-img')
+    }
+    
 
     $.ajax({
         url: xrai_classpath,
@@ -449,8 +480,7 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), query = '.
         ogImage.hide();    // or something other
     });
 
-    var slider = document.getElementById("sliders")
-    slider.style.display = "block";
+    sliders.style.display = "block";
 
 }
 
@@ -612,13 +642,15 @@ function updatePieChart(pie1data, pie2data, colors1, colors2){
 
 }
 
-function changeOpacity(){
-    const sliderOpacity = document.querySelector("#sliderOpacity");
-    const img = document.querySelector("#xrai-img");
+function changeOpacity(slider = document.querySelector("#sliderOpacity"), imgchoice = document.querySelector("#xrai-img"), text = document.getElementById("numOpacity")){
+    const sliderOpacity = slider;
+    const img = imgchoice;
 
     img.style.opacity = (sliderOpacity.value)/100;
 
-    document.getElementById("numOpacity").innerHTML = sliderOpacity.value;
+    console.log("SLIDERNUM", text)
+    console.log("SLIDER", sliderOpacity)
+    text.innerHTML = sliderOpacity.value;
 }
 
 function displayImgs(){
