@@ -1,3 +1,462 @@
-h2 {
-  color: red;
+/* ************************************************ */
+/* Let's take care of topper and styles here!! */
+/* ************************************************ */
+html{
+  font-family: 'Open Sans', sans-serif;
+  scroll-behavior: smooth;
 }
+h1{
+  font-size: 55px;
+  text-align: center;
+
+}
+nav{
+text-align: center;
+}
+nav button{
+  padding: 10px;
+  border-radius: 7px;
+  margin: 0px 30px;
+  background-color: rgb(215, 215, 215);
+  font-size: 15px;
+}
+nav button{
+  border: 3px solid #73bff9;
+}
+nav button.active{
+  border: 3px solid #3274b5;
+}
+
+.container{
+  max-width:1200px;
+  display: block;
+  margin:auto;
+}
+
+/* ************************************************ */
+/* Styles for 'stylize and image'*/
+/* ************************************************ */
+
+h2{
+  font-size: 25px;
+  font-style: italic;
+  color:grey;
+  font-weight: normal;
+  text-align: center;
+  max-width: 700px;
+  margin:70px auto;
+}
+
+#detailsSubTitles{
+  font-size: 25px;
+  font-style: normal;
+  color: #313942;
+  font-weight: normal;
+  text-align: left;
+  max-width: 700px;
+  margin:40px;
+}
+
+#detailsText{
+  font-size: 18px;
+  font-style: normal;
+  font-weight: normal;
+  text-align: left;
+  max-width: 700px;
+  margin:40px;
+}
+
+#howToDetails{
+  font-size: 25px;
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
+  max-width: 700px;
+  margin:40px auto;
+}
+
+#average-title {
+  font-size: 18px;
+  text-align: center;
+}
+
+.average-select{
+  font-size: 16px;
+}
+
+.flex{
+  display: flex;
+}
+.flex-inner{
+  flex: 1;
+}
+
+.step .number{
+  background: #479ff8;
+  padding:8px;
+  width:17px;
+  text-align: center;
+  color:white;
+  font-size: 15px;
+  display: inline-block;
+  border-radius:20px;
+  margin-right:10px;
+}
+label{
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Styles to replace dropdown styles. Following tutorial from: https://moderncss.dev/custom-select-styles-with-pure-css/ */
+select,
+select::before,
+select::after {
+box-sizing: border-box;
+}
+
+select {
+  /* A reset of styles, including removing the default dropdown arrow */
+  -webkit-appearance: none;
+ -moz-appearance: none;
+      appearance: none;
+  outline: none;
+  /* Additional resets for further consistency */
+  background-color: white;
+  border: 2px solid #479ff8;
+  border-radius: 10px;
+  padding: 10px 5px;
+  margin: auto;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  line-height: inherit;
+  
+}
+select:hover {
+  border: 2px solid #959697;
+  background: rgb(240, 243, 246);;
+}
+select::-ms-expand {
+  display: none;
+}
+
+.select{
+  /* display: block; */
+  margin:20px auto;
+  width:70%;
+  display: grid;
+  grid-template-areas: "select";
+  align-items: center;
+}
+.select::after {
+  content: "";
+  width: 15px;
+  display: inline-block;
+  height: 10px;
+  background: #479ff8;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  justify-self: end;
+  margin-right: 10px;
+}
+
+#imggrid:hover{
+  opacity: 60%;
+}
+
+.stylized-select{
+  display: block; 
+
+  grid-template-areas: "select";
+  align-items: center;
+}
+
+
+select,
+.select:after {
+  grid-area: select;
+}
+
+button.blue{
+  background: #479ff8;
+  padding:10px;
+  color:white;
+  font-size: 15px;
+  border:none;
+  border-radius: 20px;
+  min-width:150px;
+  margin:auto;
+  display: block;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.step button:hover{
+  background: #246db6;
+}
+.step img{
+  width:70%;
+  margin:auto;
+  display: block;
+}
+#tab3 #canvas{
+  border:3px solid grey;
+}
+#tab3 h3{
+  text-align: center;
+  margin:40px 0px;
+}
+.step p{
+  margin:0px;
+}
+.step .output-labels{
+  margin:27px 0px;
+}
+.step p .output{
+  font-style: italic;
+}
+
+.more-images{
+  text-align: center;
+  font-size: 20px;
+  font-style: italic;
+  color:rgb(170, 170, 170);
+  font-weight: normal;
+  text-align: center;
+  max-width: 700px;
+  margin:70px auto;
+}
+.more-images img{
+  width:30px;
+}
+
+.visualize-similarity{
+  text-align: center;
+  font-size: 20px;
+  text-align: center;
+  max-width: 700px;
+  margin:70px auto;
+}
+
+.progress-bar{
+  text-align: center;
+}
+#dots .dot{
+  width:10px;
+  height: 10px;
+  background: rgb(211, 211, 211);
+  display: inline-block;
+  border-radius: 10px;
+}
+#tab2 img{
+  max-width:200px;
+  margin:20px 10px 10px;
+}
+#tab2 .select{
+  max-width:200px;
+}
+#tab2 {
+  margin-bottom: 100px;
+}
+
+.hidden{
+  display: none;
+  height: 0px;
+}
+
+#quiz-after{
+  text-align: center;
+  display:none;
+  margin-top:30px;
+}
+#answer-template{
+  display: none;
+}
+.answers{
+  margin:auto;
+  width:fit-content;
+  margin-top:30px;
+}
+.answers .inner{
+  padding: 0px 20px;
+}
+#quiz-after img{
+  max-width:100px;
+  margin:0px;
+}
+#quiz-after p{
+  margin:5px 0px;
+}
+
+#details {
+  margin-top: 100%;
+  padding-bottom: 25%;
+} 
+
+#tab1 {
+  margin-top: 0%;
+  padding-bottom: 100%;
+} 
+
+/***********************************/
+/*         Column Row CSS          */
+/***********************************/
+
+/** {
+  box-sizing: border-box;
+}
+*/
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 1px;
+  margin:  5px 5px;
+  text-align: center;
+}
+
+.card img{
+  width: 100%;
+}
+
+/***********************************/
+/*        Canvas CSS               */
+/***********************************/
+
+canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: "100%";
+    height: "100%";
+}
+.color-btn{
+  width: 22%;
+  padding:10px 0px;
+  border: none;
+  border-radius: 10px;
+  margin:0px 1%;
+}
+.red{
+  background:#bb0f44;
+}
+.orange{
+  background:#f3781e;
+}
+.purple{
+  background:#5b0b67;
+}
+.yellow{
+  background: #ffcb2e;
+}
+#tab3{
+  margin-bottom:100px;
+}
+#tab3 p{
+  max-width: 700px;
+  margin:50px auto;
+  display: block;
+  line-height: 24px;
+  font-size: 16px;
+}
+#tab3 h2{
+  margin-bottom: 30px;
+}
+#tab3 .box{
+  width:20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 20px;
+  margin-right:5px;
+}
+#tab3 .instructions{
+  max-width: 500px;
+  margin:auto;
+  
+}
+.drawControls{
+  max-width: 700px;
+  margin:auto;
+  display: block;
+  text-align: center;
+}
+
+h4{
+  text-align: center;
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+#tab3 .flex{
+  margin: auto;
+  width: fit-content;
+}
+#tab3 .flex div{
+  padding:0px 10px;
+}
+#tab3 button.active{
+  border: 3px solid black;
+}
+#answerCanvas{
+  max-height:0px;
+  transition: max-height 0.15s ease-out;
+  overflow: hidden;
+}
+.reveal{
+  max-height: 500px!important;
+  transition: max-height 0.25s ease-in!important;
+}
+#d3-canvas-bar span{
+  width:10px;
+  height: 10px;
+  margin:3px;
+  vertical-align: middle;
+  display: inline-block;
+}
+#d3-canvas-bar .ai{
+  background-color:rgb(169, 169, 169);
+}
+#d3-canvas-bar p{
+  margin:0px;
+  padding:0px;
+  text-align: center;
+  font-size: 13px;
+}
+#canvas{
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.gifTopper{
+  max-width: 180px;
+  padding:30px 0px 0px 30px!important;
+}
+.gifTopper img{
+  width:100%;
+}
+
+
