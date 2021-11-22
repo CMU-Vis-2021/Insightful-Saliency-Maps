@@ -15,7 +15,7 @@
     <script type="text/javascript" src="imgstruct.json"></script>
     <script type="module" crossorigin src="./assets/index.75de11d8.js"></script>
     <link rel="modulepreload" href="./assets/vendor.79436710.js">
-    <link rel="stylesheet" href="./assets/index.499f67fb.css">
+    <link rel="stylesheet" href="./assets/index.f834ea37.css">
   </head>
   <body>
     <div class="container" id="top">
@@ -168,8 +168,70 @@
                 </div>
             </div>
             <div class="visualize-similarity" >
-              <p> <b> Compute the average saliency </b> </p>
-              <div id="my-dataviz"></div>
+              <p> <b> Compute the average saliency map</b> </p>
+              
+              <div class="flex">
+                <div class="flex-inner step">
+
+                    <p id="average-title"> <b> Choose an Image Class: </b> </p>
+
+                    <div class="average-select" style="padding: 10px;">
+                           <select class = "standard-select" name="average-select" id="average-select" style="width:70%;">
+                               <option value="-1" selected disabled hidden>Select choice</option>
+                               <option value="dog">Dog</option>
+                               <option value="elephant">Elephant</option>
+                               <option value="bear">Bear</option>
+                           </select>
+                    </div>
+
+                    <div class="row">
+                      <div class="column">
+                        <div class="card" id="img 1" name="none">
+                          <img id="imggrid 1" style="margin: 0px" onmouseenter="hoverImggrid(document.getElementById('imggrid 1'))" onmouseleave="leaveImggrid(document.getElementById('imggrid 1'))" onclick="addImg(document.getElementById('img 1'))" src="./assets/dog-stylized-tiger.c7282882.jpg" >
+                          <img style="display:  none;" id="imggrid 1 heatmap" src="./assets/dog-stylized-tiger.678921cb.png">
+                        </div>
+                      </div>
+
+                      <div class="column">
+                        <div class="card" id="img 2" name="name">
+                          <img id="imggrid 2" style="margin: 0px" onmouseenter="hoverImggrid(document.getElementById('imggrid 2'))" onmouseleave="leaveImggrid(document.getElementById('imggrid 2'))" onclick="addImg(document.getElementById('img 2'))" src="./assets/dog-stylized-zebra.279c8367.jpg">
+                          <img style="display:  none;" id="imggrid 2 heatmap" src="./assets/dog-stylized-zebra.fddc2d55.png">
+                        </div>
+                      </div>
+                      
+                      <div class="column">
+                        <div class="card" name="none" id="img 3">
+                          <img  id="imggrid 3" style="margin: 0px" onmouseenter="hoverImggrid(document.getElementById('imggrid 3'))" onmouseleave="leaveImggrid(document.getElementById('imggrid 3'))" onclick="addImg(document.getElementById('img 3'))" src="./assets/dog-stylized-trucks.8c02b26d.jpg">
+
+                          <img style="display:  none;" id="imggrid 3 heatmap" src="./assets/dog-stylized-trucks.4139ab85.png">
+                        </div>
+                      </div>
+
+                      <div class="column">
+                        <div class="card" name="none" id="img 4">
+                          <img  id="imggrid 4" style="margin: 0px" onmouseenter="hoverImggrid(document.getElementById('imggrid 4'))" onmouseleave="leaveImggrid(document.getElementById('imggrid 4'))" onclick="addImg(document.getElementById('img 4'))" src="./assets/dog-stylized-bikes.bc9ec98f.jpg">
+                          <img style="display:  none;" id="imggrid 4 heatmap" src="./assets/dog-stylized-bikes.685fddf2.png">
+                        </div>
+                      </div>
+                      
+                      <div class="column">
+                        <div class="card" name="none" id="img 5">
+                          <img id="imggrid 5" style="margin: 0px" onmouseenter="hoverImggrid(document.getElementById('imggrid 5'))" onmouseleave="leaveImggrid(document.getElementById('imggrid 5'))" onclick="addImg(document.getElementById('img 5'))" src="./assets/dog-stylized-elephant.f365b4b0.jpg">
+                          <img style="display:  none;" id="imggrid 5 heatmap" src="./assets/dog-stylized-elephant.cf93c91f.png">
+                        </div>
+                      </div>
+                    </div>
+
+                    <button id = "averageCompute" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="computeAvg();">Generate Average Saliency Map</button>
+                </div>
+
+                <div class="flex-inner step">
+                    Not fully implemented yet.
+                    <img id="avgHeatmap">
+                    <canvas id='outputCanvas'></canvas>
+                </div>
+              </div>
+
             </div>
          </div>
          <div id = "tab3" class = "hidden">
@@ -218,4 +280,5 @@
   
   <script type="text/javascript" src="/js/includeHTML.js"></script>
   <script type="text/javascript" src="./assets/piechartjson.js"></script>
+  <script src="opencv.js" type="text/javascript"></script>
 </html>
