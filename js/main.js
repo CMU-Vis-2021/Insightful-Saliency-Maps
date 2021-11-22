@@ -649,17 +649,21 @@ function displayImgs(){
 
     }
 
+    document.getElementById('ogheat').src = heatpath + choice.value + heatfile
+
     document.getElementById("imageOptions rows").style.display = "block";
     document.getElementById("averageCompute imageOptions").style.display = "block";
     document.getElementById("imageOptions").style.display = "block";
 
     var canvas = document.getElementById("canvasAvg")
 
-    if(canvas != null){
-        document.getElementById("canvasAvg").remove();
+    console.log("CANVAS", canvas)
+
+    if(canvas.children.length == 3){
+        document.getElementById("canvasAvg").children[2].remove();
     }
 
-    document.getElementById("canvasAvg").innerHTML += "<canvas id='outputCanvas' style='width: 80%'></canvas>"
+    document.getElementById("canvasAvg").innerHTML += "<canvas id='outputCanvas' style='width: 85%'></canvas>"
 }
 
 function addImg(imgid){
@@ -689,6 +693,9 @@ function addImg(imgid){
 function computeAvg(){
 
     // function modified from: https://stackoverflow.com/questions/17291455/how-to-get-an-average-picture-from-100-pictures-using-pil
+
+  document.getElementById("canvasAvg").style.display = "block";
+  document.getElementById("ogHeatmap").style.display = "block";
 
   let heatmap_list = []
 

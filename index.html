@@ -212,9 +212,14 @@
                             <button id = "averageCompute imageOptions" style="display:  none;" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="computeAvg();">Generate Average Saliency Map</button>
                         </div>
 
-                        <div class="flex-inner step" id="canvasAvg">
-                            <p id="imageOptions" style="font-size: 18px; font-weight: bold; display: none"> Average Saliency Map: </p>
+                        <div class="flex-inner step" id="canvasAvg" style="display: none;">
+                            
+                            <p id="imageOptions" style="font-size: 18px; font-weight: bold;"> Average Saliency Map: </p>
                             <img id="avgHeatmap">
+                        </div>
+                        <div class="flex-inner steos" id="ogHeatmap" style="display: none;">
+                            <p id="imageOptions" style="font-size: 18px; font-weight: bold; margin-top: 0px;"> Original Saliency Map: </p>
+                            <img id="ogheat" style="margin-top: 12px;" src="">
                         </div>
                     </div>
 
