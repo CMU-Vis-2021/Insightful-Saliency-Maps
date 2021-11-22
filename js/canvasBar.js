@@ -1,6 +1,3 @@
-import * as d3 from "d3";
-
-
 var dataColors = [
     {
       "color": "yellow",
@@ -33,7 +30,7 @@ var color = d3.scaleOrdinal()
     .range(["#ffda2e","#f3781e","#bb0f44","#5b0b67"])
 
 // set the dimensions and margins of the graph
-const margin = {top: 10, right: 0, bottom: 20, left: 50},
+var margin = {top: 10, right: 0, bottom: 20, left: 50},
     width = 460 - margin.left - margin.right,
     height = 350 - margin.top - margin.bottom;
 

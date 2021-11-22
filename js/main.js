@@ -7,17 +7,18 @@ var colorGrey = '#A9A9A9';
 let tab1 = document.getElementById("tab1");
 let tab2 = document.getElementById("tab2");
 let tab3 = document.getElementById("tab3");
-let tab4 = document.getElementById("tab4");
+// let tab4 = document.getElementById("tab4");
 
 let tab1Button = document.getElementById("openTab1");
 let tab2Button = document.getElementById("openTab2");
 let tab3Button = document.getElementById("openTab3");
-let tab4button = document.getElementById("openTab4");
+// let tab4button = document.getElementById("openTab4");
 
 let mydata = JSON.stringify(data);
 let parseddata = JSON.parse(mydata)
 let prediction = "";
 let averageImgList = [];
+let count = 0
 
 
 /***********************************************/
@@ -81,24 +82,24 @@ contextCompare.drawImage(img2, 0, 0,c.width,c.height);
 /***********************************************/
 
 // ml model variables and function
-const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
-// When the model is loaded
-function modelLoaded() {
-    console.log("Model Loaded!");
-}
+// const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
+// // When the model is loaded
+// function modelLoaded() {
+//     console.log("Model Loaded!");
+// }
 
-function predictClass(image){
+// function predictClass(image){
 
-    classifier.predict(image, 10,
-        function (err, results) {
-            // alert(results[0].label);
-            console.log(results[0].label);
-            console.log(results[0].confidence)
-            console.log(results)
+//     classifier.predict(image, 10,
+//         function (err, results) {
+//             // alert(results[0].label);
+//             console.log(results[0].label);
+//             console.log(results[0].confidence)
+//             console.log(results)
 
-            prediction = results[0].label;
-        });
-}
+//             prediction = results[0].label;
+//         });
+// }
 
 function changeTab(button, tabToReveal){
     
@@ -106,7 +107,7 @@ function changeTab(button, tabToReveal){
         tab1Button.classList = "";
         tab2Button.classList = "";
         tab3Button.classList = "";
-        tab4button.classList = "";
+        // tab4button.classList = "";
         button.classList = "active"
 
         if(tabToReveal == "tab1")
@@ -114,29 +115,29 @@ function changeTab(button, tabToReveal){
                 tab1.classList= "";
                 tab2.classList= "hidden";
                 tab3.classList= "hidden";
-                tab4.classList="hidden";
+                // tab4.classList="hidden";
             }
         else if(tabToReveal == "tab2")
         {
             tab1.classList= "hidden";
             tab2.classList= "";
             tab3.classList= "hidden";
-            tab4.classList="hidden";
+            // tab4.classList="hidden";
         }
         else if(tabToReveal == "tab3")
         {
             tab1.classList= "hidden";
             tab2.classList= "hidden";
             tab3.classList= "";
-            tab4.classList="hidden";
+            // tab4.classList="hidden";
         }
-        else if(tabToReveal == "tab4")
-        {
-            tab1.classList= "hidden";
-            tab2.classList= "hidden";
-            tab3.classList= "hidden";
-            tab4.classList="";
-        }
+        // else if(tabToReveal == "tab4")
+        // {
+        //     tab1.classList= "hidden";
+        //     tab2.classList= "hidden";
+        //     tab3.classList= "hidden";
+        //     tab4.classList="";
+        // }
     }
 } 
 
@@ -200,8 +201,8 @@ function stylizeImg(){
         quizImage.hide();    // or something other
     });
 
-    predictClass(document.getElementById('stylizedimg'+count.toString()));
-    document.getElementById('prediction').textContent = prediction;
+    // predictClass(document.getElementById('stylizedimg'+count.toString()));
+    // document.getElementById('prediction').textContent = prediction;
 }
 
 function styleAnother(){
