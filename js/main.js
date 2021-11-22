@@ -652,6 +652,14 @@ function displayImgs(){
     document.getElementById("imageOptions rows").style.display = "block";
     document.getElementById("averageCompute imageOptions").style.display = "block";
     document.getElementById("imageOptions").style.display = "block";
+
+    var canvas = document.getElementById("canvasAvg")
+
+    if(canvas != null){
+        document.getElementById("canvasAvg").remove();
+    }
+
+    document.getElementById("canvasAvg").innerHTML += "<canvas id='outputCanvas' style='width: 80%'></canvas>"
 }
 
 function addImg(imgid){

@@ -34,7 +34,7 @@
                                  <option value="-1" selected disabled hidden>Select choice</option>
                                  <!-- <option value="cat">Cat</option> -->
                                  <option value="dog">Dog</option>
-                                 <option value="elephant">Elephant</option>
+                                 <!-- <option value="elephant">Elephant</option> -->
                                  <option value="bear">Bear</option>
                              </select>
                          </div>
@@ -51,6 +51,7 @@
                                  <option value="tiger">Tiger</option>
                                  <option value="trucks">Trucks</option>
                                  <option value="zebra">Zebra</option>
+                                 <option value="elephant">Elephant</option>
                              </select>
                          </div>
                          <img id="textureimg0">
@@ -115,7 +116,7 @@
                             <select class = "standard-select" name="original" id="original-ss" onchange="ogimg()" style="width:30%;">
                                <option value="-1" selected disabled hidden>Select stylized image</option>
                                <option value="dog" disabled>Dog</option>
-                               <option value="elephant" disabled>Elephant</option>
+                               <!-- <option value="elephant" disabled>Elephant</option> -->
                                <option value="bear" disabled>Bear</option>
                            </select>
                         </div>
@@ -165,7 +166,7 @@
                                    <select class = "standard-select" name="average-select" id="average-select" onchange="displayImgs()" style="width:70%;">
                                        <option value="-1" selected disabled hidden>Select choice</option>
                                        <option value="dog">Dog</option>
-                                       <option value="elephant">Elephant</option>
+                                       <!-- <option value="elephant">Elephant</option> -->
                                        <option value="bear">Bear</option>
                                    </select>
                             </div>
@@ -211,10 +212,9 @@
                             <button id = "averageCompute imageOptions" style="display:  none;" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="computeAvg();">Generate Average Saliency Map</button>
                         </div>
 
-                        <div class="flex-inner step">
+                        <div class="flex-inner step" id="canvasAvg">
                             <p id="imageOptions" style="font-size: 18px; font-weight: bold; display: none"> Average Saliency Map: </p>
                             <img id="avgHeatmap">
-                            <canvas id='outputCanvas' style="width: 80%"></canvas>
                         </div>
                     </div>
 
