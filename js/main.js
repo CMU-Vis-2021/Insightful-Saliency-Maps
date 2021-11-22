@@ -653,10 +653,17 @@ function computeAvg(){
   let N = averageImgList.length
 
   let first_img = cv.imread(document.getElementById(heatmap_list[0]))
+  let first_dst = new cv.Mat();
+  cv.cvtColor(first_img, first_dst, cv.COLOR_RGBA2RGB);
   let size = first_img.size()
 
-  let avg_img = new cv.Mat();
+  let avg_img = new cv.Mat.zeros(size, first_dst.type());
+  let result = new cv.Mat.zeros(size, first_dst.type());
   let dst = new cv.Mat();
+  let temp = new cv.Mat();
+
+  let mat = new cv.Mat(330, 330, cv.CV_8UC3, new cv.Scalar(N, N, N))
+  console.log(mat)
 
   for (var i = 0; i < N; i++) {
 
@@ -665,25 +672,13 @@ function computeAvg(){
 
     cv.cvtColor(src, dst, cv.COLOR_RGBA2RGB);
 
-    avg_img += dst
+    cv.divide(dst, mat, temp)
 
-    // avg_img += src
+    cv.add(temp, avg_img, avg_img)
 
-    // dst = new cv.Mat();
   }
-
-  avg_img = avg_img / N
-
-  // path = "/assets/heatmaps/average/"
-  // filename = document.getElementById(heatmap_list[0].split("-")[0]) + "-average.png"
-  // console.log(filename)
-  // cv.imwrite(path+filename, avg_img)
-
-  cv.imshow(document.getElementById('outputCanvas'), first_img);
-
-  // // Generate, save and preview final image
-  // out=Image.fromarray(arr,mode="RGB")
-  // out.save(output)
+  
+  cv.imshow(document.getElementById('outputCanvas'), avg_img);
 }
 /***********************************************/
 //               HOVER ANIMATIONS              //
