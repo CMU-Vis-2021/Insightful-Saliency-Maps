@@ -29,4 +29,6 @@ predictions = {
 		 "2": {"label": "Walker hound", "confidence": "0.04095831513404846"},
 		 "3": {"label": "bluetick", "confidence": "0.012049156241118908"},
 		 "4": {"label": "English foxhound", "confidence": "0.009175215847790241"}},
+	"dog":
+		{0: {"label": "golden retriever", "confidence": 0.9957875609397888}}
 }

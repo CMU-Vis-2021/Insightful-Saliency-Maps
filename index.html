@@ -48,7 +48,17 @@
                                  <option value="elephant">Elephant</option>
                              </select>
                          </div>
-                         <img id="stylizedimg0" style="width: 60%;">
+                         <div class="flex" id="stylized-img-div1">
+                            <img id="stylizedimg0" style="position: relative; margin: 0px; max-width: 300px;">
+                        </div>
+
+                         <div id="sliderTab1" style="display: none; padding-top: 10px;">
+                            <input type="range" id="sliderOpacity1" min="0" max="100" value="40" class="sliders" oninput='changeOpacity(slider = document.querySelector("#sliderOpacity1"), imgchoice = document.querySelector("#xrai-img1"), text = document.getElementById("numOpacity1"))' /> <span id="numOpacity1">40</span>%
+                        </div>
+
+                        <div id="checkboxoverlap" style="text-align: center; display: none; padding-top: 10px;">
+                            <input type="checkbox" name="tab1List" value="unchecked" id="tab1xrai" onchange="xraicheck()">Overlap XRAI
+                        </div>
                     </div>
 
                     <div class="flex-inner step">
@@ -57,10 +67,10 @@
                         <div id="d3-bar"></div>
                     </div>
                 </div>
-                <!-- <div class = "more-images">
-                    <p>Want to stylize another image?</p>
-                    <img alt = "plus icon" src = "assets/icons/plus.svg" id = "plusicon" onmouseenter="hoverImg()" onmouseleave="leaveImg()" onclick="styleAnother()">
-                </div> -->
+                
+                <br>
+                <br>
+                <br>
                 <button id = "detailsButton" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="location.href='#details'; includeHTML();">Learn about Style Transfers and Saliency Maps</button>
                 <div id="details">
                     <button id = "topButton" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="location.href='#top';">Go to top</button>
@@ -91,6 +101,7 @@
                                <option value="bear-stylized-elephant">Bear x Elephant</option>
                            </select>
                         </div>
+                        <p style="text-align: center;"> Prediction: <span id="AIpred">Indian Elephant</span>; <span id="AIconf">44.56</span>% confidence </p>
                         <div class="flex" id="stylized-img-div">
                             <img id="stylized-img-ss">
                         </div>
@@ -114,6 +125,7 @@
                                <option value="bear" disabled>Bear</option>
                            </select>
                         </div>
+                        <p> Prediction: <span id="OgAIpred">Golden Retriever</span>; <span id="OgAIconf">99.58</span>% confidence</p>
                         <div class="flex" id="original-img-div">
                             <img id="original-img-ss">
                         </div>
@@ -209,7 +221,8 @@
 
                             <button id = "averageCompute imageOptions" style="display:  none;" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="computeAvg();">Generate Average Saliency Map</button>
                         </div>
-
+                    </div>
+                    <div class="flex" style="padding-top: 40px;">
                         <div class="flex-inner step" id="canvasAvg" style="display: none;">
                             
                             <p id="imageOptions" style="font-size: 18px; font-weight: bold;"> Average Saliency Map: </p>
@@ -217,7 +230,7 @@
                         </div>
                         <div class="flex-inner steos" id="ogHeatmap" style="display: none;">
                             <p id="imageOptions" style="font-size: 18px; font-weight: bold; margin-top: 0px;"> Original Saliency Map: </p>
-                            <img id="ogheat" style="margin-top: 12px;" src="./assets/shapes/bear.jpg">
+                            <img id="ogheat" style="margin-top: 12px; width: 200px; height: 200px;" src="./assets/shapes/bear.jpg">
                         </div>
                     </div>
 
@@ -269,6 +282,7 @@
     <script type="text/javascript" src="./js/main.js"></script>
     <script type="text/javascript" src="./js/draw.js"></script>
     <script type="text/javascript" src="./js/canvasBar.js"></script>
+    <script type="text/javascript" src="./js/hover.js"></script>
     <script type="text/javascript" src="./js/includeHTML.js"></script>
     <script type="text/javascript" src="./js/piechartjson.js"></script>
     <script type="text/javascript" src="./js/imageSetup.js"></script>

@@ -201,8 +201,11 @@ function stylizeImg(){
         quizImage.hide();    // or something other
     });
 
+    // predict image class
     // predictClass(document.getElementById('stylizedimg'+count.toString()));
     // document.getElementById('prediction').textContent = prediction;
+
+    document.getElementById("checkboxoverlap").style.display = "block";
 }
 
 function styleAnother(){
@@ -233,6 +236,25 @@ function styleAnother(){
 
 }
 
+function xraicheck(){
+    if(document.getElementById('tab1xrai').value == "unchecked"){
+        console.log("currently unchecked")
+        document.getElementById('tab1xrai').value = "checked"
+    } else {
+        console.log("currently checked")
+        document.getElementById('tab1xrai').value = "unchecked"
+    }
+
+    if(document.getElementById("tab1xrai").value == "checked"){
+        console.log("value is checked")
+        xraioverlap(choice = document.getElementById("shapeselect0"), id = 'stylizedimg0', query = '.flex #stylized-img-div1', appendHTML = '<img id="stylized-img-ss1" style="position: relative; margin: 0px; max-width: 330px;"> <img id="xrai-img1" style="position: absolute; opacity: 40%; max-width: 330px;"> ', sliders = document.getElementById("sliderTab1"));
+    } else {
+        document.getElementById("xrai-img1").remove();
+        stylizeImg();
+    }
+    
+}
+
 /***********************************************/
 //               TAB 2 FUNCTIONS               //
 /***********************************************/
@@ -240,10 +262,8 @@ function styleAnother(){
 function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = document.querySelector("#sliderOpacity")){
 
     var remove_img = xraiimg
-    console.log(remove_img)
+    
     if (remove_img != null){
-        console.log(remove_img)
-        console.log("REMOVING IT")
         remove_img.src = ""
     }
 
@@ -263,7 +283,6 @@ function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = docum
 
     var radio = document.getElementsByName("xraiList")
     if(radio[0].checked){
-        console.log("Show is checked")
         set_xraiimg()
 
         var remove_img = document.getElementById("stylized-img-xrai")
@@ -271,7 +290,6 @@ function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = docum
             remove_img.src = ""
         } else {
             var img_div = document.querySelector('.flex #stylized-img-div')
-            console.log(img_div.innerHTML)
             img_div.innerHTML = img_div.innerHTML + '<img id="stylized-img-xrai">'
         }
         
@@ -286,7 +304,6 @@ function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = docum
                 remove_img.src = ""
             } else {
                 var img_div = document.querySelector('.flex #original-img-div')
-                console.log(img_div.innerHTML)
                 img_div.innerHTML = img_div.innerHTML + '<img id="original-img-xrai">'
             }
 
@@ -307,17 +324,9 @@ function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = docum
         
     }
 
-
-
 }
 
 function ogimg(){
-
-    // var remove_img = document.getElementById("xrai-og-img")
-    // if (remove_img != null){
-    //     console.log("WE DONT WANT THIS")
-    //     remove_img.src = ""
-    // }
 
     var choice = document.getElementById("original-ss")
 
@@ -331,18 +340,14 @@ function ogimg(){
 function set_xraiimg(choice = document.getElementById("stylized-ss"), imgobj = '#stylized-img-xrai', xrai =document.getElementById("xrai-img")){
 
     var remove_img = xrai
-    console.log("REMOVE IMG", remove_img)
     if (remove_img != null){
-        console.log("SET XRAI HELLLOOOO")
         remove_img.src = ""
     }
 
     var xrai_classpath = "./assets/heatmaps/"+ choice.value + ".png";
 
-    console.log(imgobj)
     var xraiImage = $(imgobj)
 
-    console.log(xraiImage)
     $.ajax({
         url: xrai_classpath,
         type: "GET"
@@ -360,18 +365,11 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
 
     for (var i = 0, length = radio.length; i < length; i++) {
       if (radio[i].checked) {
-        // do whatever you want with the checked radio
-        console.log(radio[i].value);
-
         if(radio[i].value == "show"){
             var img_div = document.querySelector(query)
-            console.log(img_div)
-            console.log(img_div.innerHTML)
-
             img_div.innerHTML = img_div.innerHTML + appendHTML
 
             if(radio[i].id == "xrai"){
-                console.log("in xrai")
                 var slider = sliders
                 slider.style.display = "none";
                 set_xraiimg(); 
@@ -385,9 +383,7 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
            var radio_xrai = document.getElementsByName("xraiList")
 
            if(radio_og[0].checked && radio_xrai[0].checked){
-                console.log("they are the same!")
                 var sal_div = document.getElementById("salsim-div")
-                console.log(sal_div)
                 sal_div.style.display = "block";
                 changeAlpha();
                 changeK();
@@ -395,21 +391,16 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
 
         }
         else if (radio[i].value == "hide"){
-            console.log("HIDING")
             var img_div = document.querySelector(query)
             img_div.innerHTML = originalHTML
-
-            console.log(img_div)
 
             document.getElementById("salsim-div").style.display = "none";
 
             var slider = sliders
             slider.style.display = "none";
             if(radio[i].id == "xrai"){
-                console.log("HELLOOO")
                 ssimg()
             }else if(radio[i].id =="og"){
-                console.log("IN OG HIDE")
                 ssimg(xraiimg=document.getElementById("xrai-og-img"), opacityNum = document.querySelector("#sliderOpacityOg"))
             }
             
@@ -432,28 +423,38 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
 
 function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'stylized-img-ss', query = '.flex #stylized-img-div', appendHTML = '<img id="stylized-img-ss" style="position: relative;"> <img id="xrai-img" style="position: absolute; opacity: 40%"> ', sliders = document.getElementById("sliders")){
 
-    document.getElementById("salsim-div").style.display = "none";
-
     var img_div = document.querySelector(query)
     img_div.innerHTML = appendHTML
 
-    console.log("OVERLAP", choice.value)
-    if (choice.value.split("-")[1] == "stylized"){
-        var beg_path = "./assets/stylized-images/"
-        var option = choice.value
+    if (id != "stylizedimg0"){
+        if (choice.value.split("-")[1] == "stylized"){
+            var beg_path = "./assets/stylized-images/"
+            var option = choice.value
+        } else {
+            var beg_path = "./assets/shapes/"
+            var option = choice.value.split("-")[0]
+        }
+
+        var og_classpath = beg_path+option + ".jpg";
+        var xrai_classpath = "./assets/heatmaps/"+ choice.value + ".png";
     } else {
-        var beg_path = "./assets/shapes/"
-        var option = choice.value.split("-")[0]
+        var beg_path = "./assets/stylized-images/"
+        var option = choice.value + "-stylized-" + document.getElementById("textureselect0").value
+
+        console.log(option)
+        var og_classpath = beg_path+option + ".jpg";
+        var xrai_classpath = "./assets/heatmaps/"+ option + ".png";
     }
-
-    var og_classpath = beg_path+option + ".jpg";
-    var xrai_classpath = "./assets/heatmaps/"+ choice.value + ".png";
-
     
     if(id == 'original-img-ss'){
+        document.getElementById("salsim-div").style.display = "none";
         var ogImage = $('#original-img-ss')
         var xraiImage = $('#xrai-og-img')
+    } else if(id == 'stylizedimg0'){
+        var ogImage = $('#stylized-img-ss1')
+        var xraiImage = $('#xrai-img1')
     } else {
+        document.getElementById("salsim-div").style.display = "none";
         var ogImage = $('#stylized-img-ss')
         var xraiImage = $('#xrai-img')
     }
@@ -463,10 +464,8 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'styl
         url: xrai_classpath,
         type: "GET"
     }).done(function() {
-        console.log("adding image")
         xraiImage.attr('src', xrai_classpath);   // set the image source
     }).fail(function() {
-        console.log("failed")
         xraiImage.hide();    // or something other
     });
 
@@ -474,10 +473,8 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'styl
         url: og_classpath,
         type: "GET"
     }).done(function() {
-        console.log("adding image")
         ogImage.attr('src', og_classpath);   // set the image source
     }).fail(function() {
-        console.log("failed")
         ogImage.hide();    // or something other
     });
 
@@ -503,10 +500,8 @@ function changeAlpha(){
         url: style_classpath,
         type: "GET"
     }).done(function() {
-        console.log("adding image")
         styleImage.attr('src', style_classpath);   // set the image source
     }).fail(function() {
-        console.log("failed")
         styleImage.hide();    // or something other
     });
 
@@ -522,14 +517,9 @@ function changeK(){
     var shpnme = choice.value.split("-")[0]
 
     var remove_pie1 = document.getElementById("salsim-pie1")
-    console.log("REMOVE PIE", remove_pie1)
-    if (remove_pie1 != null){
-        updatePieChart(piechartjson[choice.value][sliderK.value]['data'], piechartjson[shpnme][sliderK.value]['data'], piechartjson[choice.value][sliderK.value]['colors'], piechartjson[shpnme][sliderK.value]['colors'])
-    }
-
     var remove_pie2 = document.getElementById("salsim-pie2")
-    console.log("REMOVE PIE", remove_pie2)
-    if (remove_pie2 != null){
+
+    if (remove_pie1 != null || remove_pie2 != null){
         updatePieChart(piechartjson[choice.value][sliderK.value]['data'], piechartjson[shpnme][sliderK.value]['data'], piechartjson[choice.value][sliderK.value]['colors'], piechartjson[shpnme][sliderK.value]['colors'])
     }
 }
@@ -537,13 +527,7 @@ function changeK(){
 
 function updatePieChart(pie1data, pie2data, colors1, colors2){
 
-    console.log(pie1data)
-    console.log(pie2data)
-    console.log(colors1)
-    console.log(colors2)
-
-
-    // pie2 is original image
+    //pie2 is original image
     //pie1 is stylized image
 
     const width = 275,
@@ -553,7 +537,6 @@ function updatePieChart(pie1data, pie2data, colors1, colors2){
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
     const radius = Math.min(width-25, height-25) / 2 - margin;
 
-    // Create dummy data
     const data1 = pie1data
 
     // set the color scale
@@ -562,7 +545,6 @@ function updatePieChart(pie1data, pie2data, colors1, colors2){
 
     // Compute the position of each group on the pie:
     const pie = d3.pie()
-        
         .startAngle(1.1*Math.PI)
         .endAngle(3.1*Math.PI)
       .value(function(d) {return d[1]})
@@ -648,9 +630,6 @@ function changeOpacity(slider = document.querySelector("#sliderOpacity"), imgcho
     const img = imgchoice;
 
     img.style.opacity = (sliderOpacity.value)/100;
-
-    console.log("SLIDERNUM", text)
-    console.log("SLIDER", sliderOpacity)
     text.innerHTML = sliderOpacity.value;
 }
 
@@ -663,23 +642,13 @@ function displayImgs(){
     textureList.forEach(element => imgList.push(choice.value + "-stylized-" + element))
 
     var rows = document.getElementById("imageOptions rows").children;
-    console.log(imgList)
 
     for (var i =0; i < rows.length; i++){
-        console.log("NEW ONE")
-        console.log("style")
         imgchild_style = rows[i].children[0].children[0]
         imgchild_heat = rows[i].children[0].children[1]
-
         newsrc = stylepath + imgList[i] + stylefile
-        console.log("NEW SRC", newsrc)
         imgchild_style.src = stylepath + imgList[i] + stylefile
         imgchild_heat.src = heatpath + imgList[i] + heatfile
-        console.log(imgchild_style)
-        console.log("heat")
-        console.log(imgchild_heat)
-
-
     }
 
     document.getElementById('ogheat').src = heatpath + choice.value + heatfile
@@ -690,13 +659,11 @@ function displayImgs(){
 
     var canvas = document.getElementById("canvasAvg")
 
-    console.log("CANVAS", canvas)
-
     if(canvas.children.length == 3){
         document.getElementById("canvasAvg").children[2].remove();
     }
 
-    document.getElementById("canvasAvg").innerHTML += "<canvas id='outputCanvas' style='width: 85%'></canvas>"
+    document.getElementById("canvasAvg").innerHTML += "<canvas id='outputCanvas' style='width: 200px; height: 200px;'></canvas>"
 }
 
 function addImg(imgid){
@@ -705,7 +672,6 @@ function addImg(imgid){
     imgidname = split[0] + "grid" + " " + split[1]
 
     if (imgid.name == "selected"){
-        console.log("in if")
         document.getElementById(imgid.id).style.border = "0px"
         document.getElementById(imgid.id).style.opacity = "100%"
         document.getElementById(imgid.id).name = "none"
@@ -715,7 +681,6 @@ function addImg(imgid){
         })
         
     } else {
-
         document.getElementById(imgid.id).style.border = "2px solid #479ff8"
         document.getElementById(imgid.id).style.opacity = "85%"
         document.getElementById(imgid.id).name = "selected"
@@ -736,7 +701,6 @@ function computeAvg(){
     heatmap_list.push(element + " heatmap")
   })
 
-  console.log(heatmap_list)
   let N = averageImgList.length
 
   let first_img = cv.imread(document.getElementById(heatmap_list[0]))
@@ -750,11 +714,9 @@ function computeAvg(){
   let temp = new cv.Mat();
 
   let mat = new cv.Mat(330, 330, cv.CV_8UC3, new cv.Scalar(N, N, N))
-  console.log(mat)
 
   for (var i = 0; i < N; i++) {
 
-    console.log(heatmap_list[i])
     let src = cv.imread(document.getElementById(heatmap_list[i]))
 
     cv.cvtColor(src, dst, cv.COLOR_RGBA2RGB);
@@ -762,43 +724,9 @@ function computeAvg(){
     cv.divide(dst, mat, temp)
 
     cv.add(temp, avg_img, avg_img)
-
   }
 
   cv.imshow(document.getElementById('outputCanvas'), avg_img);
-}
-/***********************************************/
-//               HOVER ANIMATIONS              //
-/***********************************************/
-
-function hoverImg(){
-    iconimg = document.getElementById("plusicon")
-    iconimg.setAttribute('src', "assets/icons/plus-hover.svg")
-}
-
-function leaveImg(){
-    iconimg = document.getElementById("plusicon")
-    iconimg.setAttribute('src', "assets/icons/plus.svg")
-}
-
-function hoverImggrid(imgid){
-    img = document.getElementById(imgid.id)
-    img.style.opacity = "75%";
-}
-
-function leaveImggrid(imgid){
-    img = document.getElementById(imgid.id)
-    img.style.opacity = "100%";
-}
-
-function hoverBtn(){
-    btn = document.getElementById("detailsButton")
-    btn.style.background = "#246db6"
-}
-
-function leaveBtn(){
-    btn = document.getElementById("detailsButton")
-    btn.style.background = "#479ff8"
 }
 
 /***********************************************/
