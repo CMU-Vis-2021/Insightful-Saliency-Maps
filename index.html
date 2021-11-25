@@ -21,7 +21,7 @@
             <nav>
               <button id = "openTab1" onclick = "changeTab(this,'tab1')" class = "active">Stylize an Image</button>
               <button id = "openTab2" onclick = "changeTab(this,'tab2')">Saliency Similarity</button>
-              <!-- <button id = "openTab4" onclick = "changeTab(this,'tab4')">Model Comparison</button> -->
+              <button id = "openTab4" onclick = "changeTab(this,'tab4')">Model Comparison</button>
               <button id = "openTab3" onclick = "changeTab(this,'tab3')">Explain an Image</button>
             </nav>
             <div id = "tab1">
@@ -275,18 +275,23 @@
                         <button id = "revealAnswerButton" class = "blue" onclick="revealAnswer(this)">I'm done! Show me how an AI sees this image</button>
                     </div>     
             </div> 
-            <!-- <div id = "tab4" class = "hidden">
+            <div id = "tab4" class = "hidden">
                 Compare models Tabs
-            </div> -->
+            </div>
         </div>
     </body>
     <script type="text/javascript" src="./js/main.js"></script>
     <script type="text/javascript" src="./js/draw.js"></script>
     <script type="text/javascript" src="./js/canvasBar.js"></script>
     <script type="text/javascript" src="./js/hover.js"></script>
+    <script type="text/javascript" src="./js/sliders.js"></script>
+    <script type="text/javascript" src="./js/xrai.js"></script>
+    <script type="text/javascript" src="./js/stylize.js"></script>
+    <script type="text/javascript" src="./js/explain.js"></script>
     <script type="text/javascript" src="./js/includeHTML.js"></script>
     <script type="text/javascript" src="./js/piechartjson.js"></script>
-    <script type="text/javascript" src="./js/imageSetup.js"></script>
+    <script type="text/javascript" src="./js/piechart.js"></script>
+    <script type="text/javascript" src="./js/averageSaliency.js"></script>
     <script type="text/javascript" src="./js/predictions.js"></script>
     <script src="./opencv.js" type="text/javascript"></script>
 </html>
