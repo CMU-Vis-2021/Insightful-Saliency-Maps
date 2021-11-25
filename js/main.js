@@ -20,36 +20,6 @@ let prediction = "";
 let averageImgList = [];
 let count = 0
 
-/***********************************************/
-//             CANVAS FUNCTIONS                //
-/***********************************************/
-
-
-
-/***********************************************/
-//             GENERAL FUNCTIONS               //
-/***********************************************/
-
-// ml model variables and function
-// const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
-// // When the model is loaded
-// function modelLoaded() {
-//     console.log("Model Loaded!");
-// }
-
-// function predictClass(image){
-
-//     classifier.predict(image, 10,
-//         function (err, results) {
-//             // alert(results[0].label);
-//             console.log(results[0].label);
-//             console.log(results[0].confidence)
-//             console.log(results)
-
-//             prediction = results[0].label;
-//         });
-// }
-
 function changeTab(button, tabToReveal){
     
     if(button.classList.contains("active") != true){

@@ -11,6 +11,7 @@ function xraicheck(){
         console.log("value is checked")
         xraioverlap(choice = document.getElementById("shapeselect0"), id = 'stylizedimg0', query = '.flex #stylized-img-div1', appendHTML = '<img id="stylized-img-ss1" style="position: relative; margin: 0px; max-width: 330px;"> <img id="xrai-img1" style="position: absolute; opacity: 40%; max-width: 330px;"> ', sliders = document.getElementById("sliderTab1"));
     } else {
+        document.getElementById("sliderTab1").style.display = "none"
         document.getElementById("xrai-img1").remove();
         stylizeImg();
     }
