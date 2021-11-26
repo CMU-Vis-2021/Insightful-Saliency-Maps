@@ -21,7 +21,6 @@ function changeAlpha(){
         styleImage.hide();    // or something other
     });
 
-
 }
 
 function changeK(){

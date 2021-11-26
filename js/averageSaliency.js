@@ -55,11 +55,18 @@ function computeAvg(){
     heatmap_list.push(element + " heatmap")
   })
 
+  console.log(averageImgList)
+  console.log(heatmap_list[0])
+
+  console.log(document.getElementById(heatmap_list[0]))
   let N = averageImgList.length
 
   let first_img = cv.imread(document.getElementById(heatmap_list[0]))
-  let first_dst = new cv.Mat();
+
+  let first_dst = new cv.Mat(); 
   cv.cvtColor(first_img, first_dst, cv.COLOR_RGBA2RGB);
+
+  // console.log("FIRST IMG",  first_dst.ucharPtr(175,175))
   let size = first_img.size()
 
   let avg_img = new cv.Mat.zeros(size, first_dst.type());
