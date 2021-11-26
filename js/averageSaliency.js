@@ -82,3 +82,25 @@ function computeAvg(){
 
   cv.imshow(document.getElementById('outputCanvas'), avg_img);
 }
+
+function addImg(imgid){
+
+    split = imgid.id.split(" ")
+    imgidname = split[0] + "grid" + " " + split[1]
+
+    if (imgid.name == "selected"){
+        document.getElementById(imgid.id).style.border = "0px"
+        document.getElementById(imgid.id).style.opacity = "100%"
+        document.getElementById(imgid.id).name = "none"
+
+        averageImgList = averageImgList.filter(function(item) {
+            return item !== imgidname
+        })
+        
+    } else {
+        document.getElementById(imgid.id).style.border = "2px solid #479ff8"
+        document.getElementById(imgid.id).style.opacity = "85%"
+        document.getElementById(imgid.id).name = "selected"
+        averageImgList.push(imgidname)
+    }
+}
