@@ -47,6 +47,43 @@ h2{
   margin:70px auto;
 }
 
+#detailsSubTitles{
+  font-size: 25px;
+  font-style: normal;
+  color: #313942;
+  font-weight: normal;
+  text-align: left;
+  max-width: 700px;
+  margin:40px;
+}
+
+#detailsText{
+  font-size: 18px;
+  font-style: normal;
+  font-weight: normal;
+  text-align: left;
+  max-width: 700px;
+  margin:40px;
+}
+
+#howToDetails{
+  font-size: 25px;
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
+  max-width: 700px;
+  margin:40px auto;
+}
+
+#average-title {
+  font-size: 18px;
+  text-align: center;
+}
+
+.average-select{
+  font-size: 16px;
+}
+
 .flex{
   display: flex;
 }
@@ -75,6 +112,17 @@ select,
 select::before,
 select::after {
 box-sizing: border-box;
+}
+select:disabled {
+  background: rgb(231, 231, 231);
+  border-color: rgb(87, 87, 87);
+  color:rgb(87, 87, 87);
+}
+.disabled .select::after {
+  background: rgb(144, 144, 144);
+}
+.disabled{
+  opacity: .3;
 }
 
 select {
@@ -112,6 +160,12 @@ select::-ms-expand {
   grid-template-areas: "select";
   align-items: center;
 }
+#tab1 .select{
+  display: inline-grid;
+  width: 40%;
+  margin-left: 21px;
+  margin-top: 10px;
+}
 .select::after {
   content: "";
   width: 15px;
@@ -121,6 +175,10 @@ select::-ms-expand {
   clip-path: polygon(100% 0%, 0 0%, 50% 100%);
   justify-self: end;
   margin-right: 10px;
+}
+
+#imggrid:hover{
+  opacity: 60%;
 }
 
 .stylized-select{
@@ -208,7 +266,7 @@ button.blue{
 }
 #tab2 img{
   max-width:200px;
-  margin:20px 10px 10px;
+  margin:5px 10px 10px;
 }
 #tab2 .select{
   max-width:200px;
@@ -216,6 +274,22 @@ button.blue{
 #tab2 {
   margin-bottom: 100px;
 }
+#tab2 .flex{
+  justify-content: space-evenly;
+}
+
+#tab2 .explain{
+  text-align: center;
+  margin:auto;
+  margin-bottom:50px;
+  line-height: 24px;
+    font-size: 16px;
+  max-width: 700px;
+}
+#tab2 h2{
+  margin-bottom:30px;
+}
+
 
 .hidden{
   display: none;
@@ -249,9 +323,59 @@ button.blue{
 #details {
   margin-top: 100%;
   padding-bottom: 25%;
-  border: 3px solid rgb(151, 183, 201);
-  border-radius: 20px;
 } 
+
+#tab1 {
+  margin-top: 0%;
+  padding-bottom: 100%;
+} 
+
+/***********************************/
+/*         Column Row CSS          */
+/***********************************/
+
+/** {
+  box-sizing: border-box;
+}
+*/
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 1px;
+  margin:  5px 5px;
+  text-align: center;
+}
+
+.card img{
+  width: 100%;
+}
+
 /***********************************/
 /*        Canvas CSS               */
 /***********************************/
@@ -297,13 +421,22 @@ canvas {
 #tab3 h2{
   margin-bottom: 30px;
 }
-#tab3 .box{
+#tab3 .box, #tab2 .box{
   width:20px;
   height: 20px;
   display: inline-block;
   border-radius: 20px;
   margin-right:5px;
 }
+#tab2 .rect{
+  width:100px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 20px;
+  margin-right:5px;
+  background-image: linear-gradient(to right, #ffcb2e,#f3781e,#bb0f44,#5b0b67);
+}
+
 #tab3 .instructions{
   max-width: 500px;
   margin:auto;
@@ -366,6 +499,21 @@ h4{
 }
 .gifTopper img{
   width:100%;
+}
+
+#stylized-img-div1{
+  max-width: 230px;
+  margin:auto;
+}
+#stylizedimg0{
+  width: 100%;
+}
+#tab2-disabledElement1 .inner p{
+ margin-bottom: 0px;
+ margin-top: 20px;
+}
+.disabled .inner{
+  display: none;
 }
 
 
