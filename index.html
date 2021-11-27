@@ -57,12 +57,13 @@
                         </div>
 
                         <div id="checkboxoverlap" style="text-align: center; display: none; padding-top: 10px;">
-                            <input type="checkbox" name="tab1List" value="unchecked" id="tab1xrai" onchange="xraicheck()">Overlap what the computer sees
+                            <img id="xraiscale" src="./assets/heatmaps/scale.png" style="width: 50%; padding: 5px; display: none;"> 
+                            <input type="checkbox" name="tab1List" value="unchecked" id="tab1xrai" onchange="xraicheck()">Overlap regions important to the AI
                         </div>
                     </div>
 
                     <div class="flex-inner step disabled" id = "tab1-input3">
-                        <label for="graph"><span class = "number">3</span>What does the computer think is in this picture?</label>
+                        <label for="graph"><span class = "number">3</span>What does an AI think is in this picture?</label>
                         <div id="d3-bar-tab1"></div>
                     </div>
                 </div>
@@ -79,7 +80,7 @@
             </div>
             <div id = "tab2" class = "hidden">
                 <h2>Explore the saliency maps of stylized images. See how they compare to the saliency map of the original, un-stylized image.</h2> 
-                <p class = "explain">A saliency map identifies what regions in an image a computer algorithm may use to interpret the image. XRAI is a saliency method that uses regions and colors to interpret how a computer understands an image. Typically, the image is split into a <b><span class = "gradient rect"></span>gradient of colors</b> that represent what the computer feels are <b><span class = "box yellow"></span>most important to identifying what's in the image</b> all the way to what the it feels are  <b><span class = "box purple"></span>least important</b> to identifying the image.</p>
+                <p class = "explain">A saliency map identifies what regions in an image are the most important to a neural network's prediciton. XRAI is a saliency method that uses regions and colors to interpret how a computer understands an image. Typically, the image is split into a <b><span class = "gradient rect"></span>gradient of colors</b> that represent what features in the image are <b><span class = "box yellow"></span>most important to identifying the class of the image</b> all the way to what features are  <b><span class = "box purple"></span>least important</b> to identifying the class of the image.</p>
                 <div class="flex">
                     <div class = "flex-inner step" id = "stylized-saliency"> 
                       

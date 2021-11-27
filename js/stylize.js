@@ -52,8 +52,8 @@ function stylizeImg(){
     var quizImage = $('#stylizedimg'+count.toString())
 
     classpath = "./assets/stylized-images/"+selectShape.value+"-stylized-"+ selectTexture.value + ".jpg";
-    updateBarPrediction(selectShape.value+"-stylized-"+ selectTexture.value + ".jpg");
-    console.log("FILE NAME ===   "+selectShape.value+"-stylized-"+ selectTexture.value + ".jpg")
+    updateBarPrediction(selectShape.value+"-stylized-"+ selectTexture.value);
+    console.log("FILE NAME ===   "+selectShape.value+"-stylized-"+ selectTexture.value)
     $.ajax({
         url: classpath,
         type: "GET"

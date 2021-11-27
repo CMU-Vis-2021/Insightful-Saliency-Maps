@@ -111,7 +111,7 @@ function intersectCompare(){
         }
 
         document.getElementById(element+"-img").src = "./assets/saliency-similarity/"+element+"/"+document.getElementById("compare-ss").value+"-15.png"
-        document.getElementById(element+"-img").alt = "Intersection of saliency maps for original and stylized image of " + document.getElementById("compare-ss").value + "for model " + element +" with a delta value of 15."
+        document.getElementById(element+"-img").alt = "Intersection of saliency maps for original and stylized image of " + document.getElementById("compare-ss").value + " for model " + element +" with a delta value of 15."
         document.getElementById(element+"-compare").style.display = "block"
 
 
