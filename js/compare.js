@@ -81,3 +81,35 @@ function ogimg(){
     document.getElementById("OgAIconf").innerHTML = (predictions[choice.value][0]['confidence'] * 100).toFixed(2)
 
 }
+
+
+var models = []
+
+function modelCompare(checkID){
+
+    if((checkID.value).includes("unchecked")){
+        checkID.value = (checkID.value).split("unchecked ")[1]
+        models.push(checkID.value)
+    } else {
+        
+        models = models.filter(function(value){ 
+            return value != checkID.value;
+        });
+        checkID.value = "unchecked " + checkID.value
+    }
+}
+
+function intersectCompare(){
+    models.forEach(function(element){
+        if(models.length == 2){
+            document.getElementById("modelsCompare").style.margin = "0px 10$ 0px 10%"
+        } else if (models.length == 1){
+            document.getElementById("modelsCompare").style.margin = "0px 20% 0px 20%"
+        }
+
+        document.getElementById(element+"-img").src = "/assets/saliency-similarity/"+element+"/"+document.getElementById("compare-ss").value+"-15.png"
+        document.getElementById(element+"-compare").style.display = "block"
+
+
+    })
+}

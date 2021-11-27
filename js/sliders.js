@@ -1,16 +1,14 @@
-function changeAlpha(){
+function changeAlpha(choiceVal = document.getElementById("stylized-ss"), slider = document.querySelector("#sliderAlpha"), number = document.getElementById("numAlpha"), img = '#salsim-img', model="inceptionv3"){
 
-    var choice = document.getElementById("stylized-ss")
+    var choice = choiceVal
 
-    const sliderAlpha = document.querySelector("#sliderAlpha");
-    const sliderK = document.querySelector("#sliderK");
+    const sliderAlpha = slider
 
-    document.getElementById("numAlpha").innerHTML = sliderAlpha.value;
+    number.innerHTML = sliderAlpha.value;
 
-    var styleImage = $('#salsim-img')
+    var styleImage = $(img)
 
-
-    var style_classpath = "./assets/saliency-similarity/"+ choice.value + "-" + sliderAlpha.value.toString() + ".png";
+    var style_classpath = "./assets/saliency-similarity/"+model+"/"+ choice.value + "-" + sliderAlpha.value.toString() + ".png";
 
     $.ajax({
         url: style_classpath,
