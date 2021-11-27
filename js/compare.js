@@ -91,14 +91,23 @@ var models = []
 function modelCompare(checkID){
 
     if((checkID.value).includes("unchecked")){
-        checkID.value = (checkID.value).split("unchecked ")[1]
-        models.push(checkID.value)
+        if (models.length > 0){
+            checkID.value = (checkID.value).split("unchecked ")[1]
+            models.push(checkID.value)
+            intersectCompare();
+        } else {
+            checkID.value = (checkID.value).split("unchecked ")[1]
+            models.push(checkID.value)
+        }
+        
     } else {
         
         models = models.filter(function(value){ 
             return value != checkID.value;
         });
+        document.getElementById(checkID.value+"-compare").style.display = "none"
         checkID.value = "unchecked " + checkID.value
+
     }
 }
 
