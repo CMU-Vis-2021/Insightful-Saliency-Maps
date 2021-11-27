@@ -30,7 +30,7 @@ var yT1 = d3.scaleBand()
 //add y axis to the bar chart svg
 const yAxisT1 = svgPrediction.append("g");
 
-let predictData = predictions.filter( function(d){return d.file_name == "dog-stylized-tiger.jpg"});
+let predictData = prediction_bar.filter( function(d){return d.file_name == "dog-stylized-tiger.jpg"});
 
 // Y axis
 yT1.domain(predictData.map(function(d) { return d.prediction; } ) )
@@ -51,7 +51,7 @@ svgPrediction.append("text")
 
 function updateBarPrediction(fileName){
   //filter our data to only show predictions for the selected file
-  let predictData = predictions.filter( function(d){return d.file_name == fileName});
+  let predictData = prediction_bar.filter( function(d){return d.file_name == fileName});
 
   // Y axis
   yT1.domain(predictData.map(function(d) { return d.prediction; } ) )

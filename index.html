@@ -70,7 +70,7 @@
                 <br>
                 <br>
                 <br>
-                <button id = "detailsButton" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="location.href='#details'; includeHTML();">Learn about Style Transfers and Saliency Maps</button>
+                <button id = "detailsButton" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="location.href='#details'; includeHTML();">Learn about In<span style="font-style: italic;">sight</span>ful Saliency Maps</button>
                 <div id="details">
                     <button id = "topButton" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="location.href='#top';">Go to top</button>
                     <h1>About  In<span style="font-style:  italic;">sight</span>ful Saliency Maps</h1>
@@ -79,7 +79,7 @@
             </div>
             <div id = "tab2" class = "hidden">
                 <h2>Explore the saliency maps of stylized images. See how they compare to the saliency map of the original, un-stylized image.</h2> 
-                <p class = "explain">A saliency map idetifies what regions in an image a computer algorithm may use to interpret the image. XRAI is a saliency method that uses regions and colors to interpret how a computer understands an image. Typically, the image is split into a <b><span class = "gradient rect"></span>gradient of colors</b> that represent what the computer feels are <b><span class = "box yellow"></span>most important to identifying what's in the image</b> all the way to what the it feels are  <b><span class = "box purple"></span>least important</b> to identifying the image.</p>
+                <p class = "explain">A saliency map identifies what regions in an image a computer algorithm may use to interpret the image. XRAI is a saliency method that uses regions and colors to interpret how a computer understands an image. Typically, the image is split into a <b><span class = "gradient rect"></span>gradient of colors</b> that represent what the computer feels are <b><span class = "box yellow"></span>most important to identifying what's in the image</b> all the way to what the it feels are  <b><span class = "box purple"></span>least important</b> to identifying the image.</p>
                 <div class="flex">
                     <div class = "flex-inner step" id = "stylized-saliency"> 
                       
@@ -100,12 +100,12 @@
                                <option value="bear-stylized-elephant">Bear x Elephant</option>
                            </select>
                         </div>
-                        <div class = "disabled" id = "tab2-disabledElement1">
-                            <p style="text-align: center;"> Prediction: <span id="AIpred">Indian Elephant</span>; <span id="AIconf">44.56</span>% confidence </p>
+                        <div id = "disabled1-tab2" class = "disabled">
+                            <p style="text-align: center;"> Prediction: <b><span id="AIpred"> </span></b>; <span id="AIconf"> </span>% confidence </p>
                             <div class="flex" id="stylized-img-div">
                                 <img id="stylized-img-ss">
                             </div>
-                            <div id="sliders" style="display: none;margin: auto;width: fit-content;">
+                            <div id="sliders" style="display: none; text-align: center;">
                                 <input type="range" id="sliderOpacity" min="0" max="100" value="40" class="sliders" oninput="changeOpacity()" /> <span id="numOpacity">40</span>%
                             </div>
                             <div style="text-align: center;">
@@ -126,7 +126,7 @@
                                <option value="bear" disabled>Bear</option>
                            </select>
                         </div>
-                        <p > Prediction: <span id="OgAIpred">Golden Retriever</span>; <span id="OgAIconf">99.58</span>% confidence</p>
+                        <p> Prediction: <b><span id="OgAIpred"> </span></b>; <span id="OgAIconf"> </span>% confidence</p>
                         <div class="flex" id="original-img-div">
                             <img id="original-img-ss">
                         </div>
@@ -276,7 +276,76 @@
                     </div>     
             </div> 
             <div id = "tab4" class = "hidden">
-                Compare models Tabs
+                <h2>Compare accuracy of different models through saliency maps. Is there one that consistently performs better than others?</h2> 
+
+                <div class="flex">
+                    <div class="flex-inner step">
+                        <p style="text-align: center; font-weight: bold; font-size: 18px;">Select models to compare</p>
+                        <div id="checkboxCompare" style="text-align:  center; padding-top: 10px;">
+                            <input type="checkbox" name="tab4Check" value="unchecked inceptionv3" id="inceptionv3" onclick="modelCompare(document.getElementById('inceptionv3'))">Inception V3
+                            <input type="checkbox" name="tab4Check" value="unchecked vgg16" id="vgg16" onclick="modelCompare(document.getElementById('vgg16'))">VGG 16
+                            <input type="checkbox" name="tab4Check" value="unchecked convmixer" id="convmixer" onclick="modelCompare(document.getElementById('convmixer'))">ConvMixer
+                        </div>
+                        <p style="text-align: center; font-weight: bold; font-size: 18px; padding-top: 10px;">Select comparison method</p>
+                        <div id="radioCompare" style="text-align:  center; padding-top: 10px;">
+                            <!-- <input type="radio" name="tab4Radio" value="show" id="showCompare" >Show XRAI -->
+                            <!-- <input type="radio" name="tab4Radio" value="overlap" id="overlapCompare">Overlap XRAI -->
+                            <input type="radio" name="tab4Radio" value="intersect" id="intersectCompare" checked>Intersect XRAI
+                            <!-- <input type="radio" name="tab4Radio" value="average" id="averageCompare">Average XRAI -->
+                        </div>
+                        <p style="text-align: center; font-weight: bold; font-size: 18px; padding-top: 10px;">Select stylized image</p>
+                        <div class="compare-select" style="padding: 10px; text-align: center;">
+                            <select class = "standard-select" name="compare" id="compare-ss" onchange="intersectCompare()" style="width:30%;">
+                               <option value="-1" selected disabled hidden>Select choice</option>
+                               <option value="dog-stylized-tiger">Dog x Tiger</option>
+                               <option value="dog-stylized-zebra">Dog x Zebra</option>
+                               <option value="dog-stylized-trucks">Dog x Trucks</option>
+                               <option value="dog-stylized-bikes">Dog x Bikes</option>
+                               <option value="dog-stylized-elephant">Dog x Elephant</option>
+                               <option value="bear-stylized-trucks">Bear x Trucks</option>
+                               <option value="bear-stylized-tiger">Bear x Tiger</option>
+                               <option value="bear-stylized-zebra">Bear x Zebra</option>
+                               <option value="bear-stylized-bikes">Bear x Bikes</option>
+                               <option value="bear-stylized-elephant">Bear x Elephant</option>
+                           </select>
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center;font-weight: bold; font-size: 20px"> Model Comparison: </p>
+                <div class="flex">
+                    <div class="flex-inner step" style="width: 40%;">
+                        Put predictions and confidence D3 chart here
+                    </div>
+                    <div class="flex" id="modelsCompare" style="text-align: center;">
+                        <div class="flex-inner step" id="inceptionv3-compare" style="display: none;">
+                            <div style="text-align: left;">
+                            <p>Inception V3 Intersection:</p>
+                            </div>
+                            <div id="sliders">
+                                <input type="range" id="sliderInception" min="0" max="20" step="5" value="15" class="sliders" oninput='changeAlpha(choiceVal = document.getElementById("compare-ss"), slider = document.querySelector("#sliderInception"), number = document.getElementById("numInception"), img = "#inceptionv3-img", model="inceptionv3")' /> <span id="numInception">15</span> delta
+                            </div>
+                            <img id="inceptionv3-img" src="./assets/saliency-similarity/inceptionv3/bear-stylized-bikes-0.png" style="border: 0px; width: auto;"/>
+                        </div>
+                        <div class="flex-inner step" id="vgg16-compare" style="display: none;">
+                            <div style="text-align: left;">
+                            <p>VGG 16 Intersection:</p>
+                            </div>
+                            <div id="sliders">
+                                <input type="range" id="sliderVGG" min="0" max="20" step="5" value="15" class="sliders" oninput="changeAlpha()" /> <span id="numAlpha">15</span> delta
+                            </div>
+                            <img id="vgg16-img" src="./assets/saliency-similarity/inceptionv3/bear-stylized-bikes-0.png" style="border: 0px; width: auto;"/>
+                        </div>
+                        <div class="flex-inner step" id="convmixer-compare" style="display: none;">
+                            <div style="text-align: left;">
+                            <p>ConvMixer Intersection:</p>
+                            </div>
+                            <div id="sliders">
+                                <input type="range" id="sliderConvMixer" min="0" max="20" step="5" value="15" class="sliders" oninput="changeAlpha()" /> <span id="numAlpha">15</span> delta
+                            </div>
+                            <img id="convmixer-img" src="./assets/saliency-similarity/inceptionv3/bear-stylized-bikes-0.png" style="border: 0px; width: auto;"/>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
@@ -285,6 +354,7 @@
     <script type="text/javascript" src="./js/canvasBar.js"></script>
     <script type="text/javascript" src="./js/predictions.js"></script>
     <script type="text/javascript" src="./js/predictionBar.js"></script>
+    <script type="text/javascript" src="./js/compare.js"></script>
     <script type="text/javascript" src="./js/hover.js"></script>
     <script type="text/javascript" src="./js/sliders.js"></script>
     <script type="text/javascript" src="./js/xrai.js"></script>

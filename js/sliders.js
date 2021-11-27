@@ -1,16 +1,14 @@
-function changeAlpha(){
+function changeAlpha(choiceVal = document.getElementById("stylized-ss"), slider = document.querySelector("#sliderAlpha"), number = document.getElementById("numAlpha"), img = '#salsim-img', model="inceptionv3"){
 
-    var choice = document.getElementById("stylized-ss")
+    var choice = choiceVal
 
-    const sliderAlpha = document.querySelector("#sliderAlpha");
-    const sliderK = document.querySelector("#sliderK");
+    const sliderAlpha = slider
 
-    document.getElementById("numAlpha").innerHTML = sliderAlpha.value;
+    number.innerHTML = sliderAlpha.value;
 
-    var styleImage = $('#salsim-img')
+    var styleImage = $(img)
 
-
-    var style_classpath = "./assets/saliency-similarity/"+ choice.value + "-" + sliderAlpha.value.toString() + ".png";
+    var style_classpath = "./assets/saliency-similarity/"+model+"/"+ choice.value + "-" + sliderAlpha.value.toString() + ".png";
 
     $.ajax({
         url: style_classpath,
@@ -21,6 +19,10 @@ function changeAlpha(){
         styleImage.hide();    // or something other
     });
 
+    id = img.split("#")[1]
+    console.log(img)
+    console.log(id)
+    document.getElementById(id).alt = "Intersection of saliency maps for original and stylized image of " + choiceVal.value + " for model " + model +" with a delta value of " + sliderAlpha.value +"."
 
 }
 

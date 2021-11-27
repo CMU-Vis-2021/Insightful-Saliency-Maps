@@ -64,10 +64,11 @@ function changeTab(button, tabToReveal){
 /***********************************************/
 //               TAB 2 FUNCTIONS               //
 /***********************************************/
-var disabledElem1 = document.getElementById("tab2-disabledElement1")
+var disabledElem1 = document.getElementById("disabled1-tab2")
 var disabledElem2 = document.getElementById("original-saliency")
 
 function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = document.querySelector("#sliderOpacity")){
+    console.log("disabledElem1 = "+disabledElem1);
     if(disabledElem1.classList.contains('disabled')){
         disabledElem1.classList.remove('disabled');
         disabledElem2.classList.remove('disabled');
