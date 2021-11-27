@@ -10,7 +10,7 @@ function xraicheck(){
     if(document.getElementById("tab1xrai").value == "checked"){
         console.log("value is checked")
         document.getElementById("xraiscale").style.display = "block";
-        xraioverlap(choice = document.getElementById("shapeselect0"), id = 'stylizedimg0', query = '.flex #stylized-img-div1', appendHTML = '<img id="stylized-img-ss1" style="position: relative; margin: 0px; max-width: 230px; width:100%;"> <img id="xrai-img1" style="position: absolute; opacity: 40%; max-width: 230px;width:100%;"> ', sliders = document.getElementById("sliderTab1"));
+        xraioverlap(choice = document.getElementById("shapeselect0"), id = 'stylizedimg', query = '.flex #stylized-img-div1', appendHTML = '<img id="stylizedimg0" style="position: relative; margin: 0px; max-width: 230px; width:100%;"> <img id="xrai-img1" style="position: absolute; opacity: 40%; max-width: 230px;width:100%;"> ', sliders = document.getElementById("sliderTab1"));
     } else {
         document.getElementById("xraiscale").style.display = "none";
         document.getElementById("sliderTab1").style.display = "none"
@@ -112,7 +112,7 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'styl
     var img_div = document.querySelector(query)
     img_div.innerHTML = appendHTML
 
-    if (id != "stylizedimg0"){
+    if (id != "stylizedimg"){
         if (choice.value.split("-")[1] == "stylized"){
             var beg_path = "./assets/stylized-images/"
             var option = choice.value
@@ -136,8 +136,8 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'styl
         document.getElementById("salsim-div").style.display = "none";
         var ogImage = $('#original-img-ss')
         var xraiImage = $('#xrai-og-img')
-    } else if(id == 'stylizedimg0'){
-        var ogImage = $('#stylized-img-ss1')
+    } else if(id == 'stylizedimg'){
+        var ogImage = $('#stylizedimg0')
         var xraiImage = $('#xrai-img1')
     } else {
         document.getElementById("salsim-div").style.display = "none";

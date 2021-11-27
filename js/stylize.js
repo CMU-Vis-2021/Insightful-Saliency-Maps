@@ -63,10 +63,10 @@ function stylizeImg(){
         quizImage.hide();    // or something other
     });
 
-    // predict image class
-    // predictClass(document.getElementById('stylizedimg'+count.toString()));
-    // document.getElementById('prediction').textContent = prediction;
-    // document.getElementById('stylizedimg'+count.toString()).alt = "Stylized image: " + selectShape.value+"-stylized-"+ selectTexture.value
+    if(document.getElementById('tab1xrai').value == "checked"){
+        xraioverlap(choice = document.getElementById("shapeselect0"), id = 'stylizedimg', query = '.flex #stylized-img-div1', appendHTML = '<img id="stylizedimg0" style="position: relative; margin: 0px; max-width: 230px; width:100%;"> <img id="xrai-img1" style="position: absolute; opacity: 40%; max-width: 230px;width:100%;"> ', sliders = document.getElementById("sliderTab1"));
+    }  
+    
 
     document.getElementById("checkboxoverlap").style.display = "block";
 }
