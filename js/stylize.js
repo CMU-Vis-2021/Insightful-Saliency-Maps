@@ -15,6 +15,7 @@ function shapeImg(){
     }).fail(function() {
         quizImage.hide();    // or something other
     });
+
 }
 
 function textureImg(){
@@ -34,6 +35,7 @@ function textureImg(){
     }).fail(function() {
         quizImage.hide();    // or something other
     });
+
 }
 
 function input3enable(){
@@ -63,9 +65,7 @@ function stylizeImg(){
         quizImage.hide();    // or something other
     });
 
-    // predict image class
-    // predictClass(document.getElementById('stylizedimg'+count.toString()));
-    // document.getElementById('prediction').textContent = prediction;
+    document.getElementById('stylizedimg'+count.toString()).alt = "Stylized image: " + selectShape.value+"-stylized-"+ selectTexture.value
 
     document.getElementById("checkboxoverlap").style.display = "block";
 }

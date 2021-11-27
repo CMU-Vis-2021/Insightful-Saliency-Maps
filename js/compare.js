@@ -15,6 +15,7 @@ function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = docum
 
     var img_style = document.getElementById("stylized-img-ss")
     img_style.setAttribute('src', style_classpathss)
+    img_style.alt = "Stylized image: " + choice.value
 
     document.getElementById("AIpred").innerHTML = predictions[choice.value][0]['label']
     document.getElementById("AIconf").innerHTML = (predictions[choice.value][0]['confidence'] * 100).toFixed(2)
@@ -79,6 +80,7 @@ function ogimg(){
 
     var img_style = document.getElementById("original-img-ss")
     img_style.setAttribute('src', og_classpath)
+    img_style.alt = "Original image: " + choice.value
 
     document.getElementById("OgAIpred").innerHTML = predictions[choice.value][0]['label']
     document.getElementById("OgAIconf").innerHTML = (predictions[choice.value][0]['confidence'] * 100).toFixed(2)
