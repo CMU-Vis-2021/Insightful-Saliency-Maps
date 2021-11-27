@@ -107,7 +107,7 @@ function intersectCompare(){
             document.getElementById("modelsCompare").style.margin = "0px 20% 0px 20%"
         }
 
-        document.getElementById(element+"-img").src = "/assets/saliency-similarity/"+element+"/"+document.getElementById("compare-ss").value+"-15.png"
+        document.getElementById(element+"-img").src = "./assets/saliency-similarity/"+element+"/"+document.getElementById("compare-ss").value+"-15.png"
         document.getElementById(element+"-compare").style.display = "block"
 
 
