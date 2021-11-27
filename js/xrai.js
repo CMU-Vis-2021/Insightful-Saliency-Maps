@@ -9,7 +9,7 @@ function xraicheck(){
 
     if(document.getElementById("tab1xrai").value == "checked"){
         console.log("value is checked")
-        xraioverlap(choice = document.getElementById("shapeselect0"), id = 'stylizedimg0', query = '.flex #stylized-img-div1', appendHTML = '<img id="stylized-img-ss1" style="position: relative; margin: 0px; max-width: 330px;"> <img id="xrai-img1" style="position: absolute; opacity: 40%; max-width: 330px;"> ', sliders = document.getElementById("sliderTab1"));
+        xraioverlap(choice = document.getElementById("shapeselect0"), id = 'stylizedimg0', query = '.flex #stylized-img-div1', appendHTML = '<img id="stylized-img-ss1" style="position: relative; margin: 0px; max-width: 230px; width:100%;"> <img id="xrai-img1" style="position: absolute; opacity: 40%; max-width: 230px;width:100%;"> ', sliders = document.getElementById("sliderTab1"));
     } else {
         document.getElementById("sliderTab1").style.display = "none"
         document.getElementById("xrai-img1").remove();
@@ -42,7 +42,9 @@ function set_xraiimg(choice = document.getElementById("stylized-ss"), imgobj = '
 
 }
 
-function xrairadio(radio = document.getElementsByName("xraiList"), query = '.flex #stylized-img-div', appendHTML = '<img id="stylized-img-xrai">', originalHTML = '<img id="stylized-img-ss">', sliders = document.getElementById("sliders"), opacityNum = document.querySelector("#sliderOpacity")){
+
+
+function xrairadio(radio = document.getElementsByName("xraiList"), query = '.flex #stylized-img-div', appendHTML = '<div class= "img-label"><img id="stylized-img-xrai"><div><p>XRAI</p></div></div>', originalHTML = '<img id="stylized-img-ss">', sliders = document.getElementById("sliders"), opacityNum = document.querySelector("#sliderOpacity")){
 
     for (var i = 0, length = radio.length; i < length; i++) {
       if (radio[i].checked) {
@@ -75,6 +77,7 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
             var img_div = document.querySelector(query)
             img_div.innerHTML = originalHTML
 
+            document.getElementById("label1-xrai-tab2")
             document.getElementById("salsim-div").style.display = "none";
 
             var slider = sliders

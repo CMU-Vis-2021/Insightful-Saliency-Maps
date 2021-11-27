@@ -113,6 +113,17 @@ select::before,
 select::after {
 box-sizing: border-box;
 }
+select:disabled {
+  background: rgb(231, 231, 231);
+  border-color: rgb(87, 87, 87);
+  color:rgb(87, 87, 87);
+}
+.disabled .select::after {
+  background: rgb(144, 144, 144);
+}
+.disabled{
+  opacity: .3;
+}
 
 select {
   /* A reset of styles, including removing the default dropdown arrow */
@@ -148,6 +159,12 @@ select::-ms-expand {
   display: grid;
   grid-template-areas: "select";
   align-items: center;
+}
+#tab1 .select{
+  display: inline-grid;
+  width: 40%;
+  margin-left: 21px;
+  margin-top: 10px;
 }
 .select::after {
   content: "";
@@ -249,7 +266,7 @@ button.blue{
 }
 #tab2 img{
   max-width:200px;
-  margin:20px 10px 10px;
+  padding: 20px;
 }
 #tab2 .select{
   max-width:200px;
@@ -257,6 +274,37 @@ button.blue{
 #tab2 {
   margin-bottom: 100px;
 }
+#tab2 .flex{
+  justify-content: space-evenly;
+}
+#tab2 .img-label{
+  position: relative;
+  width: 100%;
+}
+#tab2 .img-label div{
+  position: absolute;
+  font-size: 15px;
+  font-weight: 800;
+  top: 194px;
+  left: 76px;
+  width: fit-content;
+  padding: 3px 5px;
+  z-index: 1;
+  background: white;
+}
+
+#tab2 .explain{
+  text-align: center;
+  margin:auto;
+  margin-bottom:50px;
+  line-height: 24px;
+    font-size: 16px;
+  max-width: 700px;
+}
+#tab2 h2{
+  margin-bottom:30px;
+}
+
 
 .hidden{
   display: none;
@@ -388,13 +436,22 @@ canvas {
 #tab3 h2{
   margin-bottom: 30px;
 }
-#tab3 .box{
+#tab3 .box, #tab2 .box{
   width:20px;
   height: 20px;
   display: inline-block;
   border-radius: 20px;
   margin-right:5px;
 }
+#tab2 .rect{
+  width:100px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 20px;
+  margin-right:5px;
+  background-image: linear-gradient(to right, #ffcb2e,#f3781e,#bb0f44,#5b0b67);
+}
+
 #tab3 .instructions{
   max-width: 500px;
   margin:auto;
@@ -457,6 +514,26 @@ h4{
 }
 .gifTopper img{
   width:100%;
+}
+
+#stylized-img-div1{
+  max-width: 230px;
+  margin:auto;
+}
+#stylizedimg0{
+  width: 100%;
+}
+#tab2-disabledElement1 .inner p,  #original-saliency .inner p{
+ margin-bottom: 0px;
+ margin-top: 20px;
+}
+#tab2-disabledElement1 .inner, #original-saliency .inner{
+  width:200px;
+  text-align: center;
+  margin: 0px 10px;
+}
+.disabled .inner{
+  display: none;
 }
 
 

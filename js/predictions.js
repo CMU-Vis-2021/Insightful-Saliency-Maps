@@ -74,8 +74,308 @@ predictions = {
 }
 
 
- 
- 
+prediction_bar =[
+	{
+	  "file_name": "dog-stylized-tiger.jpg",
+	  "prediction": "Golden Retriever",
+	  "confidence": 0.52267611
+	},
+	{
+	  "file_name": "dog-stylized-tiger.jpg",
+	  "prediction": "Labrador Retriever",
+	  "confidence": 0.116098151
+	},
+	{
+	  "file_name": "dog-stylized-tiger.jpg",
+	  "prediction": "Bluetick",
+	  "confidence": 0.037742626
+	},
+	{
+	  "file_name": "dog-stylized-tiger.jpg",
+	  "prediction": "English Foxhound",
+	  "confidence": 0.035629872
+	},
+	{
+	  "file_name": "dog-stylized-tiger.jpg",
+	  "prediction": "Redbone",
+	  "confidence": 0.033754379
+	},
+	{
+	  "file_name": "dog-stylized-bikes.jpg",
+	  "prediction": "Comic Book",
+	  "confidence": 0.474594891
+	},
+	{
+	  "file_name": "dog-stylized-bikes.jpg",
+	  "prediction": "Breastplate",
+	  "confidence": 0.207644641
+	},
+	{
+	  "file_name": "dog-stylized-bikes.jpg",
+	  "prediction": "Carousel",
+	  "confidence": 0.117048107
+	},
+	{
+	  "file_name": "dog-stylized-bikes.jpg",
+	  "prediction": "Book Jacket",
+	  "confidence": 0.073899783
+	},
+	{
+	  "file_name": "dog-stylized-bikes.jpg",
+	  "prediction": "Mask",
+	  "confidence": 0.024159033
+	},
+	{
+	  "file_name": "dog-stylized-elephant.jpg",
+	  "prediction": "Indian Elephant",
+	  "confidence": 0.44561395
+	},
+	{
+	  "file_name": "dog-stylized-elephant.jpg",
+	  "prediction": "African Elephant",
+	  "confidence": 0.42599079
+	},
+	{
+	  "file_name": "dog-stylized-elephant.jpg",
+	  "prediction": "Tusker",
+	  "confidence": 0.12427897
+	},
+	{
+	  "file_name": "dog-stylized-elephant.jpg",
+	  "prediction": "Warthog",
+	  "confidence": 0.001816644
+	},
+	{
+	  "file_name": "dog-stylized-elephant.jpg",
+	  "prediction": "Hippopotamus",
+	  "confidence": 0.000284172
+	},
+	{
+	  "file_name": "dog-stylized-trucks.jpg",
+	  "prediction": "Amphibian",
+	  "confidence": 0.090115994
+	},
+	{
+	  "file_name": "dog-stylized-trucks.jpg",
+	  "prediction": "Freight car",
+	  "confidence": 0.059221517
+	},
+	{
+	  "file_name": "dog-stylized-trucks.jpg",
+	  "prediction": "Monitor",
+	  "confidence": 0.054878552
+	},
+	{
+	  "file_name": "dog-stylized-trucks.jpg",
+	  "prediction": "Jigsaw Puzzle",
+	  "confidence": 0.032877509
+	},
+	{
+	  "file_name": "dog-stylized-trucks.jpg",
+	  "prediction": "Scuba Diver",
+	  "confidence": 0.028986931
+	},
+	{
+	  "file_name": "dog-stylized-zebra.jpg",
+	  "prediction": "Dalmatian",
+	  "confidence": 0.808363676
+	},
+	{
+	  "file_name": "dog-stylized-zebra.jpg",
+	  "prediction": "Beagle",
+	  "confidence": 0.081052162
+	},
+	{
+	  "file_name": "dog-stylized-zebra.jpg",
+	  "prediction": "Walker Hound",
+	  "confidence": 0.040958315
+	},
+	{
+	  "file_name": "dog-stylized-zebra.jpg",
+	  "prediction": "Bluetick",
+	  "confidence": 0.012049156
+	},
+	{
+	  "file_name": "dog-stylized-zebra.jpg",
+	  "prediction": "English Foxhound",
+	  "confidence": 0.009175216
+	},
+	{
+	  "file_name": "dog.jpg",
+	  "prediction": "Golden Retriever",
+	  "confidence": 0.995787561
+	},
+	{
+	  "file_name": "dog.jpg",
+	  "prediction": "Tennis Ball",
+	  "confidence": 0.003892787
+	},
+	{
+	  "file_name": "dog.jpg",
+	  "prediction": "Labrador Retriever",
+	  "confidence": 0.000121901
+	},
+	{
+	  "file_name": "dog.jpg",
+	  "prediction": "Brittany spaniel",
+	  "confidence": 0.0000335
+	},
+	{
+	  "file_name": "dog.jpg",
+	  "prediction": "Flat-coated Retriever",
+	  "confidence": 0.0000298
+	},
+	{
+	  "file_name": "bear-stylized-tiger.jpg",
+	  "prediction": "brown Bear",
+	  "confidence": 0.984544635
+	},
+	{
+	  "file_name": "bear-stylized-tiger.jpg",
+	  "prediction": "lesser panda",
+	  "confidence": 0.011765501
+	},
+	{
+	  "file_name": "bear-stylized-tiger.jpg",
+	  "prediction": "Sloth Bear",
+	  "confidence": 0.000705121
+	},
+	{
+	  "file_name": "bear-stylized-tiger.jpg",
+	  "prediction": "Ice Bear",
+	  "confidence": 0.000501762
+	},
+	{
+	  "file_name": "bear-stylized-tiger.jpg",
+	  "prediction": "Chow",
+	  "confidence": 0.000108284
+	},
+	{
+	  "file_name": "bear-stylized-bikes.jpg",
+	  "prediction": "Tiger",
+	  "confidence": 0.633351624
+	},
+	{
+	  "file_name": "bear-stylized-bikes.jpg",
+	  "prediction": "Tiger Cat",
+	  "confidence": 0.075154319
+	},
+	{
+	  "file_name": "bear-stylized-bikes.jpg",
+	  "prediction": "Jigsaw Puzzle",
+	  "confidence": 0.072443508
+	},
+	{
+	  "file_name": "bear-stylized-bikes.jpg",
+	  "prediction": "Comic Book",
+	  "confidence": 0.04967935
+	},
+	{
+	  "file_name": "bear-stylized-bikes.jpg",
+	  "prediction": "Toyshop",
+	  "confidence": 0.017681466
+	},
+	{
+	  "file_name": "bear-stylized-elephant.jpg",
+	  "prediction": "Indian Elephant",
+	  "confidence": 0.271529764
+	},
+	{
+	  "file_name": "bear-stylized-elephant.jpg",
+	  "prediction": "African Elephant",
+	  "confidence": 0.150135785
+	},
+	{
+	  "file_name": "bear-stylized-elephant.jpg",
+	  "prediction": "Nail",
+	  "confidence": 0.030217269
+	},
+	{
+	  "file_name": "bear-stylized-elephant.jpg",
+	  "prediction": "wild Boar",
+	  "confidence": 0.028584396
+	},
+	{
+	  "file_name": "bear-stylized-elephant.jpg",
+	  "prediction": "Tusker",
+	  "confidence": 0.025810853
+	},
+	{
+	  "file_name": "bear-stylized-trucks.jpg",
+	  "prediction": "Brown Bear",
+	  "confidence": 0.984544635
+	},
+	{
+	  "file_name": "bear-stylized-trucks.jpg",
+	  "prediction": "Lesser Panda",
+	  "confidence": 0.011765501
+	},
+	{
+	  "file_name": "bear-stylized-trucks.jpg",
+	  "prediction": "Sloth Bear",
+	  "confidence": 0.000705121
+	},
+	{
+	  "file_name": "bear-stylized-trucks.jpg",
+	  "prediction": "Ice Bear",
+	  "confidence": 0.000501762
+	},
+	{
+	  "file_name": "bear-stylized-trucks.jpg",
+	  "prediction": "Chow",
+	  "confidence": 0.000108284
+	},
+	{
+	  "file_name": "bear-stylized-zebra.jpg",
+	  "prediction": "Border Collie",
+	  "confidence": 0.183807775
+	},
+	{
+	  "file_name": "bear-stylized-zebra.jpg",
+	  "prediction": "Cardigan",
+	  "confidence": 0.167795002
+	},
+	{
+	  "file_name": "bear-stylized-zebra.jpg",
+	  "prediction": "Dalmatian",
+	  "confidence": 0.114879034
+	},
+	{
+	  "file_name": "bear-stylized-zebra.jpg",
+	  "prediction": "American Staffordshire Terrier",
+	  "confidence": 0.110017687
+	},
+	{
+	  "file_name": "bear-stylized-zebra.jpg",
+	  "prediction": "Saint Bernard",
+	  "confidence": 0.063010834
+	},
+	{
+	  "file_name": "bear.jpg",
+	  "prediction": "Brown Bear",
+	  "confidence": 0.997955084
+	},
+	{
+	  "file_name": "bear.jpg",
+	  "prediction": "Sloth Bear",
+	  "confidence": 0.000502548
+	},
+	{
+	  "file_name": "bear.jpg",
+	  "prediction": "American Black Bear",
+	  "confidence": 0.000131963
+	},
+	{
+	  "file_name": "bear.jpg",
+	  "prediction": "Ice Bear",
+	  "confidence": 0.000111926
+	},
+	{
+	  "file_name": "bear.jpg",
+	  "prediction": "Lesser Panda",
+	  "confidence": 0.0000887
+	}
+  ];
   
  
  

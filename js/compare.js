@@ -1,5 +1,8 @@
 function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = document.querySelector("#sliderOpacity")){
-
+    if(disabledElem1.classList.contains('disabled')){
+        disabledElem1.classList.remove('disabled');
+        disabledElem2.classList.remove('disabled');
+    }
     var remove_img = xraiimg
     
     if (remove_img != null){
@@ -32,7 +35,7 @@ function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = docum
             remove_img.src = ""
         } else {
             var img_div = document.querySelector('.flex #stylized-img-div')
-            img_div.innerHTML = img_div.innerHTML + '<img id="stylized-img-xrai">'
+            img_div.innerHTML = img_div.innerHTML + '<div class = "img-label"><div><p>XRAI</p></div><img id="stylized-img-xrai"></div>'
         }
         
         set_xraiimg()
@@ -46,7 +49,7 @@ function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = docum
                 remove_img.src = ""
             } else {
                 var img_div = document.querySelector('.flex #original-img-div')
-                img_div.innerHTML = img_div.innerHTML + '<img id="original-img-xrai">'
+                img_div.innerHTML = img_div.innerHTML + '<div class = "img-label"><div><p>XRAI</p></div><img id="original-img-xrai"></div>'
             }
 
             set_xraiimg(choice = document.getElementById("original-ss"), imgobj = '#original-img-xrai')

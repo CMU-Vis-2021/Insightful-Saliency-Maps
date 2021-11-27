@@ -28,43 +28,42 @@
                 <div class = "flex">
                     <div class = "flex-inner step">
                         <label for="shape"><span class = "number">1</span>Choose a shape:</label>
-                        <br>
-                        <div class = "select">
-                            <select class = "standard-select" name="shape" id="shapeselect0">
+                        <span class = "select">
+                            <select class = "standard-select" name="shape" id="shapeselect0" onchange="firstIputDone()">
                                  <option value="-1" selected disabled hidden>Select choice</option>
                                  <option value="dog">Dog</option>
                                  <option value="bear">Bear</option>
                              </select>
-                         </div>
-                         <label for="texture"><span class = "number">2</span>Choose a texture:</label>
-                         <br>
-                         <div class = "select">
-                             <select class = "standard-select" name="texture" id="textureselect0" onchange="stylizeImg()">
-                                 <option value="-1" selected disabled hidden>Select choice</option>
-                                 <option value="bikes">Bicycle</option>
-                                 <option value="tiger">Tiger</option>
-                                 <option value="trucks">Trucks</option>
-                                 <option value="zebra">Zebra</option>
-                                 <option value="elephant">Elephant</option>
-                             </select>
-                         </div>
+                            </span>
+                         <div id = "tab1-input2" class = "disabled">
+                            <label for="texture"><span class = "number">2</span>Choose a texture:</label>
+                            <span class = "select">
+                                <select disabled class = "standard-select" name="texture" id="textureselect0" onchange="stylizeImg()">
+                                    <option value="-1" selected disabled hidden>Select choice</option>
+                                    <option value="bikes">Bicycle</option>
+                                    <option value="tiger">Tiger</option>
+                                    <option value="trucks">Trucks</option>
+                                    <option value="zebra">Zebra</option>
+                                    <option value="elephant">Elephant</option>
+                                </select>
+                            </span>
+                        </div>
                          <div class="flex" id="stylized-img-div1">
                             <img id="stylizedimg0" style="position: relative; margin: 0px; max-width: 300px;">
                         </div>
 
-                         <div id="sliderTab1" style="display: none; padding-top: 10px;">
-                            <input type="range" id="sliderOpacity1" min="0" max="100" value="40" class="sliders" oninput='changeOpacity(slider = document.querySelector("#sliderOpacity1"), imgchoice = document.querySelector("#xrai-img1"), text = document.getElementById("numOpacity1"))' /> <span id="numOpacity1">40</span>%
+                         <div id="sliderTab1" style="display: none; padding-top: 10px; text-align: center;">
+                            <input type="range" id="sliderOpacity1" min="0" max="100" value="40" class="sliders" oninput='changeOpacity(slider = document.querySelector("#sliderOpacity1"), imgchoice = document.querySelector("#xrai-img1"), text = document.getElementById("numOpacity1"))' /> <span id="numOpacity1">40</span>% opacity
                         </div>
 
                         <div id="checkboxoverlap" style="text-align: center; display: none; padding-top: 10px;">
-                            <input type="checkbox" name="tab1List" value="unchecked" id="tab1xrai" onchange="xraicheck()">Overlap XRAI
+                            <input type="checkbox" name="tab1List" value="unchecked" id="tab1xrai" onchange="xraicheck()">Overlap what the computer sees
                         </div>
                     </div>
 
-                    <div class="flex-inner step">
-
-                        <label for="graph"><span class = "number">3</span>Top-K Predictions</label>
-                        <div id="d3-bar"></div>
+                    <div class="flex-inner step disabled" id = "tab1-input3">
+                        <label for="graph"><span class = "number">3</span>What does the computer think is in this picture?</label>
+                        <div id="d3-bar-tab1"></div>
                     </div>
                 </div>
                 
@@ -80,7 +79,7 @@
             </div>
             <div id = "tab2" class = "hidden">
                 <h2>Explore the saliency maps of stylized images. See how they compare to the saliency map of the original, un-stylized image.</h2> 
-
+                <p class = "explain">A saliency map identifies what regions in an image a computer algorithm may use to interpret the image. XRAI is a saliency method that uses regions and colors to interpret how a computer understands an image. Typically, the image is split into a <b><span class = "gradient rect"></span>gradient of colors</b> that represent what the computer feels are <b><span class = "box yellow"></span>most important to identifying what's in the image</b> all the way to what the it feels are  <b><span class = "box purple"></span>least important</b> to identifying the image.</p>
                 <div class="flex">
                     <div class = "flex-inner step" id = "stylized-saliency"> 
                       
@@ -101,43 +100,45 @@
                                <option value="bear-stylized-elephant">Bear x Elephant</option>
                            </select>
                         </div>
-                        <p style="text-align: center;"> Prediction: <span id="AIpred"> </span>; <span id="AIconf"> </span>% confidence </p>
-                        <div class="flex" id="stylized-img-div">
-                            <img id="stylized-img-ss">
-                        </div>
-                        <div id="sliders" style="display: none;">
-                            <input type="range" id="sliderOpacity" min="0" max="100" value="40" class="sliders" oninput="changeOpacity()" /> <span id="numOpacity">40</span>%
-                        </div>
-                        <div style="text-align: center;">
-                            <input type="radio" name="xraiList" value="show" id="xrai" onchange="xrairadio()" checked>Show XRAI
-                            <input type="radio" name="xraiList" value="hide" id="xrai" onchange="xrairadio()">Hide XRAI
-                            <input type="radio" name="xraiList" value="overlap" id="overlap" onchange="xraioverlap()">Overlap XRAI
+                        <div id = "disabled1-tab2" class = "disabled">
+                            <p style="text-align: center;"> Prediction: <b><span id="AIpred"> </span></b>; <span id="AIconf"> </span>% confidence </p>
+                            <div class="flex" id="stylized-img-div">
+                                <img id="stylized-img-ss">
+                            </div>
+                            <div id="sliders" style="display: none; text-align: center;">
+                                <input type="range" id="sliderOpacity" min="0" max="100" value="40" class="sliders" oninput="changeOpacity()" /> <span id="numOpacity">40</span>%
+                            </div>
+                            <div style="text-align: center;">
+                                <input type="radio" name="xraiList" value="show" id="xrai" onchange="xrairadio()" checked>Show XRAI
+                                <input type="radio" name="xraiList" value="hide" id="xrai" onchange="xrairadio()">Hide XRAI
+                                <input type="radio" name="xraiList" value="overlap" id="overlap" onchange="xraioverlap()">Overlap XRAI
+                            </div>
                         </div>
                     </div>
-                    <div class = "flex-inner step" id = "original-saliency">
+                    <div class = "flex-inner step disabled" id = "original-saliency" style="text-align: center;">
                         <p> <b> Original image: </b> </p>
 
                         <div class="original-select" style="padding: 10px;">
-                            <select class = "standard-select" name="original" id="original-ss" onchange="ogimg()" style="width:30%;">
+                            <select disabled class = "standard-select" name="original" id="original-ss" onchange="ogimg()" style="width:30%;">
                                <option value="-1" selected disabled hidden>Select stylized image</option>
                                <option value="dog" disabled>Dog</option>
                                <!-- <option value="elephant" disabled>Elephant</option> -->
                                <option value="bear" disabled>Bear</option>
                            </select>
                         </div>
-                        <p> Prediction: <span id="OgAIpred"> </span>; <span id="OgAIconf"> </span>% confidence</p>
+                        <p> Prediction: <b><span id="OgAIpred"> </span></b>; <span id="OgAIconf"> </span>% confidence</p>
                         <div class="flex" id="original-img-div">
                             <img id="original-img-ss">
                         </div>
                         <div id="slidersOg" style="display: none;">
                             <input type="range" id="sliderOpacityOg" min="0" max="100" value="40" class="sliders" oninput='changeOpacity(slider = document.querySelector("#sliderOpacityOg"), imggchoice = document.querySelector("#xrai-og-img"), text = document.getElementById("numOpacityOg"))' /> <span id="numOpacityOg">40</span>%
                         </div>
-                        <input type="radio" name="ogList" value="show" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-xrai\">", originalHTML = "<img id=\"original-img-ss\">", sliders= document.getElementById("slidersOg"),opacityNum = document.querySelector("#sliderOpacityOg"))' checked>Show XRAI
-                        <input type="radio" name="ogList" value="hide" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-xrai\">", originalHTML = "<img id=\"original-img-ss\">", sliders= document.getElementById("slidersOg"), opacityNum = document.querySelector("#sliderOpacityOg"))'>Hide XRAI
+                        <input type="radio" name="ogList" value="show" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<div class = \"img-label\" ><div><p>XRAI</p></div><img id=\"original-img-xrai\"></div>", originalHTML = "<img id=\"original-img-ss\">", sliders= document.getElementById("slidersOg"),opacityNum = document.querySelector("#sliderOpacityOg"))' checked>Show XRAI
+                        <input type="radio" name="ogList" value="hide" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<div class = \"img-label\" ><div><p>XRAI</p></div><img id=\"original-img-xrai\"></div>", originalHTML = "<img id=\"original-img-ss\">", sliders= document.getElementById("slidersOg"), opacityNum = document.querySelector("#sliderOpacityOg"))'>Hide XRAI
                         <input type="radio" name="ogList" value="hide" id="og" onchange='xraioverlap(document.getElementById("original-ss"), id="original-img-ss", query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-ss\" style=\"position: relative;\"> <img id=\"xrai-og-img\" style=\"position: absolute; opacity: 40%\">", sliders = document.getElementById("slidersOg"))'>Overlap XRAI
                     </div>
                 </div>
-                <div class="visualize-similarity">
+                <div class="visualize-similarity" style="max-width: 1200px;">
                     <div id="salsim-div" style="display: none;">
                         <p> <b> Visualize the similarity between the two saliency maps. </b> </p>
                         <div class="flex">
@@ -148,10 +149,10 @@
                                 <div id="sliders">
                                     <input type="range" id="sliderAlpha" min="0" max="20" step="5" value="15" class="sliders" oninput="changeAlpha()" /> <span id="numAlpha">15</span> delta
                                 </div>
-                                <img id="salsim-img" style="border: 0px; width: auto;"/>
+                                <img id="salsim-img" style="border: 0px; width: auto;margin: auto;"/>
                             </div>
                             <div class="flex-inner step" style="padding: 20px;">
-                                <p>Comparison of Top-K Colors:</p>
+                                <p>Comparison of Colors:</p>
                                 <div id="sliders">
                                     <input type="range" id="sliderK" min="2" max="7" step="1" value="6" class="sliders" oninput="changeK()" /> <span id="numK">6</span> colors
                                 </div>
@@ -351,6 +352,8 @@
     <script type="text/javascript" src="./js/main.js"></script>
     <script type="text/javascript" src="./js/draw.js"></script>
     <script type="text/javascript" src="./js/canvasBar.js"></script>
+    <script type="text/javascript" src="./js/predictions.js"></script>
+    <script type="text/javascript" src="./js/predictionBar.js"></script>
     <script type="text/javascript" src="./js/compare.js"></script>
     <script type="text/javascript" src="./js/hover.js"></script>
     <script type="text/javascript" src="./js/sliders.js"></script>
@@ -361,6 +364,5 @@
     <script type="text/javascript" src="./js/piechartjson.js"></script>
     <script type="text/javascript" src="./js/piechart.js"></script>
     <script type="text/javascript" src="./js/averageSaliency.js"></script>
-    <script type="text/javascript" src="./js/predictions.js"></script>
     <script src="./opencv.js" type="text/javascript"></script>
 </html>
