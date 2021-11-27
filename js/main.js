@@ -85,6 +85,7 @@ function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = docum
 
     var img_style = document.getElementById("stylized-img-ss")
     img_style.setAttribute('src', style_classpathss)
+    img_style.alt = "Stylized image: " + choice.value
 
     var shapename = choice.value.split("-")[0]
 
