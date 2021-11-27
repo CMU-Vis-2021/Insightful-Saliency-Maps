@@ -61,6 +61,9 @@ function updateBarPrediction(fileName){
 
   let predData = predictions[fileName];
 
+  console.log(fileName)
+  console.log(predData)
+
   var predictData = []
 
   for (const [key, value] of Object.entries(predData)) {
