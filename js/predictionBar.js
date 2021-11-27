@@ -12,7 +12,6 @@ const svgPrediction = d3.select("#d3-bar-tab1")
   .append("g")
   .attr("transform",`translate(${marginT1.left},${marginT1.top})`);
 
-
 // Add X axis
 var xT1 = d3.scaleLinear()
   .range([ 0, widthT1]);
@@ -34,16 +33,18 @@ let predData = predictions["dog-stylized-tiger"];
 
 var predictData = []
 
+
 for (const [key, value] of Object.entries(predData)) {
   predictData.push(value)
 }
+
 
 // Y axis
 yT1.domain(predictData.map(function(d) { return d.label; } ) )
 yAxisT1.transition().duration(1000).call(d3.axisLeft(yT1) )
 
 // Add X axis
-xT1.domain([0, d3.max(predictData, function(d) { return d.confidence*100+10 }) ]);
+xT1.domain([0, d3.max(predictData, function(d) { return d.confidence*100+5 }) ]);
 xAxisT1.transition().duration(1000).call(d3.axisBottom(xT1));
 
 // Make x axis label
@@ -64,6 +65,7 @@ function updateBarPrediction(fileName){
 
   for (const [key, value] of Object.entries(predData)) {
     predictData.push(value)
+
   }
 
   // Y axis
@@ -71,7 +73,7 @@ function updateBarPrediction(fileName){
   yAxisT1.transition().duration(1000).call(d3.axisLeft(yT1) )
 
   // Add X axis
-  xT1.domain([0, d3.max(predictData, function(d) { return d.confidence*100+10 }) ]);
+  xT1.domain([0, d3.max(predictData, function(d) { return d.confidence*100+5 }) ]);
   xAxisT1.transition().duration(1000).call(d3.axisBottom(xT1));
 
   // map data to existing bars
@@ -87,6 +89,6 @@ function updateBarPrediction(fileName){
     .attr("y", d => yT1(d.label) )
     .attr("width", d => xT1(d.confidence*100))
     .attr("height", yT1.bandwidth() )
-    .attr("fill", "#efa768")
+    .attr("fill", "#a5dcfe");
 }
 
