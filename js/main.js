@@ -15,8 +15,6 @@ let tab2Button = document.getElementById("openTab2");
 let tab3Button = document.getElementById("openTab3");
 let tab4button = document.getElementById("openTab4");
 
-let mydata = JSON.stringify(data);
-let parseddata = JSON.parse(mydata)
 let prediction = "";
 let averageImgList = [];
 let count = 0
