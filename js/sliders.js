@@ -19,6 +19,11 @@ function changeAlpha(choiceVal = document.getElementById("stylized-ss"), slider 
         styleImage.hide();    // or something other
     });
 
+    id = img.split("#")[1]
+    console.log(img)
+    console.log(id)
+    document.getElementById(id).alt = "Intersection of saliency maps for original and stylized image of " + choiceVal.value + " for model " + model +" with a delta value of " + sliderAlpha.value +"."
+
 }
 
 function changeK(){
