@@ -63,13 +63,10 @@ function stylizeImg(){
         quizImage.hide();    // or something other
     });
 
-<<<<<<< Updated upstream
     // predict image class
     // predictClass(document.getElementById('stylizedimg'+count.toString()));
     // document.getElementById('prediction').textContent = prediction;
-=======
     // document.getElementById('stylizedimg'+count.toString()).alt = "Stylized image: " + selectShape.value+"-stylized-"+ selectTexture.value
->>>>>>> Stashed changes
 
     document.getElementById("checkboxoverlap").style.display = "block";
 }
