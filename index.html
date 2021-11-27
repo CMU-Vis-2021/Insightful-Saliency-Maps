@@ -13,7 +13,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
         <script type="text/javascript" src="imgstruct.json"></script>
-      <link rel="stylesheet" href="./assets/index.1e3d65fc.css">
+      <link rel="stylesheet" href="./assets/index.8be19b9a.css">
     </head>
     <body>
         <div class="container" id="top">
@@ -58,12 +58,13 @@
                         </div>
 
                         <div id="checkboxoverlap" style="text-align: center; display: none; padding-top: 10px;">
-                            <input type="checkbox" name="tab1List" value="unchecked" id="tab1xrai" onchange="xraicheck()">Overlap what the computer sees
+                            <img id="xraiscale" src="data:image/png;base64,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" style="width: 50%; padding: 5px; display: none;"> 
+                            <input type="checkbox" name="tab1List" value="unchecked" id="tab1xrai" onchange="xraicheck()">Overlap regions important to the AI
                         </div>
                     </div>
 
                     <div class="flex-inner step disabled" id = "tab1-input3">
-                        <label for="graph"><span class = "number">3</span>What does the computer think is in this picture?</label>
+                        <label for="graph"><span class = "number">3</span>What does an AI think is in this picture?</label>
                         <div id="d3-bar-tab1"></div>
                     </div>
                 </div>
@@ -80,7 +81,7 @@
             </div>
             <div id = "tab2" class = "hidden">
                 <h2>Explore the saliency maps of stylized images. See how they compare to the saliency map of the original, un-stylized image.</h2> 
-                <p class = "explain">A saliency map identifies what regions in an image a computer algorithm may use to interpret the image. XRAI is a saliency method that uses regions and colors to interpret how a computer understands an image. Typically, the image is split into a <b><span class = "gradient rect"></span>gradient of colors</b> that represent what the computer feels are <b><span class = "box yellow"></span>most important to identifying what's in the image</b> all the way to what the it feels are  <b><span class = "box purple"></span>least important</b> to identifying the image.</p>
+                <p class = "explain">A saliency map identifies what regions in an image are the most important to a neural network's prediciton. XRAI is a saliency method that uses regions and colors to interpret how a computer understands an image. Typically, the image is split into a <b><span class = "gradient rect"></span>gradient of colors</b> that represent what features in the image are <b><span class = "box yellow"></span>most important to identifying the class of the image</b> all the way to what features are  <b><span class = "box purple"></span>least important</b> to identifying the class of the image.</p>
                 <div class="flex">
                     <div class = "flex-inner step" id = "stylized-saliency"> 
                       
