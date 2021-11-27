@@ -22,12 +22,12 @@ function leaveImggrid(imgid){
     img.style.opacity = "100%";
 }
 
-// function hoverBtn(){
-//     btn = document.getElementById("detailsButton")
-//     btn.style.background = "#246db6"
-// }
+function hoverBtn(){
+    btn = document.getElementById("averageCompute imageOptions")
+    btn.style.background = "#246db6"
+}
 
-// function leaveBtn(){
-//     btn = document.getElementById("detailsButton")
-//     btn.style.background = "#479ff8"
-// }
+function leaveBtn(){
+    btn = document.getElementById("averageCompute imageOptions")
+    btn.style.background = "#479ff8"
+}
