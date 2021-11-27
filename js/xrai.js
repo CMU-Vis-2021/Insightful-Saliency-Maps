@@ -42,7 +42,9 @@ function set_xraiimg(choice = document.getElementById("stylized-ss"), imgobj = '
 
 }
 
-function xrairadio(radio = document.getElementsByName("xraiList"), query = '.flex #stylized-img-div', appendHTML = '<img id="stylized-img-xrai">', originalHTML = '<img id="stylized-img-ss">', sliders = document.getElementById("sliders"), opacityNum = document.querySelector("#sliderOpacity")){
+
+
+function xrairadio(radio = document.getElementsByName("xraiList"), query = '.flex #stylized-img-div', appendHTML = '<div class= "img-label"><img id="stylized-img-xrai"><div><p>XRAI</p></div></div>', originalHTML = '<img id="stylized-img-ss">', sliders = document.getElementById("sliders"), opacityNum = document.querySelector("#sliderOpacity")){
 
     for (var i = 0, length = radio.length; i < length; i++) {
       if (radio[i].checked) {
@@ -75,6 +77,7 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
             var img_div = document.querySelector(query)
             img_div.innerHTML = originalHTML
 
+            document.getElementById("label1-xrai-tab2")
             document.getElementById("salsim-div").style.display = "none";
 
             var slider = sliders

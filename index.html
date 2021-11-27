@@ -102,14 +102,10 @@
                         </div>
                         <div class = "disabled" id = "tab2-disabledElement1">
                             <p style="text-align: center;"> Prediction: <span id="AIpred">Indian Elephant</span>; <span id="AIconf">44.56</span>% confidence </p>
-                            <div class="flex">
-                                <div class = "inner"><p>Textured image</p></div>
-                                <div class = "inner"><p>XRAI interpretation</p></div>
-                            </div>
                             <div class="flex" id="stylized-img-div">
                                 <img id="stylized-img-ss">
                             </div>
-                            <div id="sliders" style="display: none;">
+                            <div id="sliders" style="display: none;margin: auto;width: fit-content;">
                                 <input type="range" id="sliderOpacity" min="0" max="100" value="40" class="sliders" oninput="changeOpacity()" /> <span id="numOpacity">40</span>%
                             </div>
                             <div style="text-align: center;">
@@ -137,8 +133,8 @@
                         <div id="slidersOg" style="display: none;">
                             <input type="range" id="sliderOpacityOg" min="0" max="100" value="40" class="sliders" oninput='changeOpacity(slider = document.querySelector("#sliderOpacityOg"), imggchoice = document.querySelector("#xrai-og-img"), text = document.getElementById("numOpacityOg"))' /> <span id="numOpacityOg">40</span>%
                         </div>
-                        <input type="radio" name="ogList" value="show" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-xrai\">", originalHTML = "<img id=\"original-img-ss\">", sliders= document.getElementById("slidersOg"),opacityNum = document.querySelector("#sliderOpacityOg"))' checked>Show XRAI
-                        <input type="radio" name="ogList" value="hide" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-xrai\">", originalHTML = "<img id=\"original-img-ss\">", sliders= document.getElementById("slidersOg"), opacityNum = document.querySelector("#sliderOpacityOg"))'>Hide XRAI
+                        <input type="radio" name="ogList" value="show" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<div class = \"img-label\" ><div><p>XRAI</p></div><img id=\"original-img-xrai\"></div>", originalHTML = "<img id=\"original-img-ss\">", sliders= document.getElementById("slidersOg"),opacityNum = document.querySelector("#sliderOpacityOg"))' checked>Show XRAI
+                        <input type="radio" name="ogList" value="hide" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<div class = \"img-label\" ><div><p>XRAI</p></div><img id=\"original-img-xrai\"></div>", originalHTML = "<img id=\"original-img-ss\">", sliders= document.getElementById("slidersOg"), opacityNum = document.querySelector("#sliderOpacityOg"))'>Hide XRAI
                         <input type="radio" name="ogList" value="hide" id="og" onchange='xraioverlap(document.getElementById("original-ss"), id="original-img-ss", query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-ss\" style=\"position: relative;\"> <img id=\"xrai-og-img\" style=\"position: absolute; opacity: 40%\">", sliders = document.getElementById("slidersOg"))'>Overlap XRAI
                     </div>
                 </div>
@@ -156,7 +152,7 @@
                                 <img id="salsim-img" style="border: 0px; width: auto;margin: auto;"/>
                             </div>
                             <div class="flex-inner step" style="padding: 20px;">
-                                <p>Comparison of Top-K Colors:</p>
+                                <p>Comparison of Colors:</p>
                                 <div id="sliders">
                                     <input type="range" id="sliderK" min="2" max="7" step="1" value="6" class="sliders" oninput="changeK()" /> <span id="numK">6</span> colors
                                 </div>

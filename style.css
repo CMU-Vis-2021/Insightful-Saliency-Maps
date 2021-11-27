@@ -266,7 +266,7 @@ button.blue{
 }
 #tab2 img{
   max-width:200px;
-  margin:5px 10px 10px;
+  padding: 20px;
 }
 #tab2 .select{
   max-width:200px;
@@ -276,6 +276,21 @@ button.blue{
 }
 #tab2 .flex{
   justify-content: space-evenly;
+}
+#tab2 .img-label{
+  position: relative;
+  width: 100%;
+}
+#tab2 .img-label div{
+  position: absolute;
+  font-size: 15px;
+  font-weight: 800;
+  top: 194px;
+  left: 76px;
+  width: fit-content;
+  padding: 3px 5px;
+  z-index: 1;
+  background: white;
 }
 
 #tab2 .explain{
@@ -508,9 +523,14 @@ h4{
 #stylizedimg0{
   width: 100%;
 }
-#tab2-disabledElement1 .inner p{
+#tab2-disabledElement1 .inner p,  #original-saliency .inner p{
  margin-bottom: 0px;
  margin-top: 20px;
+}
+#tab2-disabledElement1 .inner, #original-saliency .inner{
+  width:200px;
+  text-align: center;
+  margin: 0px 10px;
 }
 .disabled .inner{
   display: none;
