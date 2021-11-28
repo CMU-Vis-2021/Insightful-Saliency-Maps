@@ -23,6 +23,7 @@ function displayImgs(){
         imgchild_heat = rows[i].children[0].children[1]
         newsrc = stylepath + imgList[i] + stylefile
         imgchild_style.src = stylepath + imgList[i] + stylefile
+        imgchild_style.alt = "Image choice of " + imgList[i] + " shown for generating average saliency map."
         imgchild_heat.src = heatpath + imgList[i] + heatfile
     }
 

@@ -42,6 +42,8 @@ function set_xraiimg(choice = document.getElementById("stylized-ss"), imgobj = '
         xraiImage.hide();    // or something other
     });
 
+    xraiImage.alt = "Saliency Map (XRAI) which is a heatmap with a gradient ranging from black for least important and yellow for most important. Image shown is of a " + choice.value +"."
+
 }
 
 
@@ -123,6 +125,7 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'styl
 
         var og_classpath = beg_path+option + ".jpg";
         var xrai_classpath = "./assets/heatmaps/"+ choice.value + ".png";
+        var alt = choice.value
     } else {
         var beg_path = "./assets/stylized-images/"
         var option = choice.value + "-stylized-" + document.getElementById("textureselect0").value
@@ -130,6 +133,7 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'styl
         console.log(option)
         var og_classpath = beg_path+option + ".jpg";
         var xrai_classpath = "./assets/heatmaps/"+ option + ".png";
+        var alt = option
     }
     
     if(id == 'original-img-ss'){
@@ -165,5 +169,8 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'styl
     });
 
     sliders.style.display = "block";
+
+    xraiImage.alt = "Saliency Map (XRAI) which is a heatmap with a gradient ranging from black for least important and yellow for most important. Saliency map image of a " + alt +" overlays the regular image."
+
 
 }
