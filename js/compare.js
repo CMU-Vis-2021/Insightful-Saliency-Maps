@@ -96,7 +96,9 @@ function modelCompare(checkID){
         if (models.length > 0){
             checkID.value = (checkID.value).split("unchecked ")[1]
             models.push(checkID.value)
-            intersectCompare();
+            if(document.getElementById("compare-ss").value != "-1"){
+                intersectCompare();
+            }
         } else {
             checkID.value = (checkID.value).split("unchecked ")[1]
             models.push(checkID.value)
@@ -115,13 +117,16 @@ function modelCompare(checkID){
 
 function intersectCompare(){
     models.forEach(function(element){
+
+        
         if(models.length == 2){
             document.getElementById("modelsCompare").style.margin = "0px 10$ 0px 10%"
         } else if (models.length == 1){
             document.getElementById("modelsCompare").style.margin = "0px 20% 0px 20%"
-        }
+        }   
+        
 
-        document.getElementById(element+"-img").src = "./assets/saliency-similarity/"+element+"/"+document.getElementById("compare-ss").value+"-15.png"
+        document.getElementById(element+"-img").src = "./assets/saliency-similarity/"+element+"/"+document.getElementById("compare-ss").value+"-"+ document.getElementById("slider"+element).value+".png"
         document.getElementById(element+"-img").alt = "Intersection of saliency maps for original and stylized image of " + document.getElementById("compare-ss").value + " for model " + element +" with a delta value of 15."
         document.getElementById(element+"-compare").style.display = "block"
 
