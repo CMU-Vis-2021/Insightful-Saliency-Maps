@@ -17,3 +17,16 @@ Project Abstract:
 * View this [Google Colab](https://colab.research.google.com/drive/1lyrBrbl-XCa1BlVc_fcLzO1v5DKPooeu?usp=sharing) to see how we approximated the top-K colors in an image.
 * View this [Google Colab](https://colab.research.google.com/drive/1zk0uOHnn9mV41CBGIOj6xRK5rb26Vvvz?usp=sharing) to see how we generated stylized images.
 * View this [Google Colab](https://colab.research.google.com/drive/1khWyR4UrNW6KL6VH2lrARrI6BFDTVWi0?usp=sharing) to see how we predicted the class of the stylized images.
+
+
+## Running this repo locally
+0. Make sure you have `npm` on your computer. If you don't, you can install it [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+1. Clone this repo
+2. In the terminal, navigate to this repo.
+3. Run the following commands: 
+
+   3.1. `npm install`
+   
+   3.2. `npm run start` or `npm run dev` or `npm run`
+
+4. Copy and paste the local host url and open up in a browser.
