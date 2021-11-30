@@ -22,7 +22,7 @@ function stylizeImg(){
     var selectShape = document.getElementById('shapeselect'+count.toString())
     var selectTexture = document.getElementById('textureselect'+count.toString())
 
-    var quizImage = $('#stylizedimg'+count.toString())
+    quizImage = $('#stylized-img-ss1')
 
     classpath = "./assets/stylized-images/"+selectShape.value+"-stylized-"+ selectTexture.value + ".jpg";
     updateBarPrediction(selectShape.value+"-stylized-"+ selectTexture.value);
@@ -37,8 +37,11 @@ function stylizeImg(){
     });
 
     if(document.getElementById('tab1xrai').value == "checked"){
-        xraioverlap(choice = document.getElementById("shapeselect0"), id = 'stylizedimg', query = '.flex #stylized-img-div1', appendHTML = '<img id="stylizedimg0" style="position: relative; margin: 0px; max-width: 230px; width:100%;"> <img id="xrai-img1" style="position: absolute; opacity: ' + document.querySelector("#sliderOpacity1").value + '%; max-width: 230px;width:100%;"> ', sliders = document.getElementById("sliderTab1"));
-    }  
+        console.log("Overlap is checked")
+        xraioverlap(choice = document.getElementById("shapeselect0"), id = 'stylized-img-ss1', query = '.flex #stylized-img-div1', appendHTML = '<img id="stylized-img-ss1" style="position: relative; margin: 0px; max-width: 230px; width:100%;"> <img id="xrai-img1" style="position: absolute; opacity: ' + document.querySelector("#sliderOpacity1").value + '%; max-width: 230px;width:100%;"> ', sliders = document.getElementById("sliderTab1"));
+    }  else {
+
+    }
     
 
     document.getElementById("checkboxoverlap").style.display = "block";

@@ -28,9 +28,7 @@ function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = docum
     ogimg();
 
     var radio = document.getElementsByName("xraiList")
-    console.log(radio)
     if(radio[0].checked){
-        console.log(radio[0])
         set_xraiimg()
 
         var remove_img = document.getElementById("stylized-img-xrai")
@@ -89,28 +87,16 @@ function ogimg(){
 
 }
 
-function disableTab4Stuff(){
-    let tab4Item1 = document.getElementById("tab4-dis-1");
-    let tab4Item2 = document.getElementById("tab4-dis-2");
-    
-    if(tab4Item1.classList.contains("disabled")){
-        tab4Item1.classList.remove("disabled");
-        tab4Item2.classList.remove("disabled");
-    }
 
-}
 var models = []
 
 function modelCompare(checkID){
-    disableTab4Stuff();
-    
+
     if((checkID.value).includes("unchecked")){
         if (models.length > 0){
             checkID.value = (checkID.value).split("unchecked ")[1]
             models.push(checkID.value)
-            if(document.getElementById("compare-ss").value != "-1"){
-                intersectCompare();
-            }
+            intersectCompare();
         } else {
             checkID.value = (checkID.value).split("unchecked ")[1]
             models.push(checkID.value)
@@ -129,16 +115,13 @@ function modelCompare(checkID){
 
 function intersectCompare(){
     models.forEach(function(element){
-
-        
         if(models.length == 2){
             document.getElementById("modelsCompare").style.margin = "0px 10$ 0px 10%"
         } else if (models.length == 1){
             document.getElementById("modelsCompare").style.margin = "0px 20% 0px 20%"
-        }   
-        
+        }
 
-        document.getElementById(element+"-img").src = "./assets/saliency-similarity/"+element+"/"+document.getElementById("compare-ss").value+"-"+ document.getElementById("slider"+element).value+".png"
+        document.getElementById(element+"-img").src = "./assets/saliency-similarity/"+element+"/"+document.getElementById("compare-ss").value+"-15.png"
         document.getElementById(element+"-img").alt = "Intersection of saliency maps for original and stylized image of " + document.getElementById("compare-ss").value + " for model " + element +" with a delta value of 15."
         document.getElementById(element+"-compare").style.display = "block"
 

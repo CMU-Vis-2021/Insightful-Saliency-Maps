@@ -10,7 +10,7 @@ function xraicheck(){
     if(document.getElementById("tab1xrai").value == "checked"){
         console.log("value is checked")
         document.getElementById("xraiscale").style.display = "block";
-        xraioverlap(choice = document.getElementById("shapeselect0"), id = 'stylizedimg', query = '.flex #stylized-img-div1', appendHTML = '<img id="stylizedimg0" style="position: relative; margin: 0px; max-width: 230px; width:100%;"> <img id="xrai-img1" style="position: absolute; opacity: 40%; max-width: 230px;width:100%;"> ', sliders = document.getElementById("sliderTab1"));
+        xraioverlap(choice = document.getElementById("shapeselect0"), id = 'stylized-img-ss1', query = '.flex #stylized-img-div1', appendHTML = '<img id="stylized-img-ss1" style="position: relative; margin: 0px; max-width: 230px; width:100%;"> <img id="xrai-img1" style="position: absolute; opacity: 40%; max-width: 230px;width:100%;"> ', sliders = document.getElementById("sliderTab1"));
     } else {
         document.getElementById("xraiscale").style.display = "none";
         document.getElementById("sliderTab1").style.display = "none"
@@ -41,8 +41,6 @@ function set_xraiimg(choice = document.getElementById("stylized-ss"), imgobj = '
         console.log("failed")
         xraiImage.hide();    // or something other
     });
-
-    xraiImage.alt = "Saliency Map (XRAI) which is a heatmap with a gradient ranging from black for least important and yellow for most important. Image shown is of a " + choice.value +"."
 
 }
 
@@ -81,14 +79,16 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
             var img_div = document.querySelector(query)
             img_div.innerHTML = originalHTML
 
+            console.log("IN HIDE")
+
             document.getElementById("label1-xrai-tab2")
             document.getElementById("salsim-div").style.display = "none";
 
             var slider = sliders
             slider.style.display = "none";
-            if(radio[i].id == "xrai"){
+            if(radio[i].name == "xraiList"){
                 ssimg()
-            }else if(radio[i].id =="og"){
+            }else if(radio[i].name =="ogList"){
                 ssimg(xraiimg=document.getElementById("xrai-og-img"), opacityNum = document.querySelector("#sliderOpacityOg"))
             }
             
@@ -97,9 +97,9 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
             const sliderOpacity = opacityNum;
             sliderOpacity.value = 40;
 
-            if(radio[i].id == "xrai"){
+            if(radio[i].name == "xraiList"){
                 xraioverlap();
-            } else if(radio[i].id == "og"){
+            } else if(radio[i].name == "ogList"){
                 xraioverlap(document.getElementById("original-ss"), id="original-img-ss", query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-ss\" style=\"position: relative;\"> <img id=\"xrai-og-img\" style=\"position: absolute; opacity: 40%\">", sliders = document.getElementById("slidersOg"))
             }
         } 
@@ -114,7 +114,7 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'styl
     var img_div = document.querySelector(query)
     img_div.innerHTML = appendHTML
 
-    if (id != "stylizedimg"){
+    if (id != "stylized-img-ss1"){
         if (choice.value.split("-")[1] == "stylized"){
             var beg_path = "./assets/stylized-images/"
             var option = choice.value
@@ -125,7 +125,6 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'styl
 
         var og_classpath = beg_path+option + ".jpg";
         var xrai_classpath = "./assets/heatmaps/"+ choice.value + ".png";
-        var alt = choice.value
     } else {
         var beg_path = "./assets/stylized-images/"
         var option = choice.value + "-stylized-" + document.getElementById("textureselect0").value
@@ -133,17 +132,19 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'styl
         console.log(option)
         var og_classpath = beg_path+option + ".jpg";
         var xrai_classpath = "./assets/heatmaps/"+ option + ".png";
-        var alt = option
     }
     
     if(id == 'original-img-ss'){
+        console.log("original-img-ss")
         document.getElementById("salsim-div").style.display = "none";
         var ogImage = $('#original-img-ss')
         var xraiImage = $('#xrai-og-img')
-    } else if(id == 'stylizedimg'){
-        var ogImage = $('#stylizedimg0')
+    } else if(id == 'stylized-img-ss1'){
+        console.log("stylizedimg0")
+        var ogImage = $('#stylized-img-ss1')
         var xraiImage = $('#xrai-img1')
     } else {
+        console.log("it is something else")
         document.getElementById("salsim-div").style.display = "none";
         var ogImage = $('#stylized-img-ss')
         var xraiImage = $('#xrai-img')
@@ -169,8 +170,5 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'styl
     });
 
     sliders.style.display = "block";
-
-    xraiImage.alt = "Saliency Map (XRAI) which is a heatmap with a gradient ranging from black for least important and yellow for most important. Saliency map image of a " + alt +" overlays the regular image."
-
 
 }

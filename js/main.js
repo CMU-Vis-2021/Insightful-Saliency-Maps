@@ -65,118 +65,19 @@ function changeTab(button, tabToReveal){
 var disabledElem1 = document.getElementById("disabled1-tab2")
 var disabledElem2 = document.getElementById("original-saliency")
 
-function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = document.querySelector("#sliderOpacity")){
-    console.log("disabledElem1 = "+disabledElem1);
-    if(disabledElem1.classList.contains('disabled')){
-        disabledElem1.classList.remove('disabled');
-        disabledElem2.classList.remove('disabled');
-    }
-    var remove_img = xraiimg
-    
-    if (remove_img != null){
-        remove_img.src = ""
-    }
-
-    var choice = document.getElementById("stylized-ss")
-
-    var style_classpathss = "./assets/stylized-images/"+ choice.value + ".jpg";
-
-    var img_style = document.getElementById("stylized-img-ss")
-    img_style.setAttribute('src', style_classpathss)
-    img_style.alt = "Stylized image: " + choice.value
-
-    var shapename = choice.value.split("-")[0]
-
-    var ogselect = document.getElementById("original-ss");
-    ogselect.value = shapename;
-
-    ogimg();
-
-    var radio = document.getElementsByName("xraiList")
-    if(radio[0].checked){
-        set_xraiimg()
-
-        var remove_img = document.getElementById("stylized-img-xrai")
-        if (remove_img != null){
-            remove_img.src = ""
-        } else {
-            var img_div = document.querySelector('.flex #stylized-img-div')
-            img_div.innerHTML = img_div.innerHTML + '<div class= "img-label"><img id="stylized-img-xrai"><div><p>XRAI</p></div></div>'
-        }
-        
-        set_xraiimg()
-
-        var radio_og = document.getElementsByName("ogList")
-
-        if(radio_og[0].checked){
-
-            var remove_img = document.getElementById("original-img-xrai")
-            if (remove_img != null){
-                remove_img.src = ""
-            } else {
-                var img_div = document.querySelector('.flex #original-img-div')
-                img_div.innerHTML = img_div.innerHTML + '<div class = "img-label" ><div><p>XRAI</p></div><img id="original-img-xrai"></div>"'
-            }
-
-            set_xraiimg(choice = document.getElementById("original-ss"), imgobj = '#original-img-xrai')
-            
-            var sal_div = document.getElementById("salsim-div")
-            
-            sal_div.style.display = "block";
-            changeAlpha();
-            changeK();
-        }
-    } else if(radio[2].checked){
-        const sliderOpacity = opacityNum;
-        document.getElementById("salsim-div").style.display = "none";
-        sliderOpacity.value = 40;
-        
-        xraioverlap();
-        
-    }
-
-}
-
-function ogimg(){
-
-    var choice = document.getElementById("original-ss")
-
-    var og_classpath = "./assets/shapes/"+ choice.value + ".jpg";
-
-    var img_style = document.getElementById("original-img-ss")
-    img_style.setAttribute('src', og_classpath)
-
-}
-
-function addImg(imgid){
-
-    split = imgid.id.split(" ")
-    imgidname = split[0] + "grid" + " " + split[1]
-
-    if (imgid.name == "selected"){
-        document.getElementById(imgid.id).style.border = "0px"
-        document.getElementById(imgid.id).style.opacity = "100%"
-        document.getElementById(imgid.id).name = "none"
-
-        averageImgList = averageImgList.filter(function(item) {
-            return item !== imgidname
-        })
-        
-    } else {
-        document.getElementById(imgid.id).style.border = "2px solid #479ff8"
-        document.getElementById(imgid.id).style.opacity = "85%"
-        document.getElementById(imgid.id).name = "selected"
-        averageImgList.push(imgidname)
-    }
-}
 
 let tab1input2 = document.getElementById("tab1-input2");
 let tab1input2dropdown = document.getElementById("textureselect0");
+
 function firstIputDone(){
+    console.log("First input function")
     tab1input2.classList.remove("disabled");
-    if( tab1input2dropdown.disabled == true)
+    if( tab1input2dropdown.disabled == true) {
+        console.log("dropdown disabled")
         tab1input2dropdown.removeAttribute('disabled')
-    else{
+    }
+    else if (tab1input2dropdown.disabled != true){
+        console.log("stylizing")
         stylizeImg();
     }
 }
