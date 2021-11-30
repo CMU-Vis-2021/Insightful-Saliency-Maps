@@ -53,7 +53,7 @@ function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = docum
                 img_div.innerHTML = img_div.innerHTML + '<div class = "img-label"><div><p>XRAI</p></div><img id="original-img-xrai"></div>'
             }
 
-            set_xraiimg(choice = document.getElementById("original-ss"), imgobj = '#original-img-xrai')
+            set_xraiimg(choice = document.getElementById("original-ss"), imgobj = '#original-img-xrai', xrai=document.getElementById("xrai-og-img"))
             
             var sal_div = document.getElementById("salsim-div")
             

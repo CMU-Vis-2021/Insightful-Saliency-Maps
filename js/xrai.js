@@ -25,6 +25,7 @@ function set_xraiimg(choice = document.getElementById("stylized-ss"), imgobj = '
     var remove_img = xrai
     if (remove_img != null){
         remove_img.src = ""
+        remove_img.alt = "" //// probably shouldn't be here because it gets rid of accesibility but putting here for demo 
     }
 
     var xrai_classpath = "./assets/heatmaps/"+ choice.value + ".png";
