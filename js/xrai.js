@@ -54,11 +54,11 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
             var img_div = document.querySelector(query)
             img_div.innerHTML = img_div.innerHTML + appendHTML
 
-            if(radio[i].id == "xrai"){
+            if(radio[i].name == "xraiList"){
                 var slider = sliders
                 slider.style.display = "none";
                 set_xraiimg(); 
-           } else if(radio[i].id == "og"){
+           } else if(radio[i].name == "ogList"){
                 var slider = sliders
                 slider.style.display = "none";
                 set_xraiimg(choice = document.getElementById("original-ss"), imgobj = '#original-img-xrai', xrai=document.getElementById("xrai-og-img"));
