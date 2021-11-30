@@ -8,8 +8,11 @@ function textureImg(){
 
 function input3enable(){
     let input3 = document.getElementById('tab1-input3');
-    if(input3.classList.contains('disabled'))
+    let input4 = document.getElementById('stylized-img-div1');
+    if(input3.classList.contains('disabled')){
+        input4.classList.remove('disabled');
         input3.classList.remove('disabled');
+    }
 }
 
 function stylizeImg(){

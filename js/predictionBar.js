@@ -52,8 +52,8 @@ svgPrediction.append("text")
     .attr("class", "x-label")
     .attr("text-anchor", "end")
     .attr("dy", ""+(heightT1+45)+"px")
-    .attr("dx", ""+(widthT1)-20+"px")
-    .text("Inception V3 confidence in prediction(%)");
+    .attr("dx", ""+(widthT1)-60+"px")
+    .text("Confidence in prediction(%)");
 
 
 function updateBarPrediction(fileName){

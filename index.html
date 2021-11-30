@@ -46,17 +46,17 @@
                                 </select>
                             </span>
                         </div>
-                         <div class="flex" id="stylized-img-div1">
-                            <img id="stylizedimg0" style="position: relative; margin: 0px; max-width: 300px;">
+                         <div class="flex disabled" id="stylized-img-div1">
+                            <img alt= "Animal with texture over it deforming the base image underneathe." id="stylizedimg0" style="position: relative; margin: 0px; max-width: 300px;">
                         </div>
 
                          <div id="sliderTab1" style="display: none; padding-top: 10px; text-align: center;">
-                            <input type="range" id="sliderOpacity1" min="0" max="100" value="40" class="sliders" oninput='changeOpacity(slider = document.querySelector("#sliderOpacity1"), imgchoice = document.querySelector("#xrai-img1"), text = document.getElementById("numOpacity1"))' /> <span id="numOpacity1">40</span>% opacity
+                            <input name = "opacity" type="range" id="sliderOpacity1" min="0" max="100" value="40" class="sliders" oninput='changeOpacity(slider = document.querySelector("#sliderOpacity1"), imgchoice = document.querySelector("#xrai-img1"), text = document.getElementById("numOpacity1"))' /> <span id="numOpacity1">40</span><label for = "sliderOpacity1">% opacity</label>
                         </div>
 
                         <div id="checkboxoverlap" style="text-align: center; display: none; padding-top: 10px;">
-                            <img id="xraiscale" src="./assets/heatmaps/scale.png" style="width: 50%; padding: 5px; display: none;"> 
-                            <input type="checkbox" name="tab1List" value="unchecked" id="tab1xrai" onchange="xraicheck()">Overlap regions important to the AI
+                            <img id="xraiscale" src="./assets/heatmaps/scale.png" style="width: 50%; padding: 5px; display: none;" alt = "heatmap from black to yellow"> 
+                            <input type="checkbox" name="tab1List" value="unchecked" id="tab1xrai" onchange="xraicheck()"/><label for = "tab1xrai">Overlap regions important to the AI</label>
                         </div>
                     </div>
 
@@ -82,7 +82,7 @@
                 <div class="flex">
                     <div class = "flex-inner step" id = "stylized-saliency"> 
                       
-                        <p style="text-align: center;"> <b> Choose a stylized image:</b></p>
+                        <p style="text-align: center;"> <span class = "number">1</span><b> Choose a stylized image:</b></p>
                       
                         <div class="stylized-select" style="padding: 10px; text-align: center;">
                             <select class = "standard-select" name="stylized" id="stylized-ss" onchange="ssimg()" style="width:30%;">
@@ -102,15 +102,15 @@
                         <div id = "disabled1-tab2" class = "disabled">
                             <p style="text-align: center;"> Prediction: <b><span id="AIpred"> </span></b>; <span id="AIconf"> </span>% confidence </p>
                             <div class="flex" id="stylized-img-div">
-                                <img id="stylized-img-ss">
+                                <img alt = "stylexed animal with texture over top" id="stylized-img-ss">
                             </div>
                             <div id="sliders" style="display: none; text-align: center;">
-                                <input type="range" id="sliderOpacity" min="0" max="100" value="40" class="sliders" oninput="changeOpacity()" /> <span id="numOpacity">40</span>%
+                                <input name = "slider1" type="range" id="sliderOpacity" min="0" max="100" value="40" class="sliders" oninput="changeOpacity()" /> <span id="numOpacity">40</span><label for = "sliderOpacity">%</label>
                             </div>
                             <div style="text-align: center;">
-                                <input type="radio" name="xraiList" value="show" id="xrai" onchange="xrairadio()" checked>Show XRAI
-                                <input type="radio" name="xraiList" value="hide" id="xrai" onchange="xrairadio()">Hide XRAI
-                                <input type="radio" name="xraiList" value="overlap" id="overlap" onchange="xraioverlap()">Overlap XRAI
+                                <input type="radio" name="xraiList1" value="show" id="xrai" onchange="xrairadio()" checked><label for = "xrai">Show XRAI</label>
+                                <input type="radio" name="xraiList2" value="hide" id="xrai2" onchange="xrairadio()"><label for = "xrai2">Hide XRAI</label>
+                                <input type="radio" name="xraiList3" value="overlap" id="overlap" onchange="xraioverlap()"><label for = "overlap">Overlap XRAI</label>
                             </div>
                         </div>
                     </div>
@@ -127,14 +127,14 @@
                         </div>
                         <p> Prediction: <b><span id="OgAIpred"> </span></b>; <span id="OgAIconf"> </span>% confidence</p>
                         <div class="flex" id="original-img-div">
-                            <img id="original-img-ss">
+                            <img alt = "animal with no texture on top of it" id="original-img-ss">
                         </div>
                         <div id="slidersOg" style="display: none;">
-                            <input type="range" id="sliderOpacityOg" min="0" max="100" value="40" class="sliders" oninput='changeOpacity(slider = document.querySelector("#sliderOpacityOg"), imggchoice = document.querySelector("#xrai-og-img"), text = document.getElementById("numOpacityOg"))' /> <span id="numOpacityOg">40</span>%
+                            <input type="range" id="sliderOpacityOg" min="0" max="100" value="40" class="sliders" oninput='changeOpacity(slider = document.querySelector("#sliderOpacityOg"), imggchoice = document.querySelector("#xrai-og-img"), text = document.getElementById("numOpacityOg"))' /> <span id="numOpacityOg">40</span><label for = "sliderOpacityOg">%</label>
                         </div>
-                        <input type="radio" name="ogList" value="show" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<div class = \"img-label\" ><div><p>XRAI</p></div><img id=\"original-img-xrai\"></div>", originalHTML = "<img id=\"original-img-ss\">", sliders= document.getElementById("slidersOg"),opacityNum = document.querySelector("#sliderOpacityOg"))' checked>Show XRAI
-                        <input type="radio" name="ogList" value="hide" id="og" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<div class = \"img-label\" ><div><p>XRAI</p></div><img id=\"original-img-xrai\"></div>", originalHTML = "<img id=\"original-img-ss\">", sliders= document.getElementById("slidersOg"), opacityNum = document.querySelector("#sliderOpacityOg"))'>Hide XRAI
-                        <input type="radio" name="ogList" value="hide" id="og" onchange='xraioverlap(document.getElementById("original-ss"), id="original-img-ss", query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-ss\" style=\"position: relative;\"> <img id=\"xrai-og-img\" style=\"position: absolute; opacity: 40%\">", sliders = document.getElementById("slidersOg"))'>Overlap XRAI
+                        <input type="radio" name="ogList1" value="show" id="og1" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<div class = \"img-label\" ><div><p>XRAI</p></div><img alt = \"heatmap of how computer identifies image overtop other heatmaps of different computer vision algorithms\" id=\"original-img-xrai\"></div>", originalHTML = "<img alt = \"original image of animal\" id=\"original-img-ss\">", sliders= document.getElementById("slidersOg"),opacityNum = document.querySelector("#sliderOpacityOg"))' checked><label for = "og1">Show XRAI</label>
+                        <input type="radio" name="ogList2" value="hide" id="og2" onchange='xrairadio(document.getElementsByName("ogList"), query = ".flex #original-img-div", appendHTML = "<div class = \"img-label\" ><div><p>XRAI</p></div><img alt = \"heatmap of how computer identifies image\" id=\"original-img-xrai\"></div>", originalHTML = "<img alt = \"original image of animal\" id=\"original-img-ss\">", sliders= document.getElementById("slidersOg"), opacityNum = document.querySelector("#sliderOpacityOg"))'><label for = "og2">Hide XRAI</label>
+                        <input type="radio" name="ogList3" value="hide" id="og3" onchange='xraioverlap(document.getElementById("original-ss"), id="original-img-ss", query = ".flex #original-img-div", appendHTML = "<img alt = \"original image of animal\" id=\"original-img-ss\" style=\"position: relative;\"> <img alt = \"original image of animal\" id=\"xrai-og-img\" style=\"position: absolute; opacity: 40%\">", sliders = document.getElementById("slidersOg"))'><label for = "og3">Overlap XRAI</label>
                     </div>
                 </div>
                 <div class="visualize-similarity" style="max-width: 1200px;">
@@ -146,14 +146,14 @@
                                     <p>Intersection:</p>
                                 </div>
                                 <div id="sliders">
-                                    <input type="range" id="sliderAlpha" min="0" max="20" step="5" value="15" class="sliders" oninput="changeAlpha()" /> <span id="numAlpha">15</span> delta
+                                    <input type="range" name = "deltaValue" id="sliderAlpha" min="0" max="20" step="5" value="15" class="sliders" oninput="changeAlpha()" /> <span id="numAlpha">15</span> <label for = "sliderAlpha">delta</label>
                                 </div>
-                                <img id="salsim-img" style="border: 0px; width: auto;margin: auto;"/>
+                                <img alt = "Result of two image spliced together. similar areas are shown while non-similar areas are blacked out" id="salsim-img" style="border: 0px; width: auto;margin: auto;"/>
                             </div>
                             <div class="flex-inner step" style="padding: 20px;">
                                 <p>Comparison of Colors:</p>
                                 <div id="sliders">
-                                    <input type="range" id="sliderK" min="2" max="7" step="1" value="6" class="sliders" oninput="changeK()" /> <span id="numK">6</span> colors
+                                    <input type="range" id="sliderK" min="2" max="7" step="1" value="6" class="sliders" oninput="changeK()" /> <span id="numK">6</span> <label for = "sliderK">colors</label>
                                 </div>
                                 <div class="flex">
                                     <div class="flex-inner step">
@@ -169,9 +169,9 @@
                 </div>
                 <div class="visualize-similarity" >
                     <p> <b> Compute the average saliency map</b> </p>
-                    <div class="flex">
+                    <div class="flex step">
                         <div class="flex-inner step">
-                            <p id="average-title"> <b> Choose an Image Class: </b> </p>
+                            <p id="average-title"> <span class = "number">1</span><b> Choose an Image Class: </b> </p>
                             <div class="average-select" style="padding: 10px;">
                                    <select class = "standard-select" name="average-select" id="average-select" onchange="displayImgs()" style="width:70%;">
                                        <option value="-1" selected disabled hidden>Select choice</option>
@@ -180,57 +180,56 @@
                                        <option value="bear">Bear</option>
                                    </select>
                             </div>
-                            <p id="imageOptions" style=" display: none; font-size: 12px; color: gray; font-style: italic;"> Select the images below to include in the average: </p>
+                            <p id="imageOptions" style="display: block;font-size: 18px;font-weight: bold;margin: 22px;"><span class = "number">2</span> Select the images below to include in the average: </p>
                             <div class="row" id="imageOptions rows" style="display: none;">
                                 <div class="column">
                                     <div class="card" id="img 1" name="none">
-                                        <img id="imggrid 1" style="margin: 0px; padding: inherit;" onmouseenter="hoverImggrid(document.getElementById('imggrid 1'))" onmouseleave="leaveImggrid(document.getElementById('imggrid 1'))" onclick="addImg(document.getElementById('img 1'))" src="./assets/shapes/bear.jpg" >
-                                        <img style="display:  none;" id="imggrid 1 heatmap" src="./assets/shapes/bear.jpg">
+                                        <img alt = "Animal stylized with a bike texture" id="imggrid 1" style="margin: 0px; padding: inherit;" onmouseenter="hoverImggrid(document.getElementById('imggrid 1'))" onmouseleave="leaveImggrid(document.getElementById('imggrid 1'))" onclick="addImg(document.getElementById('img 1'))" src="./assets/shapes/bear.jpg" >
+                                        <img alt = "undisplayed image" style="display:  none;" id="imggrid 1 heatmap" src="./assets/shapes/bear.jpg">
                                     </div>
                                 </div>
 
                                 <div class="column">
                                     <div class="card" id="img 2" name="name">
-                                        <img id="imggrid 2" style="margin: 0px; padding: inherit;" onmouseenter="hoverImggrid(document.getElementById('imggrid 2'))" onmouseleave="leaveImggrid(document.getElementById('imggrid 2'))" onclick="addImg(document.getElementById('img 2'))" src="./assets/shapes/bear.jpg">
-                                        <img style="display:  none;" id="imggrid 2 heatmap" src="./assets/shapes/bear.jpg">
+                                        <img alt = "Animal stylized with an elephant texture"  id="imggrid 2" style="margin: 0px; padding: inherit;" onmouseenter="hoverImggrid(document.getElementById('imggrid 2'))" onmouseleave="leaveImggrid(document.getElementById('imggrid 2'))" onclick="addImg(document.getElementById('img 2'))" src="./assets/shapes/bear.jpg">
+                                        <img alt = "undisplayed image" style="display:  none;" id="imggrid 2 heatmap" src="./assets/shapes/bear.jpg">
                                     </div>
                                 </div>
                               
                                 <div class="column">
                                     <div class="card" name="none" id="img 3">
-                                        <img  id="imggrid 3" style="margin: 0px; padding: inherit;" onmouseenter="hoverImggrid(document.getElementById('imggrid 3'))" onmouseleave="leaveImggrid(document.getElementById('imggrid 3'))" onclick="addImg(document.getElementById('img 3'))" src="./assets/shapes/bear.jpg">
-
-                                        <img style="display:  none;" id="imggrid 3 heatmap" src="./assets/shapes/bear.jpg">
+                                        <img  alt = "Animal stylized with an tiger fur texture" id="imggrid 3" style="margin: 0px; padding: inherit;" onmouseenter="hoverImggrid(document.getElementById('imggrid 3'))" onmouseleave="leaveImggrid(document.getElementById('imggrid 3'))" onclick="addImg(document.getElementById('img 3'))" src="./assets/shapes/bear.jpg">
+                                        <img alt = "undisplayed image" style="display:  none;" id="imggrid 3 heatmap" src="./assets/shapes/bear.jpg">
                                     </div>
                                 </div>
 
                                 <div class="column">
                                     <div class="card" name="none" id="img 4">
-                                        <img  id="imggrid 4" style="margin: 0px; padding: inherit;" onmouseenter="hoverImggrid(document.getElementById('imggrid 4'))" onmouseleave="leaveImggrid(document.getElementById('imggrid 4'))" onclick="addImg(document.getElementById('img 4'))" src="./assets/shapes/bear.jpg">
-                                        <img style="display:  none;" id="imggrid 4 heatmap" src="./assets/shapes/bear.jpg">
+                                        <img alt = "Animal stylized with a truck texture"  id="imggrid 4" style="margin: 0px; padding: inherit;" onmouseenter="hoverImggrid(document.getElementById('imggrid 4'))" onmouseleave="leaveImggrid(document.getElementById('imggrid 4'))" onclick="addImg(document.getElementById('img 4'))" src="./assets/shapes/bear.jpg">
+                                        <img alt = "undisplayed image" style="display:  none;" id="imggrid 4 heatmap" src="./assets/shapes/bear.jpg">
                                     </div>
                                 </div>
                               
                                 <div class="column">
                                     <div class="card" name="none" id="img 5">
-                                        <img id="imggrid 5" style="margin: 0px; padding: inherit;" onmouseenter="hoverImggrid(document.getElementById('imggrid 5'))" onmouseleave="leaveImggrid(document.getElementById('imggrid 5'))" onclick="addImg(document.getElementById('img 5'))" src="./assets/shapes/bear.jpg">
-                                        <img style="display:  none;" id="imggrid 5 heatmap" src="./assets/shapes/bear.jpg">
+                                        <img alt = "Animal stylized with a zebra stripes texture" id="imggrid 5" style="margin: 0px; padding: inherit;" onmouseenter="hoverImggrid(document.getElementById('imggrid 5'))" onmouseleave="leaveImggrid(document.getElementById('imggrid 5'))" onclick="addImg(document.getElementById('img 5'))" src="./assets/shapes/bear.jpg">
+                                        <img alt = "undisplayed image" style="display:  none;" id="imggrid 5 heatmap" src="./assets/shapes/bear.jpg">
                                     </div>
                                 </div>
                             </div>
 
-                            <button id = "averageCompute imageOptions" style="display:  none;" class = "blue" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="computeAvg();">Generate Average Saliency Map</button>
+                            <button style = "display: none; " id = "averageCompute imageOptions" class = "blue disableButtonWoraround" onmouseenter="hoverBtn()" onmouseleave="leaveBtn()" onclick="computeAvg();">Generate Average Saliency Map</button>
                         </div>
                     </div>
                     <div class="flex" style="padding-top: 40px;">
                         <div class="flex-inner step" id="canvasAvg" style="display: none;">
                             
                             <p id="imageOptions" style="font-size: 18px; font-weight: bold;"> Average Saliency Map: </p>
-                            <img id="avgHeatmap">
+                            <img style = "display:none" alt = "Shows layered heatmaps overtop each other. most algorithms identity the nose area as the most important in the image but vary in identifying other aspects." id="avgHeatmap">
                         </div>
                         <div class="flex-inner steos" id="ogHeatmap" style="display: none;">
                             <p id="imageOptions" style="font-size: 18px; font-weight: bold; margin-top: 0px;"> Original Saliency Map: </p>
-                            <img id="ogheat" style="margin-top: 12px; width: 200px; height: 200px;" src="./assets/shapes/bear.jpg">
+                            <img alt = "Shows original heat map" id="ogheat" style="width: 200px; height: 200px;" src="./assets/shapes/bear.jpg">
                         </div>
                     </div>
 
@@ -240,7 +239,7 @@
                 <div class = "flex">
                     <div  class = "flex-inner step"><h2>Draw what the AI sees.<br>See how your perception compares to the AI.</h2></div>
                     <div class = "flex-inner gifTopper">
-                        <img id = "canvasImg">
+                        <img alt  = "Result of two image spliced together. similar areas are shown while non-similar areas are blacked out" id = "canvasImg">
                     </div>
                 </div>
                     <p>The AI makes predictions based on regions it feels are important to identifying the image. Can you guess what places in this image the AI feels are the <b><span class = "box yellow"></span>most important</b> to identifying it?<br>What is <b><span class = "box orange"></span>important</b> and <b><span class = "box red"></span>somewhat important</b>? Finally, what is <b><span class = "box purple"></span>least important</b>?</p>
@@ -270,7 +269,7 @@
                             Your browser does not support the HTML5 canvas tag.
                             </canvas>
                         </div>
-                        <img id = "canvasImg-compare" src = "./assets/quiz/doberman-heat.png" style="display: none;">
+                        <img id = "canvasImg-compare" src = "./assets/quiz/doberman-heat.png" style="display: none;" alt = "heatmap of doberman shows how an AI would classify the image. The head is the most important while nexk and body shape are second most important.">
                         <button id = "revealAnswerButton" class = "blue" onclick="revealAnswer(this)">I'm done! Show me how an AI sees this image</button>
                     </div>     
             </div> 
@@ -279,22 +278,24 @@
 
                 <div class="flex">
                     <div class="flex-inner step">
-                        <p style="text-align: center; font-weight: bold; font-size: 18px;">Select models to compare</p>
-                        <div id="checkboxCompare" style="text-align:  center; padding-top: 10px;">
-                            <input type="checkbox" name="tab4Check" value="unchecked inceptionv3" id="inceptionv3" onclick="modelCompare(document.getElementById('inceptionv3'))">Inception V3
-                            <input type="checkbox" name="tab4Check" value="unchecked vgg16" id="vgg16" onclick="modelCompare(document.getElementById('vgg16'))">VGG 16
-                            <input type="checkbox" name="tab4Check" value="unchecked convmixer" id="convmixer" onclick="modelCompare(document.getElementById('convmixer'))">ConvMixer
+                        <p style="font-weight: bold; font-size: 18px;"><span class = "number">1</span>Select models to compare</p>
+                        <div id="checkboxCompare" style="padding-top: 10px;">
+                            <input type="checkbox" name="tab4Check1" value="unchecked inceptionv3" id="inceptionv3" onclick="modelCompare(document.getElementById('inceptionv3'))"><label for = "inceptionv3">Inception V3</label>
+                            <input type="checkbox" name="tab4Check2" value="unchecked vgg16" id="vgg16" onclick="modelCompare(document.getElementById('vgg16'))"><label for = "vgg16">VGG 16</label>
+                            <input type="checkbox" name="tab4Check3" value="unchecked convmixer" id="convmixer" onclick="modelCompare(document.getElementById('convmixer'))"><label for = "convmixer">ConvMixer</label>
                         </div>
-                        <p style="text-align: center; font-weight: bold; font-size: 18px; padding-top: 10px;">Select comparison method</p>
-                        <div id="radioCompare" style="text-align:  center; padding-top: 10px;">
+                        <p style="font-size: 15px; padding-top: 10px;"><b>Comparison method:</b> Intersect XRAI</p>
+                        <!-- <div id="radioCompare" style="text-align:  center; padding-top: 10px;"> -->
                             <!-- <input type="radio" name="tab4Radio" value="show" id="showCompare" >Show XRAI -->
                             <!-- <input type="radio" name="tab4Radio" value="overlap" id="overlapCompare">Overlap XRAI -->
-                            <input type="radio" name="tab4Radio" value="intersect" id="intersectCompare" checked>Intersect XRAI
+                            <!-- <input type="radio" name="tab4Radio" value="intersect" id="intersectCompare" checked><label for = "intersectCompare">Intersect XRAI</label> -->
                             <!-- <input type="radio" name="tab4Radio" value="average" id="averageCompare">Average XRAI -->
-                        </div>
-                        <p style="text-align: center; font-weight: bold; font-size: 18px; padding-top: 10px;">Select stylized image</p>
-                        <div class="compare-select" style="padding: 10px; text-align: center;">
-                            <select class = "standard-select" name="compare" id="compare-ss" onchange="intersectCompare()" style="width:30%;">
+                        <!-- </div> -->
+                    </div>
+                    <div class="flex-inner step disabled" id = "tab4-dis-1">
+                        <p style=" font-weight: bold; font-size: 18px; margin-top:0px;"><span class = "number">2</span>Select stylized image</p>
+                        <div class="compare-select" style="padding: 10px;">
+                            <select class = "standard-select" name="compare" id="compare-ss" onchange="intersectCompare()" style="width:100%;">
                                <option value="-1" selected disabled hidden>Select choice</option>
                                <option value="dog-stylized-tiger">Dog x Tiger</option>
                                <option value="dog-stylized-zebra">Dog x Zebra</option>
@@ -310,34 +311,34 @@
                         </div>
                     </div>
                 </div>
-                <p style="text-align: center;font-weight: bold; font-size: 20px"> Model Comparison: </p>
+                <p style="text-align: center;font-weight: bold; font-size: 20px" class = "disabled" id = "tab4-dis-2"> Model Comparison: </p>
                 <div class="flex" id="modelsCompare" style="text-align: center;"> 
                     <div class="flex-inner step" id="inceptionv3-compare" style="display: none; padding: 10px;">
                         <div style="text-align: center;">
                         <p>Inception V3 Intersection:</p>
                         </div>
                         <div id="sliders">
-                            <input type="range" id="sliderinceptionv3" min="0" max="20" step="5" value="15" class="sliders" oninput='changeAlpha(choiceVal = document.getElementById("compare-ss"), slider = document.querySelector("#sliderinceptionv3"), number = document.getElementById("numInception"), img = "#inceptionv3-img", model="inceptionv3")' /> <span id="numInception">15</span> delta
+                            <input name= "delta2" type="range" id="sliderinceptionv3" min="0" max="20" step="5" value="15" class="sliders" oninput='changeAlpha(choiceVal = document.getElementById("compare-ss"), slider = document.querySelector("#sliderinceptionv3"), number = document.getElementById("numInception"), img = "#inceptionv3-img", model="inceptionv3")' /> <span id="numInception">15</span> <label for = "sliderinceptionv3">delta</label>
                         </div>
-                        <img id="inceptionv3-img" src="./assets/saliency-similarity/inceptionv3/bear-stylized-bikes-0.png" style="border: 0px; width: auto;"/>
+                        <img alt = "saliency of a bear image with a texture over it" id="inceptionv3-img" src="./assets/saliency-similarity/inceptionv3/bear-stylized-bikes-0.png" style="border: 0px; width: auto;"/>
                     </div>
                     <div class="flex-inner step" id="vgg16-compare" style="display: none; padding: 10px;">
                         <div style="text-align: center;">
                         <p>VGG 16 Intersection:</p>
                         </div>
                         <div id="sliders">
-                            <input type="range" id="slidervgg16" min="0" max="20" step="5" value="15" class="sliders" oninput='changeAlpha(choiceVal = document.getElementById("compare-ss"), slider = document.querySelector("#slidervgg16"), number = document.getElementById("numVGG"), img = "#vgg16-img", model="vgg16")' /> <span id="numVGG">15</span> delta
+                            <input name= "delta3" type="range" id="slidervgg16" min="0" max="20" step="5" value="15" class="sliders" oninput='changeAlpha(choiceVal = document.getElementById("compare-ss"), slider = document.querySelector("#slidervgg16"), number = document.getElementById("numVGG"), img = "#vgg16-img", model="vgg16")' /> <span id="numVGG">15</span> <label for = "slidervgg16">delta</label>
                         </div>
-                        <img id="vgg16-img" src="./assets/saliency-similarity/inceptionv3/bear-stylized-bikes-0.png" style="border: 0px; width: auto;"/>
+                        <img alt = "saliency of a bear image with a texture over it"  id="vgg16-img" src="./assets/saliency-similarity/inceptionv3/bear-stylized-bikes-0.png" style="border: 0px; width: auto;"/>
                     </div>
                     <div class="flex-inner step" id="convmixer-compare" style="display: none; padding: 10px;">
                         <div style="text-align: center;">
                         <p>ConvMixer Intersection:</p>
                         </div>
                         <div id="sliders">
-                            <input type="range" id="sliderconvmixer" min="0" max="20" step="5" value="15" class="sliders" oninput='changeAlpha(choiceVal = document.getElementById("compare-ss"), slider = document.querySelector("#sliderconvmixer"), number = document.getElementById("numConvMixer"), img = "#convmixer-img", model="convmixer")' /> <span id="numConvMixer">15</span> delta
+                            <input name= "delta4" type="range" id="sliderconvmixer" min="0" max="20" step="5" value="15" class="sliders" oninput='changeAlpha(choiceVal = document.getElementById("compare-ss"), slider = document.querySelector("#sliderconvmixer"), number = document.getElementById("numConvMixer"), img = "#convmixer-img", model="convmixer")' /> <span id="numConvMixer">15</span> <label for = "sliderconvmixer">delta</label>
                         </div>
-                        <img id="convmixer-img" src="./assets/saliency-similarity/inceptionv3/bear-stylized-bikes-0.png" style="border: 0px; width: auto;"/>
+                        <img alt = "shows animal textured with bikes" id="convmixer-img" src="./assets/saliency-similarity/inceptionv3/bear-stylized-bikes-0.png" style="border: 0px; width: auto;"/>
                     </div>
                 </div>
             </div>
