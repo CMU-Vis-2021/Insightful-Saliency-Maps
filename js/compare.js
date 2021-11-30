@@ -27,7 +27,7 @@ function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = docum
 
     ogimg();
 
-    var radio = document.getElementsByClassName("xraiList")
+    var radio = document.getElementsByName("xraiList")
     console.log(radio)
     if(radio[0].checked){
         console.log(radio[0])
@@ -43,7 +43,7 @@ function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = docum
         
         set_xraiimg()
 
-        var radio_og = document.getElementsByClassName("ogList")
+        var radio_og = document.getElementsByName("ogList")
 
         if(radio_og[0].checked){
 
