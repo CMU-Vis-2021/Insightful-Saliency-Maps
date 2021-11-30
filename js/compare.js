@@ -27,8 +27,10 @@ function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = docum
 
     ogimg();
 
-    var radio = document.getElementsByName("xraiList")
+    var radio = document.getElementsByClassName("xraiList")
+    console.log(radio)
     if(radio[0].checked){
+        console.log(radio[0])
         set_xraiimg()
 
         var remove_img = document.getElementById("stylized-img-xrai")
@@ -41,7 +43,7 @@ function ssimg(xraiimg = document.getElementById("xrai-img"), opacityNum = docum
         
         set_xraiimg()
 
-        var radio_og = document.getElementsByName("ogList")
+        var radio_og = document.getElementsByClassName("ogList")
 
         if(radio_og[0].checked){
 
