@@ -87,11 +87,21 @@ function ogimg(){
 
 }
 
+function disableTab4Stuff(){
+    let tab4Item1 = document.getElementById("tab4-dis-1");
+    let tab4Item2 = document.getElementById("tab4-dis-2");
+    console.log("SDSFDOOSDFJDS");
+    if(tab4Item1.classList.contains("disabled")){
+        tab4Item1.classList.remove("disabled");
+        tab4Item2.classList.remove("disabled");
+    }
 
+}
 var models = []
 
 function modelCompare(checkID){
-
+    disableTab4Stuff();
+    
     if((checkID.value).includes("unchecked")){
         if (models.length > 0){
             checkID.value = (checkID.value).split("unchecked ")[1]

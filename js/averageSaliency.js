@@ -8,6 +8,8 @@ var stylefile = ".jpg"
 var heatpath = "./assets/heatmaps/"
 var heatfile = ".png"
 
+let buttonDisabledTab4 = true;
+
 function displayImgs(){
 
     var choice = document.getElementById("average-select")
@@ -30,7 +32,6 @@ function displayImgs(){
     document.getElementById('ogheat').src = heatpath + choice.value + heatfile
 
     document.getElementById("imageOptions rows").style.display = "block";
-    document.getElementById("averageCompute imageOptions").style.display = "block";
     document.getElementById("imageOptions").style.display = "block";
 
     var canvas = document.getElementById("canvasAvg")
@@ -91,8 +92,13 @@ function computeAvg(){
   cv.imshow(document.getElementById('outputCanvas'), avg_img);
 }
 
-function addImg(imgid){
 
+
+function addImg(imgid){
+    if(buttonDisabledTab4){
+        document.getElementById("averageCompute imageOptions").style.display = "block";
+        buttonDisabledTab4 = false;
+    }
     split = imgid.id.split(" ")
     imgidname = split[0] + "grid" + " " + split[1]
 
