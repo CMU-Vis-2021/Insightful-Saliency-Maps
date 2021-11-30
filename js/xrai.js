@@ -10,7 +10,7 @@ function xraicheck(){
     if(document.getElementById("tab1xrai").value == "checked"){
         console.log("value is checked")
         document.getElementById("xraiscale").style.display = "block";
-        xraioverlap(choice = document.getElementById("shapeselect0"), id = 'stylized-img-ss1', query = '.flex #stylized-img-div1', appendHTML = '<img id="stylized-img-ss1" style="position: relative; margin: 0px; max-width: 230px; width:100%;"> <img id="xrai-img1" style="position: absolute; opacity: 40%; max-width: 230px;width:100%;"> ', sliders = document.getElementById("sliderTab1"));
+        xraioverlap(choice = document.getElementById("shapeselect0"), id = 'stylized-img-ss1', query = '.flex #stylized-img-div1', appendHTML = '<img id="stylized-img-ss1" style="position: relative; margin: 0px; max-width: 230px; width:100%;"> <img id="xrai-img1" style="position: absolute; opacity: 40%; max-width: 230px;width:100%;"> ', sliders = document.getElementById("sliderTab1"), opacityNum = document.querySelector("#sliderOpacity1"));
     } else {
         document.getElementById("xraiscale").style.display = "none";
         document.getElementById("sliderTab1").style.display = "none"
@@ -98,9 +98,9 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
             sliderOpacity.value = 40;
 
             if(radio[i].name == "xraiList"){
-                xraioverlap();
+                xraioverlap(opacity = opacityNum);
             } else if(radio[i].name == "ogList"){
-                xraioverlap(document.getElementById("original-ss"), id="original-img-ss", query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-ss\" style=\"position: relative;\"> <img id=\"xrai-og-img\" style=\"position: absolute; opacity: 40%\">", sliders = document.getElementById("slidersOg"))
+                xraioverlap(document.getElementById("original-ss"), id="original-img-ss", query = ".flex #original-img-div", appendHTML = "<img id=\"original-img-ss\" style=\"position: relative;\"> <img id=\"xrai-og-img\" style=\"position: absolute; opacity: 40%\">", sliders = document.getElementById("slidersOg"), opacity = opacityNum)
             }
         } 
         break;
@@ -109,7 +109,7 @@ function xrairadio(radio = document.getElementsByName("xraiList"), query = '.fle
 
 }
 
-function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'stylized-img-ss', query = '.flex #stylized-img-div', appendHTML = '<img id="stylized-img-ss" style="position: relative;"> <img id="xrai-img" style="position: absolute; opacity: 40%"> ', sliders = document.getElementById("sliders")){
+function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'stylized-img-ss', query = '.flex #stylized-img-div', appendHTML = '<img id="stylized-img-ss" style="position: relative;"> <img id="xrai-img" style="position: absolute; opacity: 40%"> ', sliders = document.getElementById("sliders"), opacity = opacityNum = document.querySelector("#sliderOpacity")){
 
     var img_div = document.querySelector(query)
     img_div.innerHTML = appendHTML
@@ -139,17 +139,21 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'styl
         document.getElementById("salsim-div").style.display = "none";
         var ogImage = $('#original-img-ss')
         var xraiImage = $('#xrai-og-img')
+        var xraiImgObj = document.getElementById("xrai-og-img")
     } else if(id == 'stylized-img-ss1'){
         console.log("stylizedimg0")
         var ogImage = $('#stylized-img-ss1')
         var xraiImage = $('#xrai-img1')
+        var xraiImgObj = document.getElementById("xrai-img1")
     } else {
         console.log("it is something else")
         document.getElementById("salsim-div").style.display = "none";
         var ogImage = $('#stylized-img-ss')
         var xraiImage = $('#xrai-img')
+        var xraiImgObj = document.getElementById("xrai-img")
     }
-    
+
+    // console.log("OPACITY VALUE UPDATE", opacity.value.toString() + "%")
 
     $.ajax({
         url: xrai_classpath,
@@ -170,5 +174,9 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'styl
     });
 
     sliders.style.display = "block";
+    console.log(opacity)
+
+    sliders.children[1].innerHTML = 40
+
 
 }
