@@ -176,7 +176,10 @@ function xraioverlap(choice = document.getElementById("stylized-ss"), id = 'styl
     sliders.style.display = "block";
     console.log(opacity)
 
-    sliders.children[1].innerHTML = 40
+    if (id != "stylized-img-ss1"){
+        sliders.children[1].innerHTML = 40
+    }
+    
 
 
 }
