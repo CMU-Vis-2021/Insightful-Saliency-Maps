@@ -47,7 +47,7 @@ Katelyn designed and helped implement the Saliency Similiarity tab and the Model
 
 ---
 
-## Authors: 
+## Developers: 
 * Swetha Kannan
 * Katelyn Morrison
 
