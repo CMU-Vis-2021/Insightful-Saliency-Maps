@@ -195,7 +195,7 @@ d3.selectAll("#canvas").on("mouseup",updateData);
 
     //If rgb is all the same we've found the color we want!
     if(red && green && blue){
-      return 4;
+      return 1.05;
     }else{
       return 0;
     }
