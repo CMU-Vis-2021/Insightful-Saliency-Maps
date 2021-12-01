@@ -1,15 +1,16 @@
 # [In*sight*ful Saliency Maps](https://cmu-vis-2021.github.io/Human-vs-Machine-Final-Project/)
 
-![image](https://user-images.githubusercontent.com/7442274/144310232-54239047-3ba1-44df-a7a8-ee4ec343bd39.png)
+![image](https://user-images.githubusercontent.com/11639631/144311494-b55e5484-511e-4431-88f0-f17e29aa718f.png)
+
 
 
 ### Project Abstract:
 
 *Explainability techniques for image classification such as saliency maps provide insight into which regions of the image influenced the prediction. Saliency techniques can assist data scientists in model debugging by identifying features in images that are not relevant to the image class. However, the static presentation of saliency maps withhold data scientists from further exploring model behavior on out-of-distribution data. Incorporating saliency maps in an interactive tool will enable data scientists to debug their models while understanding how their model behaves on out-of-distribution data. We present a protoype that incorporates saliency maps in an interactive, exploratory tool to showcase novel interactions that data scientists can experience with saliency maps.*
 
-### Project Report: [PDF]()
+### Project Report: [PDF](https://github.com/CMU-Vis-2021/Human-vs-Machine-Final-Project/blob/main/assets/Data_Viz_Final_Project_Report.pdf)
 
-### Project Demo Video: [Video]()
+### Project Demo Video: [Video](https://drive.google.com/file/d/1WWqxBAzHl1Pm0M4TO6azJ3AZ4hh2PBjM/view?usp=sharing)
 
 ---
 
@@ -36,7 +37,13 @@
 
 ### Project Development Process:
 
+We leveraged the GitHub projects features to outline features, bugs, and next steps throughout developing our project. You can view our project with a history of our tasks and issues [here](https://github.com/CMU-Vis-2021/Human-vs-Machine-Final-Project/projects/1). 
 
+In terms of work split between the two developers:
+
+Swetha designed and fully implemented the stylize an image tab and explain an image tab. She also managed all of the UI/UX for our site. This includes disbaling certain features under certain conditions, setting the theme of the tabs, and designing the look of the website. 
+
+Katelyn designed and helped implement the Saliency Similiarity tab and the Model comparison tab. Swetha assisted with the UI/UX for these tabs. Katelyn managed all of the machine learning related source code including generating stylized images using neural style transfer, generating the XRAI saliency maps, and the predictions for each image. Katelyn also brought her experience of working with vision models into the project. Her expertise informed the development and direction of the page and she put work into ensuring that all explanations were consistent with industry knowledge in the field.
 
 ---
 
