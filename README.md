@@ -1,6 +1,7 @@
 # [In*sight*ful Saliency Maps](https://cmu-vis-2021.github.io/Human-vs-Machine-Final-Project/)
 
-![image](https://user-images.githubusercontent.com/7442274/144310232-54239047-3ba1-44df-a7a8-ee4ec343bd39.png)
+![image](https://user-images.githubusercontent.com/11639631/144311494-b55e5484-511e-4431-88f0-f17e29aa718f.png)
+
 
 
 ### Project Abstract:
@@ -9,7 +10,7 @@
 
 ### Project Report: [PDF]()
 
-### Project Demo Video: [Video]()
+### Project Demo Video: [Video](https://drive.google.com/file/d/1WWqxBAzHl1Pm0M4TO6azJ3AZ4hh2PBjM/view?usp=sharing)
 
 ---
 
