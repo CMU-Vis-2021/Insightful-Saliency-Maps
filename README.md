@@ -8,7 +8,7 @@
 
 *Explainability techniques for image classification such as saliency maps provide insight into which regions of the image influenced the prediction. Saliency techniques can assist data scientists in model debugging by identifying features in images that are not relevant to the image class. However, the static presentation of saliency maps withhold data scientists from further exploring model behavior on out-of-distribution data. Incorporating saliency maps in an interactive tool will enable data scientists to debug their models while understanding how their model behaves on out-of-distribution data. We present a protoype that incorporates saliency maps in an interactive, exploratory tool to showcase novel interactions that data scientists can experience with saliency maps.*
 
-### Project Report: [PDF]()
+### Project Report: [PDF](https://github.com/CMU-Vis-2021/Human-vs-Machine-Final-Project/blob/main/assets/Data_Viz_Final_Project_Report.pdf)
 
 ### Project Demo Video: [Video](https://drive.google.com/file/d/1WWqxBAzHl1Pm0M4TO6azJ3AZ4hh2PBjM/view?usp=sharing)
 
@@ -37,6 +37,7 @@
 
 ### Project Development Process:
 
+We leveraged the GitHub projects features to outline features, bugs, and next steps throughout developing our project. You can view our project with a history of our tasks and issues [here](). 
 
 
 ---
