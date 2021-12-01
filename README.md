@@ -1,10 +1,4 @@
-# In*sight*ful Saliency Maps
-*Final Project*
-
-Authors: 
-* Swetha Kannan
-* Katelyn Morrison
----
+# [In*sight*ful Saliency Maps](https://cmu-vis-2021.github.io/Human-vs-Machine-Final-Project/)
 
 ![image](https://user-images.githubusercontent.com/7442274/144310232-54239047-3ba1-44df-a7a8-ee4ec343bd39.png)
 
@@ -33,3 +27,8 @@ Project Abstract:
    3.2. `npm run start` or `npm run dev` or `npm run`
 
 4. Copy and paste the local host url and open up in a browser.
+
+
+Authors: 
+* Swetha Kannan
+* Katelyn Morrison
