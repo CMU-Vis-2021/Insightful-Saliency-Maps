@@ -1,14 +1,17 @@
-# In*sight*ful Saliency Maps
-*Final Project*
+# [In*sight*ful Saliency Maps](https://cmu-vis-2021.github.io/Human-vs-Machine-Final-Project/)
 
-Authors: 
-* Swetha Kannan
-* Katelyn Morrison
----
+![image](https://user-images.githubusercontent.com/7442274/144310232-54239047-3ba1-44df-a7a8-ee4ec343bd39.png)
 
-Project Abstract:
+
+### Project Abstract:
 
 *Explainability techniques for image classification such as saliency maps provide insight into which regions of the image influenced the prediction. Saliency techniques can assist data scientists in model debugging by identifying features in images that are not relevant to the image class. However, the static presentation of saliency maps withhold data scientists from further exploring model behavior on out-of-distribution data. Incorporating saliency maps in an interactive tool will enable data scientists to debug their models while understanding how their model behaves on out-of-distribution data. We present a protoype that incorporates saliency maps in an interactive, exploratory tool to showcase novel interactions that data scientists can experience with saliency maps.*
+
+### Project Report: [PDF]()
+
+### Project Demo Video: [Video]()
+
+---
 
 ## Stylized-Images, Predictions, and Saliency Maps Source Code
 
@@ -30,3 +33,14 @@ Project Abstract:
    3.2. `npm run start` or `npm run dev` or `npm run`
 
 4. Copy and paste the local host url and open up in a browser.
+
+### Project Development Process:
+
+
+
+---
+
+## Authors: 
+* Swetha Kannan
+* Katelyn Morrison
+
