@@ -43,7 +43,7 @@ In terms of work split between the two developers:
 
 Swetha designed and fully implemented the stylize an image tab and explain an image tab. She also managed all of the UI/UX for our site. This includes disbaling certain features under certain conditions, setting the theme of the tabs, and designing the look of the website. 
 
-Katelyn designed and helped implement the Saliency Similiarity tab and the Model comparison tab. Swetha assisted with the UI/UX for these tabs. Katelyn managed all of the machine learning related source code including generating stylized images using neural style transfer, generating the XRAI saliency maps, and the predictions for each image. 
+Katelyn designed and helped implement the Saliency Similiarity tab and the Model comparison tab. Swetha assisted with the UI/UX for these tabs. Katelyn managed all of the machine learning related source code including generating stylized images using neural style transfer, generating the XRAI saliency maps, and the predictions for each image. Katelyn also brought her experience of working with vision models into the project. Her expertise informed the development and direction of the page and she put work into ensuring that all explanations were consistent with industry knowledge in the field.
 
 ---
 
