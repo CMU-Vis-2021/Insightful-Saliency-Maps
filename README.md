@@ -1,6 +1,6 @@
 # [In*sight*ful Saliency Maps](https://cmu-vis-2021.github.io/Insightful-Saliency-Maps/)
 
-![image](https://user-images.githubusercontent.com/11639631/144311494-b55e5484-511e-4431-88f0-f17e29aa718f.png)
+![image](https://github.com/CMU-Vis-2021/Insightful-Saliency-Maps/blob/main/assets/DemoGif.gif)
 
 
 
