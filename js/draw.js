@@ -1,6 +1,6 @@
 // Brush colour and size
 let colour = colorYellow;
-const strokeWidth = 5;
+const strokeWidth = 12;
 
 // Drawing state
 let latestPoint;
@@ -99,4 +99,3 @@ function changeColorCanvas(color){
         colour = colorYellow;
     }
 }
-

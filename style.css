@@ -500,13 +500,22 @@ h4{
   border: 3px solid black;
 }
 #answerCanvas{
-  max-height:0px;
-  transition: max-height 0.15s ease-out;
-  overflow: hidden;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 0px 10px;
 }
-.reveal{
-  max-height: 500px!important;
-  transition: max-height 0.25s ease-in!important;
+#answerCanvas.reveal{
+  display: flex;
+}
+#answerCanvas canvas{
+  width: 100%;
+  max-width: 330px;
+  border: 1px solid #ededed;
+}
+#answerCanvas h4{
+  margin: 0px;
 }
 #d3-canvas-bar span{
   width:10px;
@@ -555,5 +564,4 @@ h4{
 .disabled .inner{
   display: none;
 }
-
 

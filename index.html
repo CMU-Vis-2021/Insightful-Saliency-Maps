@@ -16,12 +16,12 @@
         <div class="container" id="top">
             <h1>In<span style="font-style:  italic;">sight</span>ful Saliency Maps</h1>
             <nav>
-              <button id = "openTab1" onclick = "changeTab(this,'tab1')" class = "active">Stylize an Image</button>
+              <button id = "openTab1" onclick = "changeTab(this,'tab1')">Stylize an Image</button>
               <button id = "openTab2" onclick = "changeTab(this,'tab2')">Saliency Similarity</button>
               <button id = "openTab4" onclick = "changeTab(this,'tab4')">Model Comparison</button>
-              <button id = "openTab3" onclick = "changeTab(this,'tab3')">Explain an Image</button>
+              <button id = "openTab3" onclick = "changeTab(this,'tab3')" class = "active">Explain an Image</button>
             </nav>
-            <div id = "tab1">
+            <div id = "tab1" class = "hidden">
                 <h2>Make your own stylized image. See what the AI predicts. Is it biased towards texture or shape?</h2>
                 <div class = "flex">
                     <div class = "flex-inner step">
@@ -235,7 +235,7 @@
 
                 </div>
             </div>
-            <div id = "tab3" class = "hidden">
+            <div id = "tab3">
                 <div class = "flex">
                     <div  class = "flex-inner step"><h2>Draw what the AI sees.<br>See how your perception compares to the AI.</h2></div>
                     <div class = "flex-inner gifTopper">
@@ -259,17 +259,17 @@
                                 </div>
                             </div>
                             <div id = "d3-canvas-bar">
-                                <h4>Percentage of pixels correct so far</h4>
-                                <p><span class = "ai"></span>= Here's a hint! This is how the computer sees</p>
+                                <h4>Percentage of pixels aligned with the AI so far</h4>
+                                <p><span class = "ai"></span>= This is how the AI sees</p>
+                            </div>
+                            <div id = "answerCanvas">
+                                <h4>Here's what the AI sees</h4>
+                                <canvas id="canvas-compare" width="330" height="330" >
+                                Your browser does not support the HTML5 canvas tag.
+                                </canvas>
+                                <img id = "canvasImg-compare" src = "./assets/quiz/doberman-heat.png" style="display: none;" alt = "heatmap of doberman shows how an AI would classify the image. The head is the most important while nexk and body shape are second most important.">
                             </div>
                         </div>
-                        <div id = "answerCanvas">
-                            <h3>Here's what the computer sees</h3>
-                            <canvas id="canvas-compare" width="330" height="330" >
-                            Your browser does not support the HTML5 canvas tag.
-                            </canvas>
-                        </div>
-                        <img id = "canvasImg-compare" src = "./assets/quiz/doberman-heat.png" style="display: none;" alt = "heatmap of doberman shows how an AI would classify the image. The head is the most important while nexk and body shape are second most important.">
                         <button id = "revealAnswerButton" class = "blue" onclick="revealAnswer(this)">I'm done! Show me how an AI sees this image</button>
                     </div>     
             </div> 
