@@ -1,5 +1,4 @@
-// vite.config.js
-export default {
+module.exports = {
   base: "./",
   // config options
 };
